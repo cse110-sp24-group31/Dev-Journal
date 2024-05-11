@@ -1,3 +1,13 @@
+/* COLOR THEMES */
+:root {
+    --background-color: #ffdaca;
+    --content-color: #588b8b;
+    --sidebar-color: #FFA343;
+    --bar-color: #c8553d;
+    --card-color: white;
+}
+
+
 /* ENTIRE PAGE SELECTORS */
 body, html {
     margin: 0;
@@ -5,7 +15,7 @@ body, html {
     box-sizing: border-box;
     height: 100%;
     font-family: Arial, sans-serif;    /* temporary */
-    background-color: #ffdaca;
+    background-color: var(--background-color);
     min-height: 500px;
 }
 
@@ -13,7 +23,7 @@ body, html {
 
 /* NAV AND BOTTOM TAB SELECTORS  */
 .main-nav, .bottom-tab {
-    background-color: #c8553d; 
+    background-color: var(--bar-color); 
     padding: 20px 0;
     width: 100%;
 }
@@ -26,7 +36,7 @@ body, html {
     height: 300px;
     width: 200px;
     border-radius: 8px;
-    background-color: white;
+    background-color: var(--card-color);
     transition: box-shadow 0.3s;
 }
 
@@ -52,13 +62,13 @@ body, html {
     align-items: flex-start;
     gap: 25px;
     padding: 30px;
-    background-color: #588b8b; 
+    background-color: var(--content-color); 
     flex-grow: 1;
     margin: 30px 15px 30px 30px;
 }
 
 .accomplishments {
-    background-color: #FFA343; 
+    background-color: var(--sidebar-color); 
     width: 250px; /* Fixed width for the sidebar */
     margin: 30px 30px 30px 15px;
 }
