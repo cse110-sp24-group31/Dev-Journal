@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer Jounal</title>
     <!-- FONTS -->
 
-
     <!-- SCRIPS -->
     <script src="assets/scripts/main.js"></script>
+    <script rel="module" src="assets/scripts/homepage.js"></script>
+
+    <!-- COMPONENTS -->
+    <script rel="module" src="assets/components/project-card.js"></script>
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="assets/styles/homepage.css">
@@ -23,11 +27,10 @@
 
     <div class="main">
         <!-- PROJECT CARDS SECTION -->
-        <div class="project-cards" id="project-cards">
+        <div class="project-cards" id="project-cards-parent">
             <div class="card new-card">
                 <div class="add-icon">+ Add new project</div>
             </div>
-            <div class="card"></div>
         </div>
 
         <!-- SIDEBAR -->
@@ -40,7 +43,7 @@
                     <button id="cal-next"></button>
                 </div>
 
-                <div class="days"> 
+                <div class="days">
                     <div class="day">Mon</div>
                     <div class="day">Tue</div>
                     <div class="day">Wed</div>
@@ -61,9 +64,9 @@
 
 
     <!-- BOTTOM FOOTER -->
-    <div class="bottom-tab">   
+    <div class="bottom-tab">
     </div>
-    
+
 
     <div id="projectView" class="modal">
         <div class="modal-content">
@@ -74,4 +77,5 @@
 
     <script src="assets/scripts/calendar.js"></script>
 </body>
+
 </html>
