@@ -7,15 +7,14 @@
     <title>Developer Jounal</title>
     <!-- FONTS -->
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/project-card.css">
 
-    <!-- Web Components -->
-    <script src="./assets/components/project-card.js" type="module"></script>
+    <!-- SCRIPS -->
+    <script src="js/main.js"></script>
 
-    <!-- Main Scripts -->
-    <script src="./assets/scripts/homepage.js" type="module"></script>
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/projectView.css">
+
 </head>
 
 <body>
@@ -29,8 +28,40 @@
         <!-- PROJECT CARDS SECTION -->
         <div class="project-cards" id="project-cards-parent">
 
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <!-- CALENDAR -->
+            <div class="sidebar-sec calendar">
+                <div class="cal-header">
+                    <button id="cal-prev"></button>
+                    <div class="monthYear" id="monthYear"></div>
+                    <button id="cal-next"></button>
+                </div>
+
+                <div class="days"> 
+                    <div class="day">Mon</div>
+                    <div class="day">Tue</div>
+                    <div class="day">Wed</div>
+                    <div class="day">Thu</div>
+                    <div class="day">Fri</div>
+                    <div class="day">Sat</div>
+                    <div class="day">Sun</div>
+                </div>
+                <div class="dates" id="dates"></div>
+            </div>
+
+            <!-- ACCOMPLISHMENTS -->
+            <div class="sidebar-sec accomplishments">
+
+            </div>
+        </div>
+    </div>
 
 
+    <div id="projectView" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some context in the minipage</p>
         </div>
     </div>
 
@@ -45,38 +76,10 @@
     <div class="bottom-tab">
 
     </div>
-    <template>
-        <!-- Sample project card Item -->
-        <!-- <div class="project-card">
-            <p class="name">Warmup project</p>
-            <img class="project-image" src="assets/images/sample_project_card_image.png"
-                alt="Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops">
-            <div class="desc">a project</div>
-            <div class="progress-bar">
-                <div class="progress-bar-fill">
-                    12
-                </div>
 
-            </div>
-            <div class="actions">
-                <button onclick="{
-                    const pbf = this.parentNode.parentNode.querySelector(
-                        '.progress-bar > .progress-bar-fill'
-                    );
-                    var progress = Number(pbf.innerText);
-                    if (progress >= 100) {
-                        progress = 0;
-                    } else {
-                        progress= progress+Math.floor(Math.random()*10);
-                    }
-                    console.log(progress);
-                    pbf.style.width = progress + '%';
-                    pbf.innerText = progress;
-                }">progress + random</button>
-                <button onclick="alert('open click')">open</button>
-                <button onclick="alert('options click')">options</button>
-            </div> -->
-    </template>
+
+    <script src="js/calendar.js"></script>
+
 </body>
 
 </html>
