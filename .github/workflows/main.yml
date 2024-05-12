@@ -1,4 +1,4 @@
-﻿name: Lab6 Main Branch Tests # name of the test
+﻿name: Project Main Branch Tests # name of the test
 
 on: [push] # the Github Action will activate "on" the event that you "push" to the repo
 
@@ -9,6 +9,6 @@ jobs: # the things being executed
       - uses: actions/checkout@v4 # using version 4 of Actions
       - name: Install Dependencies
         run: npm install
-      # - name: project card tests
-      #   run: npm test ./__tests__/project-card.test.js # the actual testing line
+      - name: project card tests
+        run: npm test ./__tests__/project-card.test.js # the actual testing line
 
