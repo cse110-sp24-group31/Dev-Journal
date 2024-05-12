@@ -2,9 +2,10 @@
 :root {
     --background-color: #ffdaca;
     --content-color: #588b8b;
-    --sidebar-color: #FFA343;
+    --accomp-color: #FFA343;
     --bar-color: #c8553d;
-    --card-color: white;
+    --card-color: #ffffffeb;
+    --cal-color: #65c9c9be;
 }
 
 
@@ -50,8 +51,7 @@ body, html {
     height: calc(100% - 80px); 
 }
 
-.project-cards, .accomplishments {
-    padding: 20px;
+.project-cards, .sidebar-sec {
     border-radius: 8px; /* Rounded corners */
 }
 
@@ -67,15 +67,30 @@ body, html {
     margin: 30px 15px 30px 30px;
 }
 
-.accomplishments {
-    background-color: var(--sidebar-color); 
+.sidebar {
     width: 250px; /* Fixed width for the sidebar */
+    display: flex;
+    flex-direction: column;
     margin: 30px 30px 30px 15px;
+}
+
+.sidebar-sec {
+    flex: 1;
+}
+
+.calendar {
+    margin-bottom: 15px;
+    background-color: var(--cal-color); /* Light grey for visibility */
+}
+
+.accomplishments {
+    background-color: var(--accomp-color); /* Slightly different grey for distinction */
+    margin-top: 15px;
 }
 
 
 /* MEDIA QUERY FOR MOBILE DEVICES */
-@media (max-width: 768px) {
+@media (max-width: 837px) {
     .main {
         flex-direction: column;
     }
