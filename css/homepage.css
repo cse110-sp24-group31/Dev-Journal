@@ -68,24 +68,97 @@ body, html {
 }
 
 .sidebar {
-    width: 250px; /* Fixed width for the sidebar */
+    width: 380px; /* Fixed width for the sidebar */
     display: flex;
+    height: calc(100% - 60px); 
     flex-direction: column;
     margin: 30px 30px 30px 15px;
 }
 
-.sidebar-sec {
-    flex: 1;
-}
 
 .calendar {
     margin-bottom: 15px;
     background-color: var(--cal-color); /* Light grey for visibility */
+    height: 283px;
+    flex-direction: column;
+}
+
+.cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.monthYear {
+    text-align: center;
+    font-weight: 600;
+    width: 150px;
+}
+
+.cal-header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+}
+
+
+.day {
+    text-align: center;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: 400;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: 0.2s;
+}
+
+.date:hover, .date:active {
+    background: #ff5869;
+    color: #fff;
+}
+
+.date.inactive {
+    color: #d2d2d2;
+}
+
+.date.inactive:hover {
+    color: #fff;
 }
 
 .accomplishments {
     background-color: var(--accomp-color); /* Slightly different grey for distinction */
     margin-top: 15px;
+    flex-grow: 1;
 }
 
 

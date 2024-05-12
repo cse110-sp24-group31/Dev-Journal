@@ -29,9 +29,27 @@
 
         <!-- SIDEBAR -->
         <div class="sidebar">
+            <!-- CALENDAR -->
             <div class="sidebar-sec calendar">
+                <div class="cal-header">
+                    <button id="cal-prev"></button>
+                    <div class="monthYear" id="monthYear"></div>
+                    <button id="cal-next"></button>
+                </div>
 
+                <div class="days"> 
+                    <div class="day">Mon</div>
+                    <div class="day">Tue</div>
+                    <div class="day">Wed</div>
+                    <div class="day">Thu</div>
+                    <div class="day">Fri</div>
+                    <div class="day">Sat</div>
+                    <div class="day">Sun</div>
+                </div>
+                <div class="dates" id="dates"></div>
             </div>
+
+            <!-- ACCOMPLISHMENTS -->
             <div class="sidebar-sec accomplishments">
 
             </div>
@@ -51,5 +69,7 @@
     <div class="bottom-tab">
 
     </div>
+
+    <script src="js/calendar.js"></script>
 </body>
 </html>
