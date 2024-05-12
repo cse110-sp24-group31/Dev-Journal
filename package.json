@@ -20,6 +20,6 @@
     "preset": "jest-puppeteer",
     "verbose": true,
     "collectCoverage": true,
-     "coverageReporters": ["lcov"] \
+     "coverageReporters": ["lcov"]
   }
 }
