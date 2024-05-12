@@ -1,0 +1,91 @@
+.project-card {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.712);
+  border-radius: 5px;
+  display: grid;
+  grid-template-areas:
+    'name'
+    'project-image'
+    'desc'
+    'progress-bar'
+    'actions';
+  grid-template-rows: 10% 40% 35% 5% 10%;
+  height: 80%;
+  max-height: 600px;
+  min-height: 300px;
+  filter: drop-shadow(0px 0px 6px rgb(0, 0, 0, 0.2));
+  margin: 0 30px 30px 0;
+  padding: 10px 20px;
+  width: 50%;
+  max-width: 400px;
+  min-width: 200px;
+}
+.project-card .name {
+  color: rgb(0, 0, 0);
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.project-card .name:hover {
+  font-size: 2em;
+  margin: 0;
+  white-space: wrap;
+  overflow: auto;
+  text-overflow: unset;
+  transition: 0.1s ease all;
+}
+
+.project-card button {
+  background-color: rgb(255, 208, 0);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  justify-self: center;
+  max-height: 35px;
+  padding: 8px 20px;
+  transition: 0.1s ease all;
+}
+
+.project-card button:hover {
+  background-color: rgb(255, 166, 0);
+  cursor: pointer;
+  transition: 0.1s ease all;
+}
+
+.project-card .project-image {
+  align-self: center;
+  justify-self: center;
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+}
+.project-card .progress-bar {
+  width: 100%;
+  background-color: grey;
+}
+
+.project-card .desc {
+  width: 90%;
+  height: 80%;
+  align-self: center;
+  overflow: auto;
+  text-align: left;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-anchor: middle;
+  border-radius: 5% 5% 5% 5%;
+  background-color: rgba(0, 0, 0, 0.164);
+}
+.progress-bar {
+  height: 100%;
+}
+.progress-bar > .progress-bar-fill {
+  width: 12%;
+  height: 100%;
+  background-color: rgb(0, 128, 122);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
