@@ -1,4 +1,11 @@
-test('sum of first 10 consecutive numbers equals 55', () => {
-    let numbers = Array.from({length: 10}, (_, i) => i + 1); 
-    expect(sum(...numbers)).toBe(55);
+const addNumbers = require('./testcode/example.js'); 
+
+describe('addNumbers', () => {
+    test('adds numbers from 1 to n', () => {
+        let sum = 0;
+        for (let n = 1; n <= 10; n++) {
+            sum += n;
+            expect(addNumbers(n)).toBe(sum);
+        }
+    });
 });
