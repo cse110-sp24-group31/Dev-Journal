@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +8,27 @@
 
 
     <!-- SCRIPS -->
-    <script src="js/main.js"></script>
+    <script src="assets/scripts/main.js"></script>
 
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/projectView.css">
-
+    <link rel="stylesheet" href="assets/styles/homepage.css">
+    <link rel="stylesheet" href="assets/styles/projectView.css">
 </head>
 
 <body>
     <!-- MAIN NAVIGATION -->
     <div class="main-nav">
-
     </div>
 
 
     <div class="main">
         <!-- PROJECT CARDS SECTION -->
-        <div class="project-cards" id="project-cards-parent">
+        <div class="project-cards" id="project-cards">
+            <div class="card new-card">
+                <div class="add-icon">+ Add new project</div>
+            </div>
+            <div class="card"></div>
+        </div>
 
         <!-- SIDEBAR -->
         <div class="sidebar">
@@ -58,6 +60,11 @@
     </div>
 
 
+    <!-- BOTTOM FOOTER -->
+    <div class="bottom-tab">   
+    </div>
+    
+
     <div id="projectView" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -65,21 +72,6 @@
         </div>
     </div>
 
-    <!-- ACCOMPLISHMENTS SECTION -->
-    <div class="accomplishments">
-
-    </div>
-    </div>
-
-
-    <!-- BOTTOM FOOTER -->
-    <div class="bottom-tab">
-
-    </div>
-
-
-    <script src="js/calendar.js"></script>
-
+    <script src="assets/scripts/calendar.js"></script>
 </body>
-
 </html>
