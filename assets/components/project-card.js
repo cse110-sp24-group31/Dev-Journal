@@ -25,13 +25,11 @@ class ProjectCard extends HTMLElement {
                             'progress-bar'
                             'actions';
                           grid-template-rows: 10% 40% 35% 5% 10%;
-                          height: 100%;
-                          max-height: 600px;
+                          height: 600px;
                           min-height: 300px;
                           filter: drop-shadow(0px 0px 10px rgb(0, 0, 0, 0.2));
                           padding: 0px 20px;
-                          width: 100%;
-                          max-width: 400px;
+                          width: 360px;
                           min-width: 200px;
                         }
                         .project-card .name {
@@ -153,9 +151,7 @@ class ProjectCard extends HTMLElement {
     });
     debugAddProgress.innerText = 'progress + random';
     const open = document.createElement('button');
-    open.addEventListener('click', _ => {
-      alert('open');
-    });
+    open.addEventListener('click', e => showModal_projectCard(e, open, data));
     open.innerText = 'open';
     const options = document.createElement('button');
     options.addEventListener('click', _ => {
@@ -179,3 +175,13 @@ class ProjectCard extends HTMLElement {
 }
 
 customElements.define('project-card', ProjectCard);
+
+// Function to show the modal
+function showModal_projectCard(e, btn, data) {
+  e.preventDefault();
+  console.log(btn);
+  const modal = document.getElementById('projectView');
+  const modalContent = modal.querySelector('.modal-content p');
+  modalContent.textContent = 'Content for ' + data.desc; // Set the content dynamically
+  modal.style.display = 'block'; // Show the modal
+}
