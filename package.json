@@ -3,15 +3,23 @@
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "babel-jest": "^29.7.0",
+    "eslint": "^8.0.0",
+    "prettier": "^2.4.1",
     "jest": "^29.7.0",
     "jest-puppeteer": "^10.0.0",
-    "puppeteer": "^22.7.1"
+    "puppeteer": "^22.7.1",
+    "codeclimate-test-reporter": "^0.5.1"
   },
   "scripts": {
-    "test": "jest --maxWorkers=1"
+    "test": "jest --maxWorkers=1",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "quality-check": "codeclimate-test-reporter < lcov.info" # this could change depending on if we decide to use lcov or something else
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "verbose": true
+    "verbose": true,
+    "collectCoverage": true,
+     "coverageReporters": ["lcov"] // SUBJECT TO CHANGE
   }
 }
