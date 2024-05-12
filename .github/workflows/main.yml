@@ -1,13 +1,21 @@
-﻿name: Project Main Branch Tests # name of the test
+name: Project Main Branch Tests
 
-on: [push] # the Github Action will activate "on" the event that you "push" to the repo
+on: [push]
 
-jobs: # the things being executed
-  tests: # the name of your status check, will become important when you do branch protection
-    runs-on: ubuntu-latest # which device on Github's server that you are running the Actions on
+jobs:
+  tests:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # using version 4 of Actions
+      - uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install
-      # - name: project card tests
-      #   run: npm test ./__tests__/project-card.test.js # the actual testing line
+
+      - name: Linting and Code Style Enforcement
+        run: npm run lint 
+
+      - name: Code Quality Check
+        run: npm run quality-check 
+
+      - name: Unit Tests
+        run: npm test ./tests/example/sum.test.js 
+        # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
