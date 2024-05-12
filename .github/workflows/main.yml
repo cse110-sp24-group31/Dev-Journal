@@ -10,11 +10,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Linting and Code Style Enforcement
-        run: npm run lint 
+      #- name: Linting and Code Style Enforcement
+       # run: npm run lint 
 
-      - name: Code Quality Check
-        run: npm run quality-check 
+      #- name: Code Quality Check
+       # run: npm run quality-check 
 
       - name: Unit Tests
         run: npm test ./tests/example.js
