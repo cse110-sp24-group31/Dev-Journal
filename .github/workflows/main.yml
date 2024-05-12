@@ -17,5 +17,5 @@ jobs:
        # run: npm run quality-check 
 
       - name: Unit Tests
-        run: npm test ./tests/example.test.js
+        run: npm test ./__tests__/example.test.js
         # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
