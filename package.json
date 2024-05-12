@@ -19,8 +19,14 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true,
-    "transform": {},
     "collectCoverage": true,
-     "coverageReporters": ["lcov"]
+    "coverageReporters": ["lcov"],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   }
 }
+
