@@ -19,6 +19,7 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true,
+    "transform": {},
     "collectCoverage": true,
      "coverageReporters": ["lcov"]
   }
