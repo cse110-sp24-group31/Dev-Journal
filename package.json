@@ -14,7 +14,7 @@
     "test": "jest --maxWorkers=1",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "quality-check": "codeclimate-test-reporter < lcov.info" # this could change depending on if we decide to use lcov or something else
+    "quality-check": "codeclimate-test-reporter < lcov.info" // this could change depending on if we decide to use lcov or something else
   },
   "jest": {
     "preset": "jest-puppeteer",
