@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer Jounal</title>
     <!-- FONTS -->
 
-    <!-- SCRIPS -->
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link rel="stylesheet" href="./assets/styles/project-card.css">
 
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Web Components -->
+    <script src="./assets/components/project-card.js" type="module"></script>
+
+    <!-- Main Scripts -->
+    <script src="./assets/scripts/homepage.js" type="module"></script>
 </head>
+
 <body>
     <!-- MAIN NAVIGATION -->
     <div class="main-nav">
@@ -20,15 +27,17 @@
 
     <div class="main">
         <!-- PROJECT CARDS SECTION -->
-        <div class="project-cards">
-            <div class="new-card card">+ Add new project</div>
-            <div class="card"></div>
-        </div>
+        <div class="project-cards" id="project-cards-parent">
 
-        <!-- ACCOMPLISHMENTS SECTION -->
-        <div class="accomplishments">
+
 
         </div>
+    </div>
+
+    <!-- ACCOMPLISHMENTS SECTION -->
+    <div class="accomplishments">
+
+    </div>
     </div>
 
 
@@ -36,5 +45,38 @@
     <div class="bottom-tab">
 
     </div>
+    <template>
+        <!-- Sample project card Item -->
+        <!-- <div class="project-card">
+            <p class="name">Warmup project</p>
+            <img class="project-image" src="assets/images/sample_project_card_image.png"
+                alt="Fjallraven - Foldstack No. 1 Backpack, Fits 15 Laptops">
+            <div class="desc">a project</div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill">
+                    12
+                </div>
+
+            </div>
+            <div class="actions">
+                <button onclick="{
+                    const pbf = this.parentNode.parentNode.querySelector(
+                        '.progress-bar > .progress-bar-fill'
+                    );
+                    var progress = Number(pbf.innerText);
+                    if (progress >= 100) {
+                        progress = 0;
+                    } else {
+                        progress= progress+Math.floor(Math.random()*10);
+                    }
+                    console.log(progress);
+                    pbf.style.width = progress + '%';
+                    pbf.innerText = progress;
+                }">progress + random</button>
+                <button onclick="alert('open click')">open</button>
+                <button onclick="alert('options click')">options</button>
+            </div> -->
+    </template>
 </body>
+
 </html>
