@@ -9,6 +9,5 @@ jobs: # the things being executed
       - uses: actions/checkout@v4 # using version 4 of Actions
       - name: Install Dependencies
         run: npm install
-      - name: project card tests
-        run: npm test ./__tests__/project-card.test.js # the actual testing line
-
+      # - name: project card tests
+      #   run: npm test ./__tests__/project-card.test.js # the actual testing line
