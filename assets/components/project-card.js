@@ -160,12 +160,14 @@ class ProjectCard extends HTMLElement {
         //TODO: Progress in json file doesn't change.
         let progress = Number(pbf.innerText);
         progress = progress + Math.floor(Math.random() * 10);
-        if (progress >= 100) {
+        if (progress >= 100 || pbf.innerText == "Complete!") {
           console.log("Task complete!");
           progress = 100;
+          pbf.innerText = "Complete!";
+        } else {
+          pbf.innerText = progress;
         }
         pbf.style.width = progress + '%';
-        pbf.innerText = progress;
         
       } else if (this.json["progress-type"] == "check"){
         pbf = this.shadowRoot.querySelector(
@@ -175,21 +177,44 @@ class ProjectCard extends HTMLElement {
         console.log("Task complete!");
 
         pbf.style.backgroundColor = "rgb(0, 128, 122)";
+        pbf.style.color = "white";
         pbf.innerText = "Complete!";
       }
     });
     debugAddProgress.innerText = 'make progress';
     const open = document.createElement('button');
-    open.addEventListener('click', e => showModal_projectCard(e, open, data));
     open.innerText = 'open';
+    open.addEventListener('click', e => showModal_projectCard(e, open, data));
     const options = document.createElement('button');
+    options.innerText = 'options';
     options.addEventListener('click', _ => {
       alert('options');
     });
+    const resetProg = document.createElement('button');
+    resetProg.innerText = 'reset';
+    resetProg.addEventListener('click', _ => {
+      let pbf;
+      if (this.json["progress-type"] == "fill"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-fill'
+        );
+        
+        pbf.innerText = "0";
+        pbf.style.width = 0 + '%';
+        
+      } else if (this.json["progress-type"] == "check"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-check'
+        );
 
-    options.innerText = 'options';
+        pbf.style.backgroundColor = "rgb(242, 137, 0)";
+        pbf.style.color = "black";
+        pbf.innerText = "In Progress";
+      }
+    });
 
-    actions.append(debugAddProgress, open, options);
+    // Append action buttons to actions tab
+    actions.append(debugAddProgress, open, options, resetProg);
 
     // Add all of the above elements to the wrapper
     wrapper.append(title, img, desc, pb, actions);
