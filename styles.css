@@ -1,0 +1,146 @@
+/* Styling for contact page */
+
+/* background image */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+ 
+ 
+ h1 {
+    color: beige;
+    text-align: center;
+ }
+ 
+ 
+ .sun-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 550px; 
+    height: 550px;
+    margin: 30px auto;
+    border: none;
+    outline: none;
+ }
+ 
+ 
+ .sun {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, beige 20%, rgb(225, 184, 107), brown 100%);
+    z-index: 1;
+ }
+ 
+ 
+ /* input information box */
+ form {
+    display:flex;
+    max-width: 390px;
+    max-height:390px;
+    margin: 0 auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 15px;
+    z-index: 2;
+    background:none;
+ }
+ /* Title */
+ .bubble {
+    left: 50%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ 
+ .bubble h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+ }
+ 
+ 
+ 
+ 
+ .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+ }
+ 
+ 
+ .info-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 3px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 100%;
+    border-color: transparent;
+ }
+ /* formatting for each person's description*/
+ .person-entry {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: lightblue;
+    border: 1px solid #ccc;
+    width: calc(20%);
+    height: 320px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #9ccddc 40%, #5591a9 60%, #054569 90%);
+ 
+ 
+ }
+ 
+ 
+ .entry-content {
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
+ }
+ 
+ 
+ .entry-avatar {
+    flex-shrink: 0;
+ }
+ 
+ 
+ .avatar-image {
+    width: 25px;
+    height: auto;
+    border-radius: 50%;
+ }
+ 
+ 
+ /* CSS for avatar options */
+ .avatar-option {
+    border: 2px solid transparent;
+    cursor: pointer;
+ }
+ 
+ 
+ .avatar-option.selected {
+    border-color: blue;
+ }
+ 
+ 
+ 

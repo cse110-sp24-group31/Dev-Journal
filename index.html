@@ -1,81 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Jounal</title>
-    <!-- FONTS -->
-
-    <!-- SCRIPS -->
-    <script src="assets/scripts/main.js"></script>
-    <script rel="module" src="assets/scripts/homepage.js"></script>
-
-    <!-- COMPONENTS -->
-    <script rel="module" src="assets/components/project-card.js"></script>
-
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="assets/styles/homepage.css">
-    <link rel="stylesheet" href="assets/styles/projectView.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Contacts list</title>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="icon" href="favicon.png" type="image/png">
+   <script src="script.js" defer></script>
 </head>
-
 <body>
-    <!-- MAIN NAVIGATION -->
-    <div class="main-nav">
-    </div>
+ 
+   <div class="bubble">
+       <h1>Contacts Page</h1>
+   </div>
+
+   <!-- Creating form to have the user input the information they want/need. (phone number, e-mail)-->
+   <div class="sun-container">
+       <div class ="sun"></div>
+           <form>
+               <fieldset>
+                   <legend style="font-size:20px;">Add Contact Information</legend>
+                   <label for="name">Name:</label><br>
+                   <input type="text" id="name" name="name" required><br>
+                   <label for="gender">Gender:</label><br>
+                   <select id="gender" name="gender"><br>
+                       <option value="male">Male</option>
+                       <option value="female">Female</option>
+                       <option value="other">Other</option>
+                   </select> <br>
+                   <label for="avatar">Avatar:</label><br>
+                   <div id="avatar-options">
+                       <img src="1.png" alt="Avatar 1" class="avatar-option">
+                       <img src="2.png" alt="Avatar 2" class="avatar-option">
+                       <img src="3.png" alt="Avatar 3" class="avatar-option">
+                   </div>
+                   <input type="hidden" id="selected-avatar" name="avatar">
+                   <label for="github">Github:</label><br>
+                   <input type="text" id="github" name="github"><br>
 
 
-    <div class="main">
-        <!-- PROJECT CARDS SECTION -->
-        <div class="project-cards" id="project-cards-parent">
-            <div class="card new-card">
-                <div class="add-icon">+ Add new project</div>
-            </div>
-        </div>
-
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-            <!-- CALENDAR -->
-            <div class="sidebar-sec calendar">
-                <div class="cal-header">
-                    <button id="cal-prev"></button>
-                    <div class="monthYear" id="monthYear"></div>
-                    <button id="cal-next"></button>
-                </div>
-
-                <div class="days">
-                    <div class="day">Mon</div>
-                    <div class="day">Tue</div>
-                    <div class="day">Wed</div>
-                    <div class="day">Thu</div>
-                    <div class="day">Fri</div>
-                    <div class="day">Sat</div>
-                    <div class="day">Sun</div>
-                </div>
-                <div class="dates" id="dates"></div>
-            </div>
-
-            <!-- ACCOMPLISHMENTS -->
-            <div class="sidebar-sec accomplishments">
-
-            </div>
-        </div>
-    </div>
+                   <label for="linkedin">LinkedIn:</label><br>
+                   <input type="text" id="linkedin" name="linkedin"><br>
 
 
-    <!-- BOTTOM FOOTER -->
-    <div class="bottom-tab">
-    </div>
+                   <label for="other">Other Information:</label><br>
+                   <textarea id="other" name="other" rows="4" cols="40" placeholder="Enter any additional information here"></textarea><br>
 
 
-    <div id="projectView" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some context in the minipage</p>
-        </div>
-    </div>
+                   <input type="submit" value="Submit">
+               </fieldset>
+           </form>
+       </div>
+   <div class="container">
+       <div class="info-box" id="info-box"></div>
+   </div>
 
-    <script src="assets/scripts/calendar.js"></script>
+
 </body>
-
 </html>
