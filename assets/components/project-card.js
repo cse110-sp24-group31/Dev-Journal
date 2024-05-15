@@ -101,6 +101,14 @@ class ProjectCard extends HTMLElement {
                           line-height: 30px;
                           color: white;
                         }
+                        .progress-bar > .progress-bar-check {
+                          width: 100%;
+                          height: 100%;
+                          background-color: rgb(242, 137, 0);
+                          text-align: center;
+                          line-height: 30px;
+                          color: black;
+                        }
     `;
 
     // Create the outer wrapper for the project card to nest inside
@@ -124,32 +132,53 @@ class ProjectCard extends HTMLElement {
     desc.innerText = data.desc;
 
     //create progress bar
+    //TODO: If progress-type is fill, put the fill type in. If progress-type is check, put the check in.
     const pb = document.createElement('div');
     pb.classList.add('progress-bar');
     const pbf = document.createElement('div');
-    pbf.classList.add('progress-bar-fill');
-    pbf.style.width = data.progress + '%';
+    if (this.json["progress-type"] == "fill"){
+      pbf.classList.add('progress-bar-fill');
+      pbf.style.width = data.progress + '%';
+      pbf.innerText = data.progress;
+    } else if (this.json["progress-type"] == "check"){
+      console.log(this.json["name"], "is a check.");
+      pbf.classList.add('progress-bar-check');
+      pbf.innerText = "In Progress";
+    }
     pb.appendChild(pbf);
-    pbf.innerText = data.progress;
 
     // Create the actions
     const actions = document.createElement('div');
     actions.classList.add('actions');
     const debugAddProgress = document.createElement('button');
     debugAddProgress.addEventListener('click', () => {
-      const pbf = this.shadowRoot.querySelector(
-        '.progress-bar > .progress-bar-fill'
-      );
-      var progress = Number(pbf.innerText);
-      if (progress >= 100) {
-        progress = 0;
-      } else {
+      let pbf;
+      if (this.json["progress-type"] == "fill"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-fill'
+        );
+        //TODO: Progress in json file doesn't change.
+        let progress = Number(pbf.innerText);
         progress = progress + Math.floor(Math.random() * 10);
+        if (progress >= 100) {
+          console.log("Task complete!");
+          progress = 100;
+        }
+        pbf.style.width = progress + '%';
+        pbf.innerText = progress;
+        
+      } else if (this.json["progress-type"] == "check"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-check'
+        );
+
+        console.log("Task complete!");
+
+        pbf.style.backgroundColor = "rgb(0, 128, 122)";
+        pbf.innerText = "Complete!";
       }
-      pbf.style.width = progress + '%';
-      pbf.innerText = progress;
     });
-    debugAddProgress.innerText = 'progress + random';
+    debugAddProgress.innerText = 'make progress';
     const open = document.createElement('button');
     open.addEventListener('click', e => showModal_projectCard(e, open, data));
     open.innerText = 'open';
