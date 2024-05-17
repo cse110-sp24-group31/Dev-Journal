@@ -1,65 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Jounal</title>
-    <!-- FONTS -->
-
-    <!-- SCRIPS -->
-    <script src="assets/scripts/main.js"></script>
-    <script src="assets/scripts/project.js"></script>
-
-
-    <!-- STYLESHEETS -->
+    <title>Developer Journal</title>
     <link rel="stylesheet" href="assets/styles/homepage.css">
     <link rel="stylesheet" href="assets/styles/projectView.css">
     <link rel="stylesheet" href="assets/styles/project-card.css">
 </head>
-
 <body>
-    <!-- MAIN NAVIGATION -->
     <div class="main-nav">
-        <button onclick="addProjectPopup()">New Project</button>
+        <div class="brand">Developer Journal</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Projects</a>
+            <a href="#">About</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
     </div>
 
-
     <div class="main">
-        <!-- PROJECT CARDS SECTION -->
         <div class="project-cards" id="project-cards-parent">
-            
-            <div class="project-card">
+            <div class="project-card" id="add-card">
                 <p class="name">Add New Project</p>
-                <img src='' alt="+" class="project-image">
-                <div class="desc"></div>
-                <div class="progress-bar" hidden = "true">
-                    <div class="progress-bar-fill" style="width: 79%;">79</div>
-                </div>
-                <div class="actions" hidden = "true">
-                    <button onclick="projectCard_onDebugProgressButtonClicked(this)">progress + random</button>
-                    <button onclick="projectCard_onOpenButtonClicked(this)">open</button>
-                    <button onclick="projectCard_onOptionButtonClicked(this)">options</button>
-                    <button onclick="projectCard_onDeleteButtonClicked(this)">delete</button>
-                </div>
+                <button onclick="openAddCardModal()">+</button>
             </div>
-
-            
-
         </div>
 
-
-
-        <!-- SIDEBAR -->
         <div class="sidebar">
-            <!-- CALENDAR -->
             <div class="sidebar-sec calendar">
                 <div class="cal-header">
-                    <button id="cal-prev"></button>
+                    <button id="cal-prev">◀</button>
                     <div class="monthYear" id="monthYear"></div>
-                    <button id="cal-next"></button>
+                    <button id="cal-next">▶</button>
                 </div>
-
                 <div class="days">
                     <div class="day">Mon</div>
                     <div class="day">Tue</div>
@@ -71,29 +48,33 @@
                 </div>
                 <div class="dates" id="dates"></div>
             </div>
-
-            <!-- ACCOMPLISHMENTS -->
             <div class="sidebar-sec accomplishments">
-
+                <!-- Accomplishments Section -->
             </div>
         </div>
     </div>
 
+    <div class="bottom-tab">Footer Content</div>
 
-    <!-- BOTTOM FOOTER -->
-    <div class="bottom-tab">
-    </div>
-
-
-    <div id="projectView" class="modal">
+    <!-- Add Card Modal -->
+    <div id="addCardModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some context in the minipage</p>
+            <span class="close-modal" onclick="closeAddCardModal()">&times;</span>
+            <h2>Add New Project</h2>
+            <form id="addCardForm">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" required>
+                <label for="projectDescription">Description:</label>
+                <textarea id="projectDescription" name="projectDescription" required></textarea>
+                <label for="projectImage">Image URL:</label>
+                <input type="url" id="projectImage" name="projectImage">
+                <button type="submit">Add Project</button>
+            </form>
         </div>
     </div>
 
     <script src="assets/scripts/calendar.js"></script>
-    <script src="assets/scripts/test.js"></script>
+    <script src="assets/scripts/project.js"></script>
+    <script src="assets/scripts/main.js"></script>
 </body>
-
 </html>

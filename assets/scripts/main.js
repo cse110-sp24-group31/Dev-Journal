@@ -11,7 +11,6 @@ function addProjectPopup(){
     alert("");
 }
 
-
 // Initialization function to set up event handlers
 function init() {
     // Get the element that closes the modal

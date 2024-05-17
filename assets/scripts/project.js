@@ -57,13 +57,64 @@ function populatePage() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('addCardForm').addEventListener('submit', addCard);
+});
 
+function openAddCardModal() {
+  document.getElementById('addCardModal').style.display = 'block';
+}
 
+function closeAddCardModal() {
+  document.getElementById('addCardModal').style.display = 'none';
+}
 
+function addCard(event) {
+  event.preventDefault();
 
+  const projectName = document.getElementById('projectName').value;
+  const projectDescription = document.getElementById('projectDescription').value;
+  const projectImage = document.getElementById('projectImage').value || 'default-image-url.jpg';
 
+  const newCard = document.createElement('div');
+  newCard.classList.add('project-card');
+  newCard.innerHTML = `
+      <p class="name">${projectName}</p>
+      <img src="${projectImage}" alt="${projectName}" class="project-image">
+      <div class="desc">${projectDescription}</div>
+      <div class="progress-bar-container">
+          <div class="progress-bar">
+              <div class="progress-bar-fill" style="width: 0%;">0%</div>
+          </div>
+      </div>
+      <div class="actions">
+          <button onclick="updateProgress(this)">Update Progress</button>
+          <button onclick="deleteCard(this)">Delete</button>
+      </div>
+  `;
 
+  document.getElementById('project-cards-parent').appendChild(newCard);
+  closeAddCardModal();
+  document.getElementById('addCardForm').reset();
+  let project = {
+    title: projectName, 
+    image: projectImage, 
+    desc: projectDescription,
+  };
+  projects.appendChild(project);
+}
 
+function updateProgress(button) {
+  const progressBar = button.parentElement.previousElementSibling.firstElementChild;
+  let progress = parseInt(progressBar.style.width);
+  progress = (progress + 10) % 110;
+  progressBar.style.width = `${progress}%`;
+  progressBar.textContent = `${progress}%`;
+}
+
+function deleteCard(button) {
+  button.parentElement.parentElement.remove();
+}
 
 //createProjectCard('warmup', 'https://picsum.photos/id/3/415/160', 'a warmup project', 79);
 function createProjectCard(name, imageUrl, description, progress) {
