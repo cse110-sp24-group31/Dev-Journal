@@ -12,7 +12,7 @@ async function init() {
     console.log(`Error fetch items: ${err}`);
     return; // Return if fetch fails
   }
-  populatePage(); // Add <project-cards> elements to page with fetched data
+  //populatePage(); // use JS to populate project cards
 }
 
 /**
@@ -53,10 +53,28 @@ function populatePage() {
   if (!projects) return;
   // Iterate over each of the items in the array
   projects.forEach(item => {
-    // Create <project-card> element and populate it with item data
-    let pc = document.createElement('project-card');
-    pc.data = item;
-    // Add the item to the webpage
-    document.querySelector('#project-cards-parent').appendChild(pc);
+    createProjectCard(item);
   });
+}
+/**
+ * onclick function of open button
+ * @param {*} btn 
+ */
+function projectCard_onOpenButtonClicked(btn) {
+  console.log('call open modal function');
+}
+function projectCard_onOptionButtonClicked(btn) {
+  console.log('options for ' + btn.parentElement.parentElement);
+}
+function projectCard_onDebugProgressButtonClicked(btn) {
+  const card = btn.parentElement.parentElement;
+  const pbf = card.querySelector('.progress-bar > .progress-bar-fill');
+  var progress = Number(pbf.innerText);
+  if (progress >= 100) {
+    progress = 0;
+  } else {
+    progress = progress + Math.floor(Math.random() * 10);
+  }
+  pbf.style.width = progress + '%';
+  pbf.innerText = progress;
 }

@@ -1,3 +1,4 @@
+/*default*/
 .project-card {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.712);
@@ -9,22 +10,20 @@
     'desc'
     'progress-bar'
     'actions';
-  grid-template-rows: 10% 40% 35% 5% 10%;
-  height: 80%;
-  max-height: 600px;
-  min-height: 300px;
-  filter: drop-shadow(0px 0px 6px rgb(0, 0, 0, 0.2));
-  margin: 0 30px 30px 0;
+  grid-template-rows: 10% 40% 30% 5% 10%;
+  grid-row-gap: 1.5%;
+  height: 400px; /*height should remain constant */
+  filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
+  margin: 0 0 20px 0;
   padding: 10px 20px;
-  width: 50%;
-  max-width: 400px;
-  min-width: 200px;
+  width: 40%;
+  min-width: 400px;
 }
+
 .project-card .name {
   color: rgb(0, 0, 0);
   font-size: 1.8em;
   font-weight: bold;
-  margin: 0;
 }
 
 .project-card .name:hover {
@@ -42,9 +41,12 @@
   border-radius: 5px;
   color: black;
   justify-self: center;
-  max-height: 35px;
+  height: auto;
+  max-height: 50px;
   padding: 8px 20px;
   transition: 0.1s ease all;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 .project-card button:hover {
@@ -86,6 +88,82 @@
   height: 100%;
   background-color: rgb(0, 128, 122);
   text-align: center;
-  line-height: 30px;
   color: white;
+}
+
+/**
+* accessibility: 3 stages
+* stage 1: full display, use default CSS
+* stage 2: hide image
+* stage 3: hide image and desc
+*/
+/*half height*/
+@media (max-height: 600px) or (max-width: 1460px) {
+  .project-card {
+    grid-template-areas:
+      'name'
+      'desc'
+      'progress-bar'
+      'actions';
+    grid-template-rows: 10% 40% 10% 40%;
+    grid-row-gap: 1%;
+    height: 250px;
+    min-height: 100px;
+    width: 40%;
+    min-width: 80px;
+    padding: 5px 10px;
+  }
+  .project-card .project-image {
+    display: none;
+  }
+  .project-card .name {
+    font-size: 1em;
+  }
+  .project-card .name:hover {
+    font-size: 1.2em;
+    transition: 0.1s ease all;
+  }
+  .project-card button {
+    border-radius: 3px;
+    height: auto;
+    padding: 4px 10px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+  }
+}
+/*smallest display*/
+@media (max-height: 400px) or (max-width: 800px) {
+  .project-card {
+    grid-template-areas:
+      'name'
+      'progress-bar'
+      'actions';
+    grid-template-rows: 20% 20% 60%;
+    grid-row-gap: 1%;
+    height: 50px;
+    width: 50px;
+    padding: 2px 5px;
+    min-width: 100px;
+  }
+  .project-card .project-image {
+    display: none;
+  }
+  .project-card .desc {
+    display: none;
+  }
+  .project-card button {
+    height: auto;
+    font-size: small;
+    padding: 0px;
+    border-radius: 0px;
+    margin-right: 2px;
+  }
+  .project-card .name {
+    font-size: 1em;
+  }
+  .progress-bar > .progress-bar-fill {
+    text-align: center;
+    font-size: 1em;
+    text-overflow: ellipsis;
+  }
 }

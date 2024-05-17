@@ -9,7 +9,8 @@
 
     <!-- SCRIPS -->
     <script src="assets/scripts/main.js"></script>
-    <script rel="module" src="assets/scripts/homepage.js"></script>
+    <script src="assets/scripts/project.js"></script>
+
 
     <!-- COMPONENTS -->
     <script rel="module" src="assets/components/project-card.js"></script>
@@ -17,6 +18,7 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="assets/styles/homepage.css">
     <link rel="stylesheet" href="assets/styles/projectView.css">
+    <link rel="stylesheet" href="assets/styles/project-card.css">
 </head>
 
 <body>
@@ -28,10 +30,23 @@
     <div class="main">
         <!-- PROJECT CARDS SECTION -->
         <div class="project-cards" id="project-cards-parent">
-            <div class="card new-card">
-                <div class="add-icon">+ Add new project</div>
+            <div class="project-card">
+                <p class="name">warmup</p>
+                <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="warmup" class="project-image">
+                <div class="desc">a warmup project</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 79%;">79</div>
+                </div>
+                <div class="actions">
+                    <button onclick="projectCard_onDebugProgressButtonClicked(this)">progress + random</button>
+                    <button onclick="projectCard_onOpenButtonClicked(this)">open</button>
+                    <button onclick="projectCard_onOptionButtonClicked(this)">options</button>
+                </div>
             </div>
+
         </div>
+
+
 
         <!-- SIDEBAR -->
         <div class="sidebar">

@@ -179,9 +179,21 @@ customElements.define('project-card', ProjectCard);
 // Function to show the modal
 function showModal_projectCard(e, btn, data) {
   e.preventDefault();
-  console.log(btn);
+  //console.log(btn);
   const modal = document.getElementById('projectView');
   const modalContent = modal.querySelector('.modal-content p');
   modalContent.textContent = 'Content for ' + data.desc; // Set the content dynamically
   modal.style.display = 'block'; // Show the modal
+}
+/**
+ * create a project card element with given data. add under `#project-cards-parent`
+ * @param {*} data
+ * @returns the `project-card` element 
+ */
+function createProjectCard(data){
+    let pc = document.createElement('project-card');
+    pc.data = data;
+    // Add the item to the webpage
+    document.querySelector('#project-cards-parent').appendChild(pc);
+    return pc;
 }
