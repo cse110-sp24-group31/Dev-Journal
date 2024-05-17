@@ -12,9 +12,6 @@
     <script src="assets/scripts/project.js"></script>
 
 
-    <!-- COMPONENTS -->
-    <script rel="module" src="assets/components/project-card.js"></script>
-
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="assets/styles/homepage.css">
     <link rel="stylesheet" href="assets/styles/projectView.css">
@@ -24,26 +21,30 @@
 <body>
     <!-- MAIN NAVIGATION -->
     <div class="main-nav">
+        <button onclick="addProjectPopup()">New Project</button>
     </div>
 
 
     <div class="main">
         <!-- PROJECT CARDS SECTION -->
         <div class="project-cards" id="project-cards-parent">
+            
             <div class="project-card">
-                <p class="name">warmup</p>
-                <img src='https://picsum.photos/id/3/415/160' alt="warmup" class="project-image">
-                <div class="desc">a warmup project</div>
-                <div class="progress-bar">
+                <p class="name">Add New Project</p>
+                <img src='' alt="+" class="project-image">
+                <div class="desc"></div>
+                <div class="progress-bar" hidden = "true">
                     <div class="progress-bar-fill" style="width: 79%;">79</div>
                 </div>
-                <div class="actions">
+                <div class="actions" hidden = "true">
                     <button onclick="projectCard_onDebugProgressButtonClicked(this)">progress + random</button>
                     <button onclick="projectCard_onOpenButtonClicked(this)">open</button>
                     <button onclick="projectCard_onOptionButtonClicked(this)">options</button>
                     <button onclick="projectCard_onDeleteButtonClicked(this)">delete</button>
                 </div>
             </div>
+
+            
 
         </div>
 

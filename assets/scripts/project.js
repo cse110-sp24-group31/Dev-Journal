@@ -53,9 +53,82 @@ function populatePage() {
   if (!projects) return;
   // Iterate over each of the items in the array
   projects.forEach(item => {
-    createProjectCard(item);
+    //createProjectCard('warmup', 'https://picsum.photos/id/3/415/160', 'a warmup project', 79);
   });
 }
+
+
+
+
+
+
+
+
+
+//createProjectCard('warmup', 'https://picsum.photos/id/3/415/160', 'a warmup project', 79);
+function createProjectCard(name, imageUrl, description, progress) {
+
+  const card = document.createElement('div');
+  card.className = 'project-card';
+
+  const projectName = document.createElement('p');
+  projectName.className = 'name';
+  projectName.textContent = name;
+  card.appendChild(projectName);
+
+  const projectImage = document.createElement('img');
+  projectImage.className = 'project-image';
+  projectImage.src = imageUrl;
+  projectImage.alt = name;
+  card.appendChild(projectImage);
+
+  const projectDesc = document.createElement('div');
+  projectDesc.className = 'desc';
+  projectDesc.textContent = description;
+  // card.appendChild(projectDesc); // Description removed as per previous request
+
+  const progressBarContainer = document.createElement('div');
+  progressBarContainer.className = 'progress-bar-container';
+
+  const progressBar = document.createElement('div');
+  progressBar.className = 'progress-bar';
+
+  const progressBarFill = document.createElement('div');
+  progressBarFill.className = 'progress-bar-fill';
+  progressBarFill.style.width = progress + '%';
+  progressBarFill.textContent = progress + '%';
+
+  progressBar.appendChild(progressBarFill);
+  progressBarContainer.appendChild(progressBar);
+  card.appendChild(progressBarContainer);
+
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+
+  const buttons = [
+      { text: 'progress + random', onclick: projectCard_onDebugProgressButtonClicked },
+      { text: 'open', onclick: projectCard_onOpenButtonClicked },
+      { text: 'options', onclick: projectCard_onOptionButtonClicked },
+      { text: 'delete', onclick: projectCard_onDeleteButtonClicked }
+  ];
+
+  buttons.forEach(buttonInfo => {
+      const button = document.createElement('button');
+      button.textContent = buttonInfo.text;
+      button.onclick = () => buttonInfo.onclick(button);
+      actions.appendChild(button);
+  });
+
+  card.appendChild(actions);
+}
+
+
+
+
+
+
+
+
 /**
  * onclick function of open button
  * @param {*} btn

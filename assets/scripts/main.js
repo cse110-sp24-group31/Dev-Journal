@@ -6,10 +6,14 @@ function showModal(card) {
     modal.style.display = 'block'; // Show the modal
 }
 
+//
+function addProjectPopup(){
+    alert("");
+}
+
+
 // Initialization function to set up event handlers
 function init() {
-
-
     // Get the element that closes the modal
     const close = document.querySelector('.close');
     close.onclick = function() {
