@@ -58,7 +58,7 @@ function populatePage() {
 }
 /**
  * onclick function of open button
- * @param {*} btn 
+ * @param {*} btn
  */
 function projectCard_onOpenButtonClicked(btn) {
   console.log('call open modal function');
@@ -68,13 +68,66 @@ function projectCard_onOptionButtonClicked(btn) {
 }
 function projectCard_onDebugProgressButtonClicked(btn) {
   const card = btn.parentElement.parentElement;
+  projectCard_addProgress(card, Math.floor(Math.random() * 10));
+}
+
+function projectCard_onDeleteButtonClicked(btn) {
+  //delete this card
+  const card = btn.parentElement.parentElement;
+  card.remove();
+}
+
+/**
+ * add progress for this card
+ * @param {*} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
+ * @param {*} delta project progress, integer (will be round to)
+ */
+function projectCard_addProgress(card, delta) {
+  if (isNaN(delta)) {
+    console.error(delta + ' is not a number, or is not a number in [0,100]');
+    return;
+  }
+  delta = Math.round(delta);
   const pbf = card.querySelector('.progress-bar > .progress-bar-fill');
   var progress = Number(pbf.innerText);
-  if (progress >= 100) {
-    progress = 0;
-  } else {
-    progress = progress + Math.floor(Math.random() * 10);
+  projectCard_setProgress(card, progress + delta);
+}
+/**
+ * set the progress for this card
+ * @param {*} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
+ * @param {*} newProgress project progress, integer (will be round to) between 0-100. overflow will be set to 0
+ */
+function projectCard_setProgress(card, newProgress) {
+  if (isNaN(newProgress) || newProgress < 0) {
+    console.error(
+      newProgress + ' is not a number, or is not a positive number'
+    );
+    return;
   }
-  pbf.style.width = progress + '%';
-  pbf.innerText = progress;
+  if (newProgress > 100) {
+    newProgress = 0;
+  }
+  temp = Math.round(newProgress);
+  const pbf = card.querySelector('.progress-bar > .progress-bar-fill');
+  pbf.style.width = temp + '%';
+  pbf.innerText = temp;
+}
+
+/**
+ * update the project card info
+ * @param {HTMLElement} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
+ * @param {string} title title of the project, string
+ * @param {string} desc description of project, string
+ * @param {string} imgURL URL of image, string
+ * @param {integer} progress project progress, integer between 0-100
+ */
+function projectCard_update(card, title, desc, imgURL, progress) {
+  if (card == undefined) {
+    console.log('card is undefined');
+    return;
+  }
+  card.querySelector('.name').innerText = title;
+  card.querySelector('.desc').innerText = desc;
+  card.querySelector('.project-image').src = imgURL;
+  projectCard_setProgress(card, progress);
 }

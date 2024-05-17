@@ -188,12 +188,12 @@ function showModal_projectCard(e, btn, data) {
 /**
  * create a project card element with given data. add under `#project-cards-parent`
  * @param {*} data
- * @returns the `project-card` element 
+ * @returns the `project-card` element
  */
-function createProjectCard(data){
-    let pc = document.createElement('project-card');
-    pc.data = data;
-    // Add the item to the webpage
-    document.querySelector('#project-cards-parent').appendChild(pc);
-    return pc;
+function createProjectCard(data) {
+  let pc = document.createElement('project-card');
+  pc.data = data;
+  // Add the item to the webpage
+  document.querySelector('#project-cards-parent').appendChild(pc);
+  return pc;
 }
