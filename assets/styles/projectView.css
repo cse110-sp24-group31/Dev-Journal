@@ -56,15 +56,16 @@
 }
 
 .modal-content form button {
-    background-color: var(--secondary-color);
-    border: none;
-    color: white;
+    background: linear-gradient(to right, #808080, #A9A9A9); /* Gradient grey background */
+    border: 2px solid #808080; /* Grey border */
+    color: #ffffff; /* White text color */
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transition for smooth change */
 }
 
+/* On hover, lighten the background color slightly */
 .modal-content form button:hover {
-    background-color: var(--hover-color);
+    background: linear-gradient(to right, #A9A9A9, #C0C0C0); /* Lighter gradient grey background on hover */
 }

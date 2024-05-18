@@ -12,6 +12,12 @@ async function init() {
     console.log(`Error fetch items: ${err}`);
     return; // Return if fetch fails
   }
+
+  // Event listener for edit button
+  document.getElementById('editButton').addEventListener('click', editButton);
+
+    // Event listener for save button
+  document.getElementById('saveButton').addEventListener('click', saveButton);
   //populatePage(); // use JS to populate project cards
 }
 
@@ -62,11 +68,62 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function openAddCardModal() {
+  document.getElementById('addCardForm').reset();
   document.getElementById('addCardModal').style.display = 'block';
 }
 
 function closeAddCardModal() {
+  document.getElementById('addCardForm').reset();
   document.getElementById('addCardModal').style.display = 'none';
+}
+
+function editButton() {
+  const viewCardModal = document.getElementById('viewCardModal');
+  // Remove readonly attributes to allow editing
+  viewCardModal.querySelector('#projectName').removeAttribute('readonly');
+  viewCardModal.querySelector('#projectDescription').removeAttribute('readonly');
+  viewCardModal.querySelector('#projectImage').removeAttribute('readonly');
+
+  // Show save button and hide edit button
+  viewCardModal.querySelector('#saveButton').style.display = 'inline-block';
+  viewCardModal.querySelector('#editButton').style.display = 'none';
+}
+
+function saveButton() {
+  const viewCardModal = document.getElementById('viewCardModal');
+  // Re-add readonly attributes to prevent further editing
+  viewCardModal.querySelector('#projectName').setAttribute('readonly', 'readonly');
+  viewCardModal.querySelector('#projectDescription').setAttribute('readonly', 'readonly');
+  viewCardModal.querySelector('#projectImage').setAttribute('readonly', 'readonly');
+
+  // Hide save button and show edit button
+  viewCardModal.querySelector('#saveButton').style.display = 'none';
+  viewCardModal.querySelector('#editButton').style.display = 'inline-block';
+
+  // Optionally, save changes to the actual project card and/or update local storage here
+  //here is where it should actualt change the object BUT WE NEED TO CREATE IT IN LOCAL STORAGE STILL
+}
+
+
+
+function openViewCardModal(button) {
+  const card = button.closest('.project-card');
+
+    // Extract data from the card
+    const projectName = card.querySelector('.name').textContent;
+    const projectDescription = card.querySelector('.desc').textContent;
+    const projectImage = card.querySelector('.project-image').src;
+
+    // Populate the modal with the extracted data
+    document.getElementById('viewCardModal').querySelector('#projectName').value = projectName;
+    document.getElementById('viewCardModal').querySelector('#projectDescription').value = projectDescription;
+    document.getElementById('viewCardModal').querySelector('#projectImage').value = projectImage;
+
+  document.getElementById('viewCardModal').style.display = 'block';
+}
+
+function closeViewCardModal() {
+  document.getElementById('viewCardModal').style.display = 'none';
 }
 
 function addCard(event) {
@@ -74,7 +131,7 @@ function addCard(event) {
 
   const projectName = document.getElementById('projectName').value;
   const projectDescription = document.getElementById('projectDescription').value;
-  const projectImage = document.getElementById('projectImage').value || 'default-image-url.jpg';
+  const projectImage = document.getElementById('projectImage').value || './design/initialSketches/dateView.png';
 
   const newCard = document.createElement('div');
   newCard.classList.add('project-card');
@@ -90,6 +147,7 @@ function addCard(event) {
       <div class="actions">
           <button onclick="updateProgress(this)">Update Progress</button>
           <button onclick="deleteCard(this)">Delete</button>
+          <button onclick="openViewCardModal(this)">view</button>
       </div>
   `;
 
@@ -101,7 +159,7 @@ function addCard(event) {
     image: projectImage, 
     desc: projectDescription,
   };
-  projects.appendChild(project);
+  //projects.appendChild(project);
 }
 
 function updateProgress(button) {
@@ -114,144 +172,4 @@ function updateProgress(button) {
 
 function deleteCard(button) {
   button.parentElement.parentElement.remove();
-}
-
-//createProjectCard('warmup', 'https://picsum.photos/id/3/415/160', 'a warmup project', 79);
-function createProjectCard(name, imageUrl, description, progress) {
-
-  const card = document.createElement('div');
-  card.className = 'project-card';
-
-  const projectName = document.createElement('p');
-  projectName.className = 'name';
-  projectName.textContent = name;
-  card.appendChild(projectName);
-
-  const projectImage = document.createElement('img');
-  projectImage.className = 'project-image';
-  projectImage.src = imageUrl;
-  projectImage.alt = name;
-  card.appendChild(projectImage);
-
-  const projectDesc = document.createElement('div');
-  projectDesc.className = 'desc';
-  projectDesc.textContent = description;
-  // card.appendChild(projectDesc); // Description removed as per previous request
-
-  const progressBarContainer = document.createElement('div');
-  progressBarContainer.className = 'progress-bar-container';
-
-  const progressBar = document.createElement('div');
-  progressBar.className = 'progress-bar';
-
-  const progressBarFill = document.createElement('div');
-  progressBarFill.className = 'progress-bar-fill';
-  progressBarFill.style.width = progress + '%';
-  progressBarFill.textContent = progress + '%';
-
-  progressBar.appendChild(progressBarFill);
-  progressBarContainer.appendChild(progressBar);
-  card.appendChild(progressBarContainer);
-
-  const actions = document.createElement('div');
-  actions.className = 'actions';
-
-  const buttons = [
-      { text: 'progress + random', onclick: projectCard_onDebugProgressButtonClicked },
-      { text: 'open', onclick: projectCard_onOpenButtonClicked },
-      { text: 'options', onclick: projectCard_onOptionButtonClicked },
-      { text: 'delete', onclick: projectCard_onDeleteButtonClicked }
-  ];
-
-  buttons.forEach(buttonInfo => {
-      const button = document.createElement('button');
-      button.textContent = buttonInfo.text;
-      button.onclick = () => buttonInfo.onclick(button);
-      actions.appendChild(button);
-  });
-
-  card.appendChild(actions);
-}
-
-
-
-
-
-
-
-
-/**
- * onclick function of open button
- * @param {*} btn
- */
-function projectCard_onOpenButtonClicked(btn) {
-  console.log('call open modal function');
-}
-function projectCard_onOptionButtonClicked(btn) {
-  console.log('options for ' + btn.parentElement.parentElement);
-}
-function projectCard_onDebugProgressButtonClicked(btn) {
-  const card = btn.parentElement.parentElement;
-  projectCard_addProgress(card, Math.floor(Math.random() * 10));
-}
-
-function projectCard_onDeleteButtonClicked(btn) {
-  //delete this card
-  const card = btn.parentElement.parentElement;
-  card.remove();
-}
-
-/**
- * add progress for this card
- * @param {*} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
- * @param {*} delta project progress, integer (will be round to)
- */
-function projectCard_addProgress(card, delta) {
-  if (isNaN(delta)) {
-    console.error(delta + ' is not a number, or is not a number in [0,100]');
-    return;
-  }
-  delta = Math.round(delta);
-  const pbf = card.querySelector('.progress-bar > .progress-bar-fill');
-  var progress = Number(pbf.innerText);
-  projectCard_setProgress(card, progress + delta);
-}
-/**
- * set the progress for this card
- * @param {*} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
- * @param {*} newProgress project progress, integer (will be round to) between 0-100. overflow will be set to 0
- */
-function projectCard_setProgress(card, newProgress) {
-  if (isNaN(newProgress) || newProgress < 0) {
-    console.error(
-      newProgress + ' is not a number, or is not a positive number'
-    );
-    return;
-  }
-  if (newProgress > 100) {
-    newProgress = 0;
-  }
-  temp = Math.round(newProgress);
-  const pbf = card.querySelector('.progress-bar > .progress-bar-fill');
-  pbf.style.width = temp + '%';
-  pbf.innerText = temp;
-}
-
-/**
- * update the project card info
- * @param {HTMLElement} card the project card wrapper, either shadowroot for JS or <div class = "project-card"> for HTML
- * @param {string} title title of the project, string
- * @param {string} desc description of project, string
- * @param {string} imgURL URL of image, string
- * @param {integer} progress project progress, integer between 0-100
- */
-function projectCard_update(card, title, desc, imgURL, progress) {
-  if (card == undefined) {
-    console.log('card is undefined');
-    return;
-  }
-  card.querySelector('.name').innerText = title;
-  card.querySelector('.desc').innerText = desc;
-  card.querySelector('.project-image').src = imgURL;
-  projectCard_setProgress(card, progress);
 }

@@ -68,7 +68,25 @@
                 <textarea id="projectDescription" name="projectDescription" required></textarea>
                 <label for="projectImage">Image URL:</label>
                 <input type="url" id="projectImage" name="projectImage">
-                <button type="submit">Add Project</button>
+                <button type="submit" id="submitButton">Add Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Card Modal -->
+    <div id="viewCardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeViewCardModal()">&times;</span>
+            <h2>View Project</h2>
+            <form id="viewCardForm">
+                <label for="projectName">Project Name:</label>
+                <input type="text" id="projectName" name="projectName" required readonly>
+                <label for="projectDescription">Description:</label>
+                <textarea id="projectDescription" name="projectDescription" required readonly></textarea>
+                <label for="projectImage">Image URL:</label>
+                <input type="url" id="projectImage" name="projectImage" readonly>
+                <button type="button" id="editButton">Edit Details</button>
+                <button type="button" id="saveButton">Save Details</button>
             </form>
         </div>
     </div>
