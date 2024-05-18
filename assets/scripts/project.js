@@ -120,6 +120,9 @@ function openViewCardModal(button) {
     document.getElementById('viewCardModal').querySelector('#projectImage').value = projectImage;
 
   document.getElementById('viewCardModal').style.display = 'block';
+
+  document.getElementById('viewCardModal').querySelector('#saveButton').style.display = 'none';
+  document.getElementById('viewCardModal').querySelector('#editButton').style.display = 'inline-block';
 }
 
 function closeViewCardModal() {
