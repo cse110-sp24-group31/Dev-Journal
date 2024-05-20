@@ -165,6 +165,16 @@ function addCard(event) {
   //projects.appendChild(project);
 }
 
+function openAddCardModal() {
+  // Your logic to open the add card modal
+  document.getElementById('addCardModal').style.display = 'block';
+}
+
+function closeAddCardModal() {
+  // Your logic to close the add card modal
+  document.getElementById('addCardModal').style.display = 'none';
+}
+
 function updateProgress(button) {
   const progressBar = button.parentElement.previousElementSibling.firstElementChild;
   let progress = parseInt(progressBar.style.width);
