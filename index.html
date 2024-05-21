@@ -58,11 +58,11 @@
             <h2>Add New Project</h2>
             <form id="addCardForm">
                 <label for="projectName">Project Name:</label>
-                <input type="text" id="projectName" name="projectName" required>
+                <input type="text" id="projectName" name="projectName">
                 <label for="projectDescription">Description:</label>
-                <textarea id="projectDescription" name="projectDescription" required></textarea>
+                <textarea id="projectDescription" name="projectDescription"></textarea>
                 <label for="projectImage">Image URL:</label>
-                <input type="url" id="projectImage" name="projectImage">
+                <input type="text" id="projectImage" name="projectImage">
                 <button type="submit" id="submitButton">Add Project</button>
             </form>
         </div>
@@ -80,13 +80,13 @@
             <h2>View Project</h2>
             <form id="viewCardForm">
                 <label for="projectName">Project Name:</label>
-                <input type="text" id="projectName" name="projectName" required readonly>
+                <input type="text" id="projectName" name="projectName" readonly>
                 <label for="projectDescription">Description:</label>
-                <textarea id="projectDescription" name="projectDescription" required readonly></textarea>
+                <textarea id="projectDescription" name="projectDescription" readonly></textarea>
                 <label for="projectImage">Image URL:</label>
-                <input type="url" id="projectImage" name="projectImage" readonly>
+                <input type="text" id="projectImage" name="projectImage" readonly>
                 <button type="button" id="editButton">Edit Details</button>
-                <button type="button" id="saveButton">Save Details</button>
+                <button type="button" id="saveButton" style="display: none;">Save Details</button>
             </form>
         </div>
     </div>

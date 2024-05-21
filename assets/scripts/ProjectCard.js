@@ -252,7 +252,9 @@ function openViewCardModal(projectId) {
   viewCardModal.querySelector('#projectDescription').value = project.desc;
   viewCardModal.querySelector('#projectImage').value = project.image;
   viewCardModal.dataset.id = project.id;
-
+  viewCardModal.querySelector('#projectName').readOnly = true;
+  viewCardModal.querySelector('#projectDescription').readOnly = true;
+  viewCardModal.querySelector('#projectImage').readOnly = true;
   viewCardModal.style.display = 'block';
   document.getElementById('saveButton').style.display = 'none';
   document.getElementById('editButton').style.display = 'inline-block';
@@ -265,11 +267,14 @@ function closeViewCardModal() {
 // Event listener for adding a new card
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('addCardForm').addEventListener('submit', addCard);
+  document.getElementById('editButton').addEventListener('click', editDetails);
+  document.getElementById('saveButton').addEventListener('click', saveDetails);
 });
 
 function openAddCardModal() {
   document.getElementById('addCardForm').reset();
   document.getElementById('addCardModal').style.display = 'block';
+
 }
 
 function closeAddCardModal() {
@@ -280,10 +285,22 @@ function closeAddCardModal() {
 function addCard(event) {
   event.preventDefault();
 
-  const projectName = document.getElementById('projectName').value;
-  const projectDescription = document.getElementById('projectDescription').value;
-  const projectImage = document.getElementById('projectImage').value || './design/initialSketches/dateView.png';
+  const projectName = document.getElementById('projectName').value.trim();
+  const projectDescription = document.getElementById('projectDescription').value.trim();
+  const projectImage = document.getElementById('projectImage').value.trim();
 
+  // Input validation
+
+  if (!projectName || !projectDescription || !projectImage) {
+    alert("Project name, description, and image are required.");
+    return;
+  }
+
+  if (projectImage && !isValidURL(projectImage)) {
+    alert("Please enter a valid URL for the project image.");
+    return;
+  }
+  
   const newProject = {
     id: `project-${Date.now()}`, // Unique ID for the project
     title: projectName,
@@ -319,4 +336,59 @@ function deleteCard(button) {
 
 function closeViewCardModal() {
   document.getElementById('viewCardModal').style.display = 'none';
+}
+
+function editDetails() {
+  const viewCardModal = document.getElementById('viewCardModal');
+  viewCardModal.querySelector('#projectName').readOnly = false;
+  viewCardModal.querySelector('#projectDescription').readOnly = false;
+  viewCardModal.querySelector('#projectImage').readOnly = false;
+
+  document.getElementById('editButton').style.display = 'none';
+  document.getElementById('saveButton').style.display = 'inline-block';
+}
+
+function saveDetails() {
+  const viewCardModal = document.getElementById('viewCardModal');
+  const projectId = viewCardModal.dataset.id;
+  const project = projects.find(p => p.id === projectId);
+
+  const projectNameInput = viewCardModal.querySelector('#projectName');
+  const projectDescInput = viewCardModal.querySelector('#projectDescription');
+  const projectImageInput = viewCardModal.querySelector('#projectImage');
+
+  const projectName = projectNameInput.value.trim();
+  const projectDescription = projectDescInput.value.trim();
+  const projectImage = projectImageInput.value.trim();
+
+  // Input validation
+  if (!projectName || !projectDescription || !projectImage) {
+    alert("Project name, description, and image are required.");
+    return;
+  }
+
+  if (projectImage && !isValidURL(projectImage)) {
+    alert("Please enter a valid URL for the project image.");
+    return;
+  }
+
+  project.title = projectName;
+  project.desc = projectDescription;
+  project.image = projectImage;
+
+  localStorage.setItem('projects', JSON.stringify(projects));
+
+  const card = document.querySelector(`project-card[data-id='${projectId}']`);
+  if (card) card.data = project;
+
+  closeViewCardModal();
+}
+// Helper function to validate URLs
+function isValidURL(string) {
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
 }
