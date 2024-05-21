@@ -6,7 +6,6 @@
     <title>Developer Journal</title>
     <link rel="stylesheet" href="assets/styles/homepage.css">
     <link rel="stylesheet" href="assets/styles/projectView.css">
-    <link rel="stylesheet" href="assets/styles/project-card.css">
 </head>
 <body>
     <div class="main-nav">
@@ -21,13 +20,9 @@
             <button>Search</button>
         </div>
     </div>
-
+    <button onclick="openAddCardModal()">+</button>
     <div class="main">
         <div class="project-cards" id="project-cards-parent">
-            <div class="project-card" id="add-card">
-                <p class="name">Add New Project</p>
-                <button onclick="openAddCardModal()">+</button>
-            </div>
         </div>
 
         <div class="sidebar">
@@ -92,7 +87,7 @@
     </div>
 
     <script src="assets/scripts/calendar.js"></script>
-    <script src="assets/scripts/project.js"></script>
     <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/ProjectCard.js"></script>
 </body>
 </html>
