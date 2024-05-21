@@ -37,6 +37,7 @@ class ProjectCard extends HTMLElement {
                           font-size: 1.8em;
                           font-weight: bold;
                           margin: 0;
+                          transition: 0.1s ease all;
                         }
 
                         .project-card .name:hover {
@@ -75,6 +76,27 @@ class ProjectCard extends HTMLElement {
                         .project-card .progress-bar {
                           width: 100%;
                           background-color: grey;
+                          box-sizing: border-box;
+                        }
+
+                        .project-card .progress-bar:hover {
+                          background-color: rgb(86, 86, 86);
+                          cursor: pointer;
+                          transition: 0.1s ease all;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-fill{
+                          background-color: rgb(0, 100, 96);
+                          cursor: pointer;
+                          transition: 0.1s ease all;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-check{
+                          background-color: rgb(200, 100, 0);
+                          cursor: pointer;
+                          transition: 0.1s ease all;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-check.complete{
+                          background-color: rgb(0, 128, 122);
+                          cursor: default;
                         }
 
                         .project-card .desc {
@@ -97,17 +119,25 @@ class ProjectCard extends HTMLElement {
                           width: 12%;
                           height: 100%;
                           background-color: rgb(0, 128, 122);
-                          text-align: center;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
                           line-height: 30px;
                           color: white;
                         }
                         .progress-bar > .progress-bar-check {
                           width: 100%;
                           height: 100%;
-                          background-color: rgb(242, 137, 0);
-                          text-align: center;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
                           line-height: 30px;
+                          background-color: rgb(242, 137, 0);
                           color: black;
+                        }
+                        .progress-bar-check.complete {
+                          background-color: rgb(0, 128, 122);
+                          color: white;
                         }
     `;
 
@@ -132,56 +162,45 @@ class ProjectCard extends HTMLElement {
     desc.innerText = data.desc;
 
     //create progress bar
-    //TODO: If progress-type is fill, put the fill type in. If progress-type is check, put the check in.
+    //If progress-type is fill, put the fill type in. If progress-type is check, put the check in.
+    const progressType = this.json["progress-type"];
     const pb = document.createElement('div');
     pb.classList.add('progress-bar');
     const pbf = document.createElement('div');
-    if (this.json["progress-type"] == "fill"){
+    if (progressType == "fill"){
       pbf.classList.add('progress-bar-fill');
       pbf.style.width = data.progress + '%';
       pbf.innerText = data.progress;
-    } else if (this.json["progress-type"] == "check"){
+    } else if (progressType == "check"){
       console.log(this.json["name"], "is a check.");
       pbf.classList.add('progress-bar-check');
       pbf.innerText = "In Progress";
     }
     pb.appendChild(pbf);
 
-    // Create the actions
-    const actions = document.createElement('div');
-    actions.classList.add('actions');
-    const debugAddProgress = document.createElement('button');
-    debugAddProgress.addEventListener('click', () => {
+    pb.addEventListener('click', () => {
       let pbf;
-      if (this.json["progress-type"] == "fill"){
-        pbf = this.shadowRoot.querySelector(
-          '.progress-bar > .progress-bar-fill'
-        );
-        //TODO: Progress in json file doesn't change.
-        let progress = Number(pbf.innerText);
-        progress = progress + Math.floor(Math.random() * 10);
-        if (progress >= 100 || pbf.innerText == "Complete!") {
-          console.log("Task complete!");
-          progress = 100;
-          pbf.innerText = "Complete!";
+      if(progressType == "fill"){
+        if (pb.style.border === '') {
+          pb.style.border = '1px solid blue';
         } else {
-          pbf.innerText = progress;
+          pb.style.border = '';
         }
-        pbf.style.width = progress + '%';
-        
-      } else if (this.json["progress-type"] == "check"){
+        console.log('Progress bar (fill) clicked!');
+      } else {
+        console.log('Progress bar (check) clicked!');
         pbf = this.shadowRoot.querySelector(
           '.progress-bar > .progress-bar-check'
         );
 
-        console.log("Task complete!");
-
-        pbf.style.backgroundColor = "rgb(0, 128, 122)";
-        pbf.style.color = "white";
+        pbf.classList.add('complete');
         pbf.innerText = "Complete!";
       }
     });
-    debugAddProgress.innerText = 'make progress';
+
+    // Create the actions
+    const actions = document.createElement('div');
+    actions.classList.add('actions');
     const open = document.createElement('button');
     open.innerText = 'open';
     open.addEventListener('click', e => showModal_projectCard(e, open, data));
@@ -207,14 +226,14 @@ class ProjectCard extends HTMLElement {
           '.progress-bar > .progress-bar-check'
         );
 
-        pbf.style.backgroundColor = "rgb(242, 137, 0)";
-        pbf.style.color = "black";
+        pbf.classList.remove('complete');
         pbf.innerText = "In Progress";
       }
     });
 
     // Append action buttons to actions tab
-    actions.append(debugAddProgress, open, options, resetProg);
+    // EDIT: Removed debugAddProgress, I want to move out of debug because we only have like 2-3 weeks left ARGH
+    actions.append(open, options, resetProg);
 
     // Add all of the above elements to the wrapper
     wrapper.append(title, img, desc, pb, actions);
