@@ -77,6 +77,7 @@ class ProjectCard extends HTMLElement {
                           width: 100%;
                           background-color: grey;
                           box-sizing: border-box;
+                          position: relative;
                         }
 
                         .project-card .progress-bar:hover {
@@ -89,14 +90,14 @@ class ProjectCard extends HTMLElement {
                           cursor: pointer;
                           transition: 0.1s ease all;
                         }
-                        .project-card .progress-bar:hover > .progress-bar-check{
-                          background-color: rgb(200, 100, 0);
+                        .project-card .progress-bar:hover > .progress-bar-check.complete::before{
+                          background-color: rgba(0, 0, 0, 0);
+                          cursor: default;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-check::before {
+                          background-color: rgba(0, 0, 0, 0.2);
                           cursor: pointer;
                           transition: 0.1s ease all;
-                        }
-                        .project-card .progress-bar:hover > .progress-bar-check.complete{
-                          background-color: rgb(0, 128, 122);
-                          cursor: default;
                         }
 
                         .project-card .desc {
@@ -113,7 +114,7 @@ class ProjectCard extends HTMLElement {
                           background-color: rgba(0, 0, 0, 0.164);
                         }
                         .progress-bar {
-                          height: 100%;
+                          height: 45px;
                         }
                         .progress-bar > .progress-bar-fill {
                           width: 12%;
@@ -132,10 +133,27 @@ class ProjectCard extends HTMLElement {
                           align-items: center;
                           justify-content: center;
                           line-height: 30px;
-                          background-color: rgb(242, 137, 0);
+                          background-image: url('https://stuartcollection.ucsd.edu/_images/artists/hawkinson-bear/Main_hawkinson-01.jpg');
+                          background-size: 100% 100%;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          justify-self: center;
+                          position: relative;
+                          z-index: 2;
+                          overflow: hidden;
                           color: black;
                         }
+                        .progress-bar > .progress-bar-check::before {
+                          content: '';
+                          position: absolute;
+                          width: 100%;
+                          height: 100%;
+                          background-color: rgba(0, 0, 0, 0);
+                          transition: background-color 0.1s ease;
+                          z-index: 1;
+                        }
                         .progress-bar-check.complete {
+                          background-image: url('https://media.licdn.com/dms/image/C5603AQGdX_CV5OXpsA/profile-displayphoto-shrink_800_800/0/1517381861788?e=2147483647&v=beta&t=WkpONhEZ43Q8KtYElxbrkUTJR8QRAT8ROPdiaIqJ1KQ');
                           background-color: rgb(0, 128, 122);
                           color: white;
                         }
