@@ -20,7 +20,10 @@
             <button>Search</button>
         </div>
     </div>
-    <button onclick="openAddCardModal()">+</button>
+    <div class="project-card" id="add-card">
+        <p class="name">Add New Project</p>
+        <button onclick="openAddCardModal()">Add Project</button>
+    </div>
     <div class="main">
         <div class="project-cards" id="project-cards-parent">
         </div>
@@ -68,10 +71,6 @@
         </div>
     </div>
 
-    <div class="project-card" id="add-card">
-        <p class="name">Add New Project</p>
-        <button onclick="openAddCardModal()">Add Project</button>
-    </div>
 
     <!-- View Card Modal -->
     <div id="viewCardModal" class="modal">
