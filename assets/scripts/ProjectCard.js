@@ -6,192 +6,175 @@ class ProjectCard extends HTMLElement {
     const article = document.createElement('article');
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(`
-      .project-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.9));
-        border-radius: 10px;
-        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
-        height: 300px;
-        margin-bottom: 20px;
-        padding: 15px 25px;
-        width: 25%;
-        transition: width 0.2s ease, transform 0.2s ease;
-        position: relative;
-      }
-
-      .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .project-card .name {
-        color: #333;
-        font-size: 1.8em;
-        font-weight: bold;
-        text-align: center;
-        transition: font-size 0.2s ease, color 0.2s ease;
-        margin-bottom: 10px;
-        position: relative;
-      }
-
-      .project-card .name:hover {
-        font-size: 2em;
-        color: #00796b;
-      }
-
-      .project-card .project-image {
-        align-self: center;
-        object-fit: cover;
-        border-radius: 10px;
-        height: 60%;
-        width: 100%;
-        transition: transform 0.3s ease;
-        position: relative;
-      }
-
-      .project-card .project-image:hover {
-        transform: scale(1.05);
-      }
-
-      .project-card .progress-bar-container {
-        width: 100%;
-        margin-top: auto;
-        position: relative;
-      }
-
-      .project-card .progress-bar {
-        width: 100%;
-        height: 20px;
-        background-color: #ddd;
-        border-radius: 5px;
-        overflow: hidden;
-      }
-
-      .project-card .progress-bar-fill {
-        width: 0%;
-        height: 100%;
-        background-color: #00796b;
-        text-align: center;
-        color: white;
-        transition: width 0.2s ease;
-      }
-
-      .project-card button {
-        background-color: #ffcc00;
-        border: none;
-        border-radius: 10px;
-        color: black;
-        padding: 5px 15px;
-        margin-right: 5px;
-        margin-bottom: 2px;
-        cursor: pointer;
-        transition: background-color 0.2s ease, transform 0.2s ease;
-        font-size: 0.9em;
-        position: relative;
-      }
-
-      .project-card button:hover {
-        background-color: #ffa500;
-        transform: scale(1.05);
-      }
-
-      @media (max-width: 1460px) {
         .project-card {
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.712);
+          border-radius: 5px;
+          display: grid;
+          grid-template-areas:
+            'name'
+            'project-image'
+            'desc'
+            'progress-bar'
+            'actions';
+          grid-template-rows: 10% 40% 30% 5% 10%;
+          grid-row-gap: 1.5%;
+          height: 400px; /*height should remain constant */
+          filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
+          margin: 0 0 20px 0;
+          padding: 10px 20px;
           width: 40%;
-          height: 250px;
-          padding: 10px 15px;
-        }
-
-        .project-card .project-image {
-          height: 50%;
+          min-width: 420px;
         }
 
         .project-card .name {
-          font-size: 1.4em;
+          color: rgb(0, 0, 0);
+          font-size: 1.8em;
+          font-weight: bold;
         }
 
         .project-card .name:hover {
-          font-size: 1.6em;
+          font-size: 2em;
+          margin: 0;
+          white-space: wrap;
+          overflow: auto;
+          text-overflow: unset;
+          transition: 0.1s ease all;
         }
 
         .project-card button {
-          padding: 4px 10px;
-          border-radius: 8px;
-          font-size: 0.8em;
-        }
-      }
-
-      @media (max-width: 800px) {
-        .project-card {
-          width: 80%;
-          height: auto;
-          padding: 5px 10px;
-        }
-
-        .project-card .project-image {
-          height: 40%;
-        }
-
-        .project-card .progress-bar-container {
-          margin-top: 5px;
-        }
-
-        .project-card .progress-bar {
-          height: 15px;
-        }
-
-        .project-card button {
-          font-size: small;
-          padding: 4px 10px;
+          background-color: rgb(255, 208, 0);
+          border: none;
           border-radius: 5px;
+          color: black;
+          justify-self: center;
+          height: auto;
+          max-height: 50px;
+          padding: 8px 20px;
+          transition: 0.1s ease all;
+          margin-right: 5px;
           margin-bottom: 2px;
         }
 
-        .project-card .name {
-          font-size: 1.2em;
-        }
-
-        .progress-bar > .progress-bar-fill {
-          font-size: 0.9em;
-        }
-      }
-
-      @media (max-width: 400px) {
-        .project-card {
-          width: 100%;
-          height: auto;
-          padding: 5px;
+        .project-card button:hover {
+          background-color: rgb(255, 166, 0);
+          cursor: pointer;
+          transition: 0.1s ease all;
         }
 
         .project-card .project-image {
-          height: 30%;
+          align-self: center;
+          justify-self: center;
+          object-fit: fill;
+          height: 100%;
+          width: 100%;
         }
-
-        .project-card .progress-bar-container {
-          margin-top: 2px;
-        }
-
         .project-card .progress-bar {
-          height: 10px;
+          width: 100%;
+          background-color: grey;
         }
 
-        .project-card button {
-          font-size: smaller;
-          padding: 2px 5px;
-          border-radius: 3px;
-          margin-bottom: 2px;
+        .project-card .desc {
+          width: 90%;
+          height: 80%;
+          align-self: center;
+          overflow: auto;
+          text-align: left;
+          padding-top: 5%;
+          padding-left: 5%;
+          padding-right: 5%;
+          text-anchor: middle;
+          border-radius: 5% 5% 5% 5%;
+          background-color: rgba(0, 0, 0, 0.164);
         }
-
-        .project-card .name {
-          font-size: 1em;
+        .progress-bar {
+          height: 100%;
         }
-
         .progress-bar > .progress-bar-fill {
-          font-size: 0.8em;
+          width: 12%;
+          height: 100%;
+          background-color: rgb(0, 128, 122);
+          text-align: center;
+          color: white;
         }
-      }
+
+        /**
+        * accessibility: 3 stages
+        * stage 1: full display, use default CSS
+        * stage 2: hide image
+        * stage 3: hide image and desc
+        */
+        /*half height*/
+        @media (max-height: 600px) or (max-width: 1460px) {
+          .project-card {
+            grid-template-areas:
+              'name'
+              'desc'
+              'progress-bar'
+              'actions';
+            grid-template-rows: 10% 40% 10% 40%;
+            grid-row-gap: 1%;
+            height: 250px;
+            min-height: 100px;
+            width: 40%;
+            min-width: 80px;
+            padding: 5px 10px;
+          }
+          .project-card .project-image {
+            display: none;
+          }
+          .project-card .name {
+            font-size: 1em;
+          }
+          .project-card .name:hover {
+            font-size: 1.2em;
+            transition: 0.1s ease all;
+          }
+          .project-card button {
+            border-radius: 3px;
+            height: auto;
+            padding: 4px 10px;
+            margin-right: 5px;
+            margin-bottom: 3px;
+          }
+        }
+        /*smallest display*/
+        @media (max-height: 400px) or (max-width: 800px) {
+          .project-card {
+            grid-template-areas:
+              'name'
+              'progress-bar'
+              'actions';
+            grid-template-rows: 20% 20% 60%;
+            grid-row-gap: 1%;
+            height: 50px;
+            width: 50px;
+            padding: 2px 5px;
+            min-width: 100px;
+          }
+          .project-card .project-image {
+            display: none;
+          }
+          .project-card .desc {
+            display: none;
+          }
+          .project-card button {
+            height: auto;
+            font-size: small;
+            padding: 0px;
+            border-radius: 0px;
+            margin-right: 2px;
+          }
+          .project-card .name {
+            font-size: 1em;
+          }
+          .progress-bar > .progress-bar-fill {
+            text-align: center;
+            font-size: 1em;
+            text-overflow: ellipsis;
+          }
+        }
+
     `);
     this.shadowRoot.adoptedStyleSheets = [sheet];
     article.classList.add('project-card');
@@ -207,7 +190,9 @@ class ProjectCard extends HTMLElement {
       <div class="desc">${data.desc}</div>
       <div class="progress-bar-container">
         <div class="progress-bar">
-          <div class="progress-bar-fill" style="width: ${data.progress || 0}%;">${data.progress || 0}%</div>
+          <div class="progress-bar-fill" style="width: ${
+            data.progress || 0
+          }%;">${data.progress || 0}%</div>
         </div>
       </div>
       <div class="actions">
@@ -265,7 +250,7 @@ function closeViewCardModal() {
 }
 
 // Event listener for adding a new card
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('addCardForm').addEventListener('submit', addCard);
   document.getElementById('editButton').addEventListener('click', editDetails);
   document.getElementById('saveButton').addEventListener('click', saveDetails);
@@ -274,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function openAddCardModal() {
   document.getElementById('addCardForm').reset();
   document.getElementById('addCardModal').style.display = 'block';
-
 }
 
 function closeAddCardModal() {
@@ -286,27 +270,29 @@ function addCard(event) {
   event.preventDefault();
 
   const projectName = document.getElementById('projectName').value.trim();
-  const projectDescription = document.getElementById('projectDescription').value.trim();
+  const projectDescription = document
+    .getElementById('projectDescription')
+    .value.trim();
   const projectImage = document.getElementById('projectImage').value.trim();
 
   // Input validation
 
   if (!projectName || !projectDescription || !projectImage) {
-    alert("Project name, description, and image are required.");
+    alert('Project name, description, and image are required.');
     return;
   }
 
   if (projectImage && !isValidURL(projectImage)) {
-    alert("Please enter a valid URL for the project image.");
+    alert('Please enter a valid URL for the project image.');
     return;
   }
-  
+
   const newProject = {
     id: `project-${Date.now()}`, // Unique ID for the project
     title: projectName,
     desc: projectDescription,
     image: projectImage,
-    progress: 0 // Initialize progress to 0
+    progress: 0, // Initialize progress to 0
   };
 
   projects.push(newProject);
@@ -363,12 +349,12 @@ function saveDetails() {
 
   // Input validation
   if (!projectName || !projectDescription || !projectImage) {
-    alert("Project name, description, and image are required.");
+    alert('Project name, description, and image are required.');
     return;
   }
 
   if (projectImage && !isValidURL(projectImage)) {
-    alert("Please enter a valid URL for the project image.");
+    alert('Please enter a valid URL for the project image.');
     return;
   }
 
