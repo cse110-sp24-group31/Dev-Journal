@@ -7,6 +7,7 @@ class ProjectCard extends HTMLElement {
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(`
         .project-card {
+          flex: 1 0;
           align-items: center;
           background-color: rgba(255, 255, 255, 0.712);
           border-radius: 5px;
@@ -21,10 +22,7 @@ class ProjectCard extends HTMLElement {
           grid-row-gap: 1.5%;
           height: 400px; /*height should remain constant */
           filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
-          margin: 0 0 20px 0;
           padding: 10px 20px;
-          width: 40%;
-          min-width: 420px;
         }
 
         .project-card .name {
@@ -105,8 +103,9 @@ class ProjectCard extends HTMLElement {
         * stage 3: hide image and desc
         */
         /*half height*/
-        @media (max-height: 600px) or (max-width: 1460px) {
+        @media (max-height: 600px) or (max-width: 1200px) {
           .project-card {
+            flex: 1 0;
             grid-template-areas:
               'name'
               'desc'
@@ -114,10 +113,10 @@ class ProjectCard extends HTMLElement {
               'actions';
             grid-template-rows: 10% 40% 10% 40%;
             grid-row-gap: 1%;
-            height: 250px;
+            height: 150px;
             min-height: 100px;
-            width: 40%;
-            min-width: 80px;
+            width: 200px;
+            min-width: 60px;
             padding: 5px 10px;
           }
           .project-card .project-image {
@@ -141,14 +140,17 @@ class ProjectCard extends HTMLElement {
         /*smallest display*/
         @media (max-height: 400px) or (max-width: 800px) {
           .project-card {
+            flex: 1 0;
             grid-template-areas:
               'name'
               'progress-bar'
               'actions';
             grid-template-rows: 20% 20% 60%;
             grid-row-gap: 1%;
-            height: 50px;
-            width: 50px;
+            height: 70px;
+            min-height: 30px;
+            width: 30px;
+            min-width: 30px;
             padding: 2px 5px;
             min-width: 100px;
           }

@@ -1,3 +1,4 @@
+let AddProjectCardComp;
 // Bind the init() function to run once the page loads
 window.addEventListener('DOMContentLoaded', init);
 
@@ -21,7 +22,7 @@ async function init() {
  * @returns {Promise} Resolves if the items are found in localStorage
  */
 async function fetchItems() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const localProjects = localStorage.getItem('projects');
     if (localProjects) {
       projects = JSON.parse(localProjects);
@@ -35,9 +36,9 @@ async function fetchItems() {
 
 /**
  * Adds
-    * Adds the fetched project items to the webpage
-    */
- function populatePage() {
+ * Adds the fetched project items to the webpage
+ */
+function populatePage() {
   if (!projects) return;
   const container = document.getElementById('project-cards-parent');
   container.innerHTML = '';
@@ -46,4 +47,38 @@ async function fetchItems() {
     card.data = item;
     container.appendChild(card);
   });
+
+  //create the 'add new project' card
+  createAddProjectCardComp(container);
 }
+
+/**
+ * this is suppose to be private function
+ */
+var createAddProjectCardComp = function (container) {
+  AddProjectCardComp = document.createElement('div');
+  AddProjectCardComp.classList.add('add-project-card');
+  AddProjectCardComp.innerHTML = `
+                <button>
+                    <img src="assets/icons/plus.png">
+                    <p>add new project</p>
+                </button>
+                `;
+  AddProjectCardComp.style = `
+      align-self: center;
+  `;
+  container.appendChild(AddProjectCardComp);
+
+  //attach event listeners
+  AddProjectCardComp.querySelector('button').addEventListener(
+    'click',
+    openAddCardModal
+  );
+  //listen to when add-projec-modal sumbitted
+  const formcomp = document.querySelector('#addCardModal form');
+  formcomp.addEventListener('submit', updateAddProjectCardCompOrder);
+};
+
+var updateAddProjectCardCompOrder = function () {
+  AddProjectCardComp.parentNode.appendChild(AddProjectCardComp); //append to last
+};
