@@ -85,6 +85,9 @@ class ProjectCard extends HTMLElement {
                           cursor: pointer;
                           transition: 0.1s ease all;
                         }
+                        .project-card .progress-bar.selected:hover {
+                          transition: background-color 0.1s ease, color 0.1s ease, width 0.1s ease;
+                        }
                         .project-card .progress-bar:hover > .progress-bar-fill{
                           background-color: rgb(0, 100, 96);
                           cursor: pointer;
@@ -125,6 +128,10 @@ class ProjectCard extends HTMLElement {
                           justify-content: center;
                           line-height: 30px;
                           color: white;
+                          transition: 0.1s ease all;
+                        }
+                        .progress-bar.selected {
+                          border: 2px solid blue;
                         }
                         .progress-bar > .progress-bar-check {
                           width: 100%;
@@ -190,7 +197,6 @@ class ProjectCard extends HTMLElement {
       pbf.style.width = data.progress + '%';
       pbf.innerText = data.progress;
     } else if (progressType == "check"){
-      console.log(this.json["name"], "is a check.");
       pbf.classList.add('progress-bar-check');
       pbf.innerText = "In Progress";
     }
@@ -199,11 +205,11 @@ class ProjectCard extends HTMLElement {
     pb.addEventListener('click', () => {
       let pbf;
       if(progressType == "fill"){
-        if (pb.style.border === '') {
-          pb.style.border = '1px solid blue';
-        } else {
-          pb.style.border = '';
-        }
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar'
+        );
+
+        pbf.classList.toggle('selected');
         console.log('Progress bar (fill) clicked!');
       } else {
         console.log('Progress bar (check) clicked!');
@@ -213,6 +219,22 @@ class ProjectCard extends HTMLElement {
 
         pbf.classList.add('complete');
         pbf.innerText = "Complete!";
+      }
+    });
+
+    //Add pb event listener for "mousedown".
+    //Function: For fill bars specifically, change data.progress, then update text and bar width accordingly.
+    //MouseEvent.movementX for if you want to move fill bar by holding and dragging
+    //MouseEvent.offsetX for if you want to move fill bar by clicking on the bar.
+    pb.addEventListener('mousedown', (event) => {
+      if(progressType == "fill"){
+        let pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-fill'
+        );
+
+        if(pb.classList.contains('selected')){
+          pbf.style.width = event.offsetX / 3.6 + '%';
+        }
       }
     });
 
