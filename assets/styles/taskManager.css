@@ -1,0 +1,74 @@
+.tasks {
+    width: 520px;
+    height: 500px;
+    border: 1px solid #ccc;
+    margin: 10px auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 3%;
+}
+
+.tasks h2 {
+    text-align: center;
+    margin: 10px 0 0 0 ;
+}
+
+.task {
+    margin-top: 10px;
+
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#tasksContainer {
+    flex-grow: 1; /* Takes up all available space */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 0px 13px 10px 10px;
+}
+
+#tasksContainer input[type="text"],
+#tasksContainer input[type="date"] {
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.taskCheckbox {
+    margin-right: 5px;
+}
+
+.deleteButton, .editButton {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+
+#addTask {
+    display: flex;           /* Enables Flexbox */
+    justify-content: center; /* Centers children horizontally */
+    align-items: center;     /* Centers children vertically */
+    width: auto; /* Set a specific width if you need a more consistent sizing */
+    margin: 0 auto;
+    padding: 10px;           /* Optional padding for aesthetics */
+    width: 90%;             /* Full width or adjust as needed */
+}
+
+/* Optionally, style inputs and button for consistency and spacing */
+#addTask input, #addTask button {
+    width: 90%;              /* Slightly less than full width for padding */
+    margin: 5px;            /* Spacing between elements */
+    padding: 4px;            /* Padding for better text visibility */
+}
+
+#addTask button {
+    cursor: pointer;         /* Changes the cursor to pointer on hover */
+    background-color: #4CAF50; /* Button color */
+    color: white;            /* Text color */
+    border: none;            /* Removes default border */
+    border-radius: 4px;      /* Rounded corners for the button */
+}

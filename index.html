@@ -6,8 +6,10 @@
     <title>Developer Journal</title>
     <link rel="stylesheet" href="assets/styles/homepage.css">
     <link rel="stylesheet" href="assets/styles/projectView.css">
+    <link rel="stylesheet" href="assets/styles/taskManager.css">
 </head>
 <body>
+    <!-- NAVIGATION -->
     <div class="main-nav">
         <div class="brand">Developer Journal</div>
         <div class="nav-links">
@@ -20,41 +22,27 @@
             <button>Search</button>
         </div>
     </div>
-    <div class="project-card" id="add-card">
-        <p class="name">Add New Project</p>
-        <button onclick="openAddCardModal()">Add Project</button>
-    </div>
+
+    <!-- MAIN -->
     <div class="main">
         <div class="project-cards" id="project-cards-parent">
+            <button id="addProjButton" onclick="openAddCardModal()">Add Task</button>
+            <div id="project-cards-wrap">
+                <!-- PROJECT CARDS ARE ADDED HERE DYNAMICALLY -->
+            </div> 
         </div>
 
         <div class="sidebar">
             <div class="sidebar-sec calendar">
-                <div class="cal-header">
-                    <button id="cal-prev">◀</button>
-                    <div class="monthYear" id="monthYear"></div>
-                    <button id="cal-next">▶</button>
-                </div>
-                <div class="days">
-                    <div class="day">Mon</div>
-                    <div class="day">Tue</div>
-                    <div class="day">Wed</div>
-                    <div class="day">Thu</div>
-                    <div class="day">Fri</div>
-                    <div class="day">Sat</div>
-                    <div class="day">Sun</div>
-                </div>
-                <div class="dates" id="dates"></div>
+                <!--  CHARLOTTE AND ZHAMILYA WORK HERE  -->
             </div>
             <div class="sidebar-sec accomplishments">
-                <!-- Accomplishments Section -->
+                <!-- Accomplishments Section  TODO -->
             </div>
         </div>
     </div>
 
-    <div class="bottom-tab">Footer Content</div>
-
-    <!-- Add Card Modal -->
+    <!-- Add Card Modal (inital diplay is none) -->
     <div id="addCardModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeAddCardModal()">&times;</span>
@@ -71,8 +59,7 @@
         </div>
     </div>
 
-
-    <!-- View Card Modal -->
+    <!-- View Card Modal (inital diplay is none) -->
     <div id="viewCardModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeViewCardModal()">&times;</span>
@@ -87,11 +74,21 @@
                 <button type="button" id="editButton">Edit Details</button>
                 <button type="button" id="saveButton" style="display: none;">Save Details</button>
             </form>
+            <div class="tasks">
+                <h2>Task Manager</h2>
+                <div id="addTask">
+                    <input type="text" id="taskName" placeholder="Enter Task">
+                    <input type="date" id="taskDueDate">
+                    <button id="addTaskButton">Add Task</button>
+                </div>
+                <div id="tasksContainer"></div>
+            </div>
         </div>
     </div>
 
-    <script src="assets/scripts/calendar.js"></script>
-    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/AddProject.js"></script>
+    <script src="assets/scripts/ViewProject.js"></script>
+    <script src="assets/scripts/TaskManager.js"></script>
     <script src="assets/scripts/ProjectCard.js"></script>
 </body>
 </html>

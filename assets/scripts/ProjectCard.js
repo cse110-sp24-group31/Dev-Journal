@@ -1,3 +1,11 @@
+/**
+ * Filename: ProjectCard.js
+ * Description:  This script handles the rendering and interaction logic for project cards with local storage. 
+ */
+
+/**
+ * Define the ProjectCard Web Component along with it's styling.
+ */
 class ProjectCard extends HTMLElement {
   constructor() {
     super();
@@ -7,10 +15,10 @@ class ProjectCard extends HTMLElement {
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(`
         .project-card {
-          flex: 1 0;
+          flex: 1;
           align-items: center;
           background-color: rgba(255, 255, 255, 0.712);
-          border-radius: 5px;
+          border-radius: 10px;
           display: grid;
           grid-template-areas:
             'name'
@@ -21,6 +29,7 @@ class ProjectCard extends HTMLElement {
           grid-template-rows: 10% 40% 30% 5% 10%;
           grid-row-gap: 1.5%;
           height: 400px; /*height should remain constant */
+          width: 320px;
           filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
           padding: 10px 20px;
         }
@@ -38,6 +47,10 @@ class ProjectCard extends HTMLElement {
           overflow: auto;
           text-overflow: unset;
           transition: 0.1s ease all;
+        }
+
+        .project-card img {
+          width = 100px;
         }
 
         .project-card button {
@@ -199,7 +212,7 @@ class ProjectCard extends HTMLElement {
       </div>
       <div class="actions">
         <button onclick="this.getRootNode().host.updateProgress(this)">Update Progress</button>
-        <button onclick="this.getRootNode().host.deleteCard(this)">Delete</button>
+        <button onclick="this.getRootNode().host.deleteCard()">Delete</button>
         <button onclick="openViewCardModal('${data.id}')">View</button>
       </div>
     `;
@@ -218,165 +231,57 @@ class ProjectCard extends HTMLElement {
     localStorage.setItem('projects', JSON.stringify(projects));
   }
 
-  deleteCard(button) {
-    const cardId = this.dataset.id;
+  deleteCard() {
+    let cardId = this.dataset.id;
+    cardId = Number(cardId);
     projects = projects.filter(project => project.id !== cardId);
     localStorage.setItem('projects', JSON.stringify(projects));
-    this.remove();
+    renderProjects();
+  }
+}
+customElements.define('project-card', ProjectCard);   
+
+// Stores all project data for all projects. 
+let projects = []
+
+// Display each project in the projects array as a ProjectCard Web Componnet
+function renderProjects() {
+  const projContainer = document.getElementById('project-cards-wrap');
+  if (projects.length == 0) { projIdCounter = 0; }
+  projContainer.innerHTML = '';
+  projects.forEach(project => {
+    const card = document.createElement('project-card');
+    card.data = project;
+    projContainer.appendChild(card);
+  });
+}
+
+// Save the current projects array to 'projects' in localStorage
+function saveProjects() {
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+// Load projects array with stored 'projects' from localStorage
+function loadProjects() {
+  const storedProjs = localStorage.getItem('projects');
+  if (storedProjs) {
+      projects = JSON.parse(storedProjs);
   }
 }
 
-customElements.define('project-card', ProjectCard);
-
-function openViewCardModal(projectId) {
-  const project = projects.find(p => p.id === projectId);
-  if (!project) {
-    console.error('Project not found');
-    return;
-  }
-  const viewCardModal = document.getElementById('viewCardModal');
-  viewCardModal.querySelector('#projectName').value = project.title;
-  viewCardModal.querySelector('#projectDescription').value = project.desc;
-  viewCardModal.querySelector('#projectImage').value = project.image;
-  viewCardModal.dataset.id = project.id;
-  viewCardModal.querySelector('#projectName').readOnly = true;
-  viewCardModal.querySelector('#projectDescription').readOnly = true;
-  viewCardModal.querySelector('#projectImage').readOnly = true;
-  viewCardModal.style.display = 'block';
-  document.getElementById('saveButton').style.display = 'none';
-  document.getElementById('editButton').style.display = 'inline-block';
-}
-
-function closeViewCardModal() {
-  document.getElementById('viewCardModal').style.display = 'none';
-}
-
-// Event listener for adding a new card
+/**
+ * Upon inital DOM load, initialize projectIdCounter and projects from localStorage, and render them onto the UI.
+ * Additionally, add necessary event listeners. 
+ * 
+ * Note: projectIdCounter is defined in AddProject.js
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('addCardForm').addEventListener('submit', addCard);
+  initializeCounter();
+  loadProjects();
+  renderProjects(); 
+  document.getElementById('addCardForm').addEventListener('submit', addProject);
   document.getElementById('editButton').addEventListener('click', editDetails);
   document.getElementById('saveButton').addEventListener('click', saveDetails);
+  document.getElementById('taskDueDate').addEventListener('change', updateDateColor);
+  document.getElementById('addTaskButton').addEventListener('click', addTaskToProject);
 });
-
-function openAddCardModal() {
-  document.getElementById('addCardForm').reset();
-  document.getElementById('addCardModal').style.display = 'block';
-}
-
-function closeAddCardModal() {
-  document.getElementById('addCardForm').reset();
-  document.getElementById('addCardModal').style.display = 'none';
-}
-
-function addCard(event) {
-  event.preventDefault();
-
-  const projectName = document.getElementById('projectName').value.trim();
-  const projectDescription = document
-    .getElementById('projectDescription')
-    .value.trim();
-  const projectImage = document.getElementById('projectImage').value.trim();
-
-  // Input validation
-
-  if (!projectName || !projectDescription || !projectImage) {
-    alert('Project name, description, and image are required.');
-    return;
-  }
-
-  if (projectImage && !isValidURL(projectImage)) {
-    alert('Please enter a valid URL for the project image.');
-    return;
-  }
-
-  const newProject = {
-    id: `project-${Date.now()}`, // Unique ID for the project
-    title: projectName,
-    desc: projectDescription,
-    image: projectImage,
-    progress: 0, // Initialize progress to 0
-  };
-
-  projects.push(newProject);
-  localStorage.setItem('projects', JSON.stringify(projects));
-
-  const card = document.createElement('project-card');
-  card.data = newProject;
-  document.getElementById('project-cards-parent').appendChild(card);
-
-  closeAddCardModal();
-}
-
-function updateProgress(button) {
-  const card = button.closest('project-card');
-  card.updateProgress();
-}
-
-function deleteCard(button) {
-  const card = button.closest('project-card');
-  const cardId = card.dataset.id;
-
-  projects = projects.filter(project => project.id !== cardId);
-  localStorage.setItem('projects', JSON.stringify(projects));
-
-  card.remove();
-}
-
-function closeViewCardModal() {
-  document.getElementById('viewCardModal').style.display = 'none';
-}
-
-function editDetails() {
-  const viewCardModal = document.getElementById('viewCardModal');
-  viewCardModal.querySelector('#projectName').readOnly = false;
-  viewCardModal.querySelector('#projectDescription').readOnly = false;
-  viewCardModal.querySelector('#projectImage').readOnly = false;
-
-  document.getElementById('editButton').style.display = 'none';
-  document.getElementById('saveButton').style.display = 'inline-block';
-}
-
-function saveDetails() {
-  const viewCardModal = document.getElementById('viewCardModal');
-  const projectId = viewCardModal.dataset.id;
-  const project = projects.find(p => p.id === projectId);
-
-  const projectNameInput = viewCardModal.querySelector('#projectName');
-  const projectDescInput = viewCardModal.querySelector('#projectDescription');
-  const projectImageInput = viewCardModal.querySelector('#projectImage');
-
-  const projectName = projectNameInput.value.trim();
-  const projectDescription = projectDescInput.value.trim();
-  const projectImage = projectImageInput.value.trim();
-
-  // Input validation
-  if (!projectName || !projectDescription || !projectImage) {
-    alert('Project name, description, and image are required.');
-    return;
-  }
-
-  if (projectImage && !isValidURL(projectImage)) {
-    alert('Please enter a valid URL for the project image.');
-    return;
-  }
-
-  project.title = projectName;
-  project.desc = projectDescription;
-  project.image = projectImage;
-
-  localStorage.setItem('projects', JSON.stringify(projects));
-
-  const card = document.querySelector(`project-card[data-id='${projectId}']`);
-  if (card) card.data = project;
-
-  closeViewCardModal();
-}
-// Helper function to validate URLs
-function isValidURL(string) {
-  try {
-    new URL(string);
-    return true;
-  } catch (_) {
-    return false;
-  }
-}
