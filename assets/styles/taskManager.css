@@ -3,39 +3,46 @@
     height: 500px;
     border: 1px solid #ccc;
     margin: 10px auto;
-    background-color: #fff;
+    background-color: #1a1a2e;
+    color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
-    border-radius: 3%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tasks h2 {
     text-align: center;
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
 }
 
 .task {
     margin-top: 10px;
-
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0 10px 0;
-    overflow: hidden;
+    padding: 10px;
+    background-color: #333;
     border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #tasksContainer {
     flex-grow: 1; /* Takes up all available space */
     overflow-y: auto; /* Enables vertical scrolling */
-    padding: 0px 13px 10px 10px;
+    padding: 0 10px 10px 10px;
 }
 
 #tasksContainer input[type="text"],
 #tasksContainer input[type="date"] {
     margin: 0 10px;
     flex-grow: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #555;
+    color: white;
 }
 
 .taskCheckbox {
@@ -45,8 +52,12 @@
 .deleteButton, .editButton {
     margin-left: 10px;
     cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
-
 
 #addTask {
     display: flex;           /* Enables Flexbox */
@@ -58,11 +69,10 @@
     width: 90%;             /* Full width or adjust as needed */
 }
 
-/* Optionally, style inputs and button for consistency and spacing */
 #addTask input, #addTask button {
     width: 90%;              /* Slightly less than full width for padding */
     margin: 5px;            /* Spacing between elements */
-    padding: 4px;            /* Padding for better text visibility */
+    padding: 10px;            /* Padding for better text visibility */
 }
 
 #addTask button {

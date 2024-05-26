@@ -23,10 +23,12 @@
         </div>
     </div>
 
+    <!-- Add Task Button -->
+    <button id="addProjButton" onclick="openAddCardModal()">Add Task</button>
+
     <!-- MAIN -->
     <div class="main">
         <div class="project-cards" id="project-cards-parent">
-            <button id="addProjButton" onclick="openAddCardModal()">Add Task</button>
             <div id="project-cards-wrap">
                 <!-- PROJECT CARDS ARE ADDED HERE DYNAMICALLY -->
             </div> 
@@ -42,7 +44,7 @@
         </div>
     </div>
 
-    <!-- Add Card Modal (inital diplay is none) -->
+    <!-- Add Card Modal (initial display is none) -->
     <div id="addCardModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeAddCardModal()">&times;</span>
@@ -59,7 +61,7 @@
         </div>
     </div>
 
-    <!-- View Card Modal (inital diplay is none) -->
+    <!-- View Card Modal (initial display is none) -->
     <div id="viewCardModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeViewCardModal()">&times;</span>
