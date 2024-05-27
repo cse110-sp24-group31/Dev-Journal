@@ -9,14 +9,24 @@
    width: 100%;
 }
 
+#contacts .header-bubble {
+   background-color: #f0f0f0;
+   padding: 10px;
+   margin: 10px auto;
+   border-radius: 20px;
+   text-align: center;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contacts h1 {
+   color: #333 !important;
+   text-align: center !important;
+}
+
 #contacts .bubble, #contacts .flex-container {
    background: transparent !important;
 }
 
-h1 {
-   color: beige;
-   text-align: center;
-}
 .sun-container {
    padding: 20px;
    display: flex;
@@ -30,6 +40,7 @@ h1 {
    outline: none;
    left: -125px;
 }
+
 .sun {
    position: absolute;
    width: 100%;
@@ -38,6 +49,7 @@ h1 {
    background: radial-gradient(circle at center, beige 20%, rgb(225, 184, 107), brown 100%);
    z-index: 1;
 }
+
 .filter-button {
    background: none;
    border: none;
@@ -48,6 +60,7 @@ h1 {
    display: flex;
    align-items: center;
 }
+
 .filter-button img {
    margin-left: 10px;
    max-width: 30px;
@@ -71,11 +84,13 @@ aside {
    border-radius: 20px;
    text-align: center;
 }
+
 aside img {
    display: block;
    margin: 0 auto;
    max-width: 90%;
 }
+
 /* input information box */
 form {
    display: flex;
@@ -87,19 +102,21 @@ form {
    background-color: transparent;
    border-radius: 10px;
 }
+
 fieldset {
    border: none;
    text-align: center;
 }
 
 form input, form select, form textarea {
-   background-color: #fffacd; /* Light yellow background */
+   background-color: #fffacd; 
    border: 1px solid #ccc;
    border-radius: 5px;
    padding: 5px;
    margin-bottom: 10px;
    outline-color: yellow;
 }
+
 /* Title */
 .bubble {
    left: 50%;
@@ -107,8 +124,8 @@ form input, form select, form textarea {
    padding: 20px;
    border-radius: 20px;
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   background: transparent;
 }
+
 .bubble h1 {
    margin: 0;
    font-size: 24px;
@@ -142,19 +159,23 @@ form input, form select, form textarea {
    width: 100%;
    text-align: center;
 }
+
 .entry-avatar {
    flex-shrink: 0;
 }
+
 .avatar-image {
    width: 25px;
    height: auto;
    border-radius: 50%;
 }
+
 /* CSS for avatar options */
 .avatar-option {
    border: 2px solid transparent;
    cursor: pointer;
 }
+
 .avatar-option.selected {
    border-color: blue;
 }
