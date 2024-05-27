@@ -31,7 +31,6 @@ function getCompletedTasksByProjectID(projectID) {
 function getProgressByProjectID(projectID) {
   const ts = getTasksByProjectID(projectID);
   const cs = getCompletedTasksByProjectID(projectID);
-  console.log(ts.length, cs.length);
   const res = cs.length / ts.length;
   if (Number.isNaN(res)) {
     return 0;
