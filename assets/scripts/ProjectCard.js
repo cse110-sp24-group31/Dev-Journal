@@ -232,9 +232,12 @@ class ProjectCard extends HTMLElement {
   }
   /**
    * this function should be automatically called upon change in the task manager
+   * @param {integer} progress new progress [0-100]
    */
   updateProgress(progress) {
     progress = Math.round(progress);
+    if (progress < 0) progress = 0;
+    if (progress > 100) progress = 100;
     const progressBar = this.shadowRoot.querySelector('.progress-bar-fill');
     progressBar.style.width = `${progress}%`;
     progressBar.innerText = `${progress}%`;
