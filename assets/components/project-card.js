@@ -37,6 +37,7 @@ class ProjectCard extends HTMLElement {
                           font-size: 1.8em;
                           font-weight: bold;
                           margin: 0;
+                          transition: 0.1s ease all;
                         }
 
                         .project-card .name:hover {
@@ -54,7 +55,7 @@ class ProjectCard extends HTMLElement {
                           border-radius: 5px;
                           color: black;
                           justify-self: center;
-                          max-height: 35px;
+                          max-height: 45px;
                           padding: 8px 20px;
                           transition: 0.1s ease all;
                         }
@@ -72,9 +73,42 @@ class ProjectCard extends HTMLElement {
                           height: 100%;
                           width: 100%;
                         }
-                        .project-card .progress-bar {
+                        .project-card .progress-bar{
                           width: 100%;
-                          background-color: grey;
+                          background-image: url('https://i.pinimg.com/originals/a3/33/ae/a333aed62873505b21ffbaf54efd9c0d.jpg');
+                          background-size: 100% 100%;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          box-sizing: border-box;
+                          position: relative;
+                          overflow: hidden;
+                        }
+                        
+                        .project-card .progress-bar::before {
+                          content: '';
+                          position: absolute;
+                          width: 100%;
+                          height: 100%;
+                          background-color: rgba(0, 0, 0, 0);
+                          transition: background-color 0.1s ease;
+                          z-index: 1;
+                        }
+                        .project-card .progress-bar:hover::before {
+                          background-color: rgba(0, 0, 0, 0.2);
+                          cursor: pointer;
+                          transition: background-color 0.1s ease, color 0.1s ease;
+                        }
+                        .project-card .progress-bar.selected:hover {
+                          transition: background-color 0.1s ease, color 0.1s ease, width 0.1s ease;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-check.complete::before{
+                          background-color: rgba(0, 0, 0, 0);
+                          cursor: default;
+                        }
+                        .project-card .progress-bar:hover > .progress-bar-check::before {
+                          background-color: rgba(0, 0, 0, 0.2);
+                          cursor: pointer;
+                          transition: 0.1s ease all;
                         }
 
                         .project-card .desc {
@@ -91,14 +125,64 @@ class ProjectCard extends HTMLElement {
                           background-color: rgba(0, 0, 0, 0.164);
                         }
                         .progress-bar {
-                          height: 100%;
+                          height: 45px;
                         }
                         .progress-bar > .progress-bar-fill {
                           width: 12%;
                           height: 100%;
-                          background-color: rgb(0, 128, 122);
-                          text-align: center;
+                          background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea6256ec-9ab1-4486-9aed-11f6d376eabd/dg66eii-09920403-6d0a-4f8f-b321-ca5aaf2e7b0e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhNjI1NmVjLTlhYjEtNDQ4Ni05YWVkLTExZjZkMzc2ZWFiZFwvZGc2NmVpaS0wOTkyMDQwMy02ZDBhLTRmOGYtYjMyMS1jYTVhYWYyZTdiMGUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.HHMaq8w132c6JEtlBixWGgHPWDLKi5X-P51OzxLRuNk');
+                          background-size: 100% 100%;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
                           line-height: 30px;
+                          color: black;
+                          transition: background-color 0.1s ease, color 0.1s ease;
+                        }
+                        .progress-bar > .cursor {
+                          position: absolute;
+                          height: 100%;
+                          width: 18%;
+                          background-image: url('https://w7.pngwing.com/pngs/8/573/png-transparent-4d-maze-spacecraft-rocket-spacecraft-rocket-launch-space-thumbnail.png');
+                          background-size: 100% 100%;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          pointer-events: none;
+                        }
+                        .progress-bar.selected {
+                          border: 2px solid blue;
+                        }
+                        .progress-bar > .progress-bar-check {
+                          width: 100%;
+                          height: 100%;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          line-height: 30px;
+                          background-image: url('https://images.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg');
+                          background-size: 100% 100%;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          justify-self: center;
+                          position: relative;
+                          z-index: 2;
+                          overflow: hidden;
+                          color: black;
+                        }
+                        .progress-bar > .progress-bar-check::before {
+                          content: '';
+                          position: absolute;
+                          width: 100%;
+                          height: 100%;
+                          background-color: rgba(0, 0, 0, 0);
+                          transition: background-color 0.1s ease;
+                          z-index: 1;
+                        }
+                        .progress-bar-check.complete {
+                          background-image: url('https://i.pinimg.com/originals/a3/33/ae/a333aed62873505b21ffbaf54efd9c0d.jpg');
+                          background-color: rgb(0, 128, 122);
                           color: white;
                         }
     `;
@@ -124,43 +208,141 @@ class ProjectCard extends HTMLElement {
     desc.innerText = data.desc;
 
     //create progress bar
+    //If progress-type is fill, put the fill type in. If progress-type is check, put the check in.
+    const progressType = this.json["progress-type"];
     const pb = document.createElement('div');
     pb.classList.add('progress-bar');
     const pbf = document.createElement('div');
-    pbf.classList.add('progress-bar-fill');
-    pbf.style.width = data.progress + '%';
+    if (progressType == "fill"){
+      pbf.classList.add('progress-bar-fill');
+      pbf.style.width = data.progress + '%';
+      pbf.innerText = data.progress;
+
+      var pbfCursor = document.createElement('div');
+      pbfCursor.classList.add('cursor');
+      pbfCursor.style.left = data.progress + '%';
+      pb.append(pbfCursor);
+    } else if (progressType == "check"){
+      pbf.classList.add('progress-bar-check');
+      pbf.innerText = "In Progress";
+    }
     pb.appendChild(pbf);
-    pbf.innerText = data.progress;
+
+    pb.addEventListener('click', (event) => {
+      event.stopPropagation();    //Prevents document.addEventListener('click') from activating.
+
+      let pbf;
+      if(progressType == "fill"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar'
+        );
+
+        pbf.classList.toggle('selected');   //Change to add, then put remove in the (mouseup) thing
+        console.log('Progress bar (fill) clicked!');
+      } else {
+        console.log('Progress bar (check) clicked!');
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-check'
+        );
+
+        pbf.classList.add('complete');
+        pbf.innerText = "Complete!";
+      }
+    });
+
+    document.addEventListener('click', () => {
+      const projCards = document.querySelectorAll('project-card');
+
+      projCards.forEach(card => {
+          const selectedBar = card.shadowRoot.querySelector('.progress-bar.selected');
+          if (selectedBar){
+              selectedBar.classList.remove('selected');
+          }
+      });
+    });
+
+    let fillUpdating = false;
+    pb.addEventListener('mousedown', (event) => {   //TODO: Find way to make
+      event.preventDefault();
+
+      if(progressType == "fill"){
+        if(pb.classList.contains('selected')){
+          fillUpdating = true;
+          updateFill(event.offsetX);
+        }
+      }
+    });
+
+    let animationFrameId;
+
+    document.addEventListener('mousemove', (event) => {
+      if (fillUpdating){
+        const pbRect = pb.getBoundingClientRect();
+        const offsetX = event.screenX - pbRect.left;
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(() => updateFill(offsetX));
+      }
+    });
+
+    function updateFill(offsetX){
+      const progBarWidth = pb.offsetWidth;
+      let widthPercent = (offsetX/progBarWidth) * 100;
+      widthPercent = Math.max(0, Math.min(100, widthPercent));
+
+      pbf.style.width = widthPercent + '%';
+      pbf.innerText = Math.round(widthPercent);
+
+      updateCursor((widthPercent / 100) * progBarWidth)
+    }
+
+    function updateCursor(cursorPosition){
+      pbfCursor.style.left = (cursorPosition-pbfCursor.offsetWidth/2) + 'px';
+    }
+
+    document.addEventListener('mouseup', () => {
+      if(fillUpdating){
+        fillUpdating = false;
+        this.json["progress"] = Number(pbf.innerText);
+      }
+    });
 
     // Create the actions
     const actions = document.createElement('div');
     actions.classList.add('actions');
-    const debugAddProgress = document.createElement('button');
-    debugAddProgress.addEventListener('click', () => {
-      const pbf = this.shadowRoot.querySelector(
-        '.progress-bar > .progress-bar-fill'
-      );
-      var progress = Number(pbf.innerText);
-      if (progress >= 100) {
-        progress = 0;
-      } else {
-        progress = progress + Math.floor(Math.random() * 10);
-      }
-      pbf.style.width = progress + '%';
-      pbf.innerText = progress;
-    });
-    debugAddProgress.innerText = 'progress + random';
     const open = document.createElement('button');
-    open.addEventListener('click', e => showModal_projectCard(e, open, data));
     open.innerText = 'open';
+    open.addEventListener('click', e => showModal_projectCard(e, open, data));
     const options = document.createElement('button');
+    options.innerText = 'options';
     options.addEventListener('click', _ => {
       alert('options');
     });
+    const resetProg = document.createElement('button');
+    resetProg.innerText = 'reset';
+    resetProg.addEventListener('click', _ => {
+      let pbf;
+      if (this.json["progress-type"] == "fill"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-fill'
+        );
+        
+        pbf.innerText = "0";
+        pbf.style.width = 0 + '%';
+        pbfCursor.style.left = (-pbfCursor.offsetWidth/2) + 'px';;
+        
+      } else if (this.json["progress-type"] == "check"){
+        pbf = this.shadowRoot.querySelector(
+          '.progress-bar > .progress-bar-check'
+        );
 
-    options.innerText = 'options';
+        pbf.classList.remove('complete');
+        pbf.innerText = "In Progress";
+      }
+    });
 
-    actions.append(debugAddProgress, open, options);
+    // Append action buttons to actions tab
+    // EDIT: Removed debugAddProgress, I want to move out of debug because we only have like 2-3 weeks left ARGH
+    actions.append(open, options, resetProg);
 
     // Add all of the above elements to the wrapper
     wrapper.append(title, img, desc, pb, actions);
