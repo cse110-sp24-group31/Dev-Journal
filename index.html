@@ -10,10 +10,10 @@
   <link rel="stylesheet" href="assets/styles/taskManager.css">
   <link rel="stylesheet" href="assets/styles/contactPage.css">
   <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <script src="assets/scripts/ProjectCard.js" defer></script>
   <script src="assets/scripts/AddProject.js" defer></script>
   <script src="assets/scripts/ViewProject.js" defer></script>
   <script src="assets/scripts/TaskManager.js" defer></script>
-  <script src="assets/scripts/ProjectCard.js" defer></script>
   <script src="assets/scripts/ContactPage.js" defer></script>
   <style>
     .tab-content {
@@ -53,7 +53,6 @@
           <!-- PROJECT CARDS ARE ADDED HERE DYNAMICALLY -->
         </div>
       </div>
-
       <div class="sidebar">
         <div class="sidebar-sec calendar">
           <!--  CHARLOTTE AND ZHAMILYA WORK HERE  -->
@@ -77,12 +76,9 @@
       <aside>
         <div class="key">
           <h1>Avatar Key</h1>
-          <label><input type="checkbox" class="filter-checkbox" data-category="team-lead"> Team Leads: <img src="assets/icons/alien1.png"
-              alt="Avatar 1"></label><br>
-          <label><input type="checkbox" class="filter-checkbox" data-category="planner"> Planners: <img src="assets/icons/alien2.png"
-              alt="Avatar 2"></label><br>
-          <label><input type="checkbox" class="filter-checkbox" data-category="programmer"> Programmers: <img
-              src="assets/icons/alien3.png" alt="Avatar 3"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="team-lead"> Team Leads: <img src="assets/icons/alien1.png" alt="Avatar 1"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="planner"> Planners: <img src="assets/icons/alien2.png" alt="Avatar 2"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="programmer"> Programmers: <img src="assets/icons/alien3.png" alt="Avatar 3"></label><br>
         </div>
       </aside>
       <div class="sun-container">
@@ -130,6 +126,50 @@
     </div>
     <div class="container">
       <div class="info-box" id="info-box"></div>
+    </div>
+  </div>
+
+  <!-- Add Card Modal (initial display is none) -->
+  <div id="addCardModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeAddCardModal()">&times;</span>
+      <h2>Add New Project</h2>
+      <form id="addCardForm">
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" name="projectName">
+        <label for="projectDescription">Description:</label>
+        <textarea id="projectDescription" name="projectDescription"></textarea>
+        <label for="projectImage">Image URL:</label>
+        <input type="text" id="projectImage" name="projectImage">
+        <button type="submit" id="submitButton">Add Project</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Card Modal (initial display is none) -->
+  <div id="viewCardModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeViewCardModal()">&times;</span>
+      <h2>View Project</h2>
+      <form id="viewCardForm">
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" name="projectName" readonly>
+        <label for="projectDescription">Description:</label>
+        <textarea id="projectDescription" name="projectDescription" readonly></textarea>
+        <label for="projectImage">Image URL:</label>
+        <input type="text" id="projectImage" name="projectImage" readonly>
+        <button type="button" id="editButton">Edit Details</button>
+        <button type="button" id="saveButton" style="display: none;">Save Details</button>
+      </form>
+      <div class="tasks">
+        <h2>Task Manager</h2>
+        <div id="addTask">
+          <input type="text" id="taskName" placeholder="Enter Task">
+          <input type="date" id="taskDueDate">
+          <button id="addTaskButton">Add Task</button>
+        </div>
+        <div id="tasksContainer"></div>
+      </div>
     </div>
   </div>
 
