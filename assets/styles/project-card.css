@@ -25,6 +25,7 @@
   font-size: 1.8em;
   font-weight: bold;
   margin: 0;
+  transition: 0.1s ease all;
 }
 
 .project-card .name:hover {
@@ -63,6 +64,13 @@
 .project-card .progress-bar {
   width: 100%;
   background-color: grey;
+  transition: 0.1s ease all;
+}
+
+.project-card .progress-bar:hover {
+  background-color: rgb(86, 86, 86);
+  cursor: pointer;
+  transition: 0.1s ease all;
 }
 
 .project-card .desc {
