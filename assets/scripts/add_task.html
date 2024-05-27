@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #054569;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .task-container {
+            background: #c2dde4;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .task-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .task-container input, .task-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .task-container button {
+            width: 100%;
+            padding: 10px;
+            background: #054569;
+            border: none;
+            border-radius: 5px;
+            color: #9ccddc;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .task-container button:hover {
+            background: #043a57;
+        }
+    </style>
+</head>
+<body>
+    <div class="task-container">
+        <h2>Add Task</h2>
+        <p id="selected-date"></p>
+        <input type="text" placeholder="Task Title" id="task-title">
+        <textarea placeholder="Task Description" id="task-desc"></textarea>
+        <button onclick="saveTask()">Save Task</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const day = urlParams.get('day');
+            const month = urlParams.get('month');
+            const year = urlParams.get('year');
+            document.getElementById('selected-date').innerText = `Date: ${day}-${month}-${year}`;
+        });
+
+        const saveTask = () => {
+            const title = document.getElementById('task-title').value;
+            const desc = document.getElementById('task-desc').value;
+            if (title && desc) {
+                alert('Task saved!');
+                // TODO: Save the task to your storage or database
+            } else {
+                alert('Please fill in both fields');
+            }
+        };
+    </script>
+</body>
+</html>
