@@ -1,6 +1,6 @@
 /**
  * Filename: ProjectCard.js
- * Description:  This script handles the rendering and interaction logic for project cards with local storage. 
+ * Description:  This script handles the rendering and interaction logic for project cards with local storage.
  */
 
 /**
@@ -211,24 +211,33 @@ class ProjectCard extends HTMLElement {
         </div>
       </div>
       <div class="actions">
-        <button onclick="this.getRootNode().host.updateProgress(this)">Update Progress</button>
         <button onclick="this.getRootNode().host.deleteCard()">Delete</button>
         <button onclick="openViewCardModal('${data.id}')">View</button>
       </div>
     `;
   }
-
-  updateProgress(button) {
+  /**
+   * update this project card
+   * @param {string} title title of the project, string
+   * @param {string} desc description of project, string
+   * @param {string} imgURL URL of image, string
+   * @param {integer} progress project progress, integer between 0-100
+   */
+  updateCard(title, desc, imgURL, progress) {
+    console.log(this);
+    this.shadowRoot.querySelector('.name').innerText = title;
+    this.shadowRoot.querySelector('.desc').innerText = desc;
+    this.shadowRoot.querySelector('.project-image').src = imgURL;
+    this.updateProgress(progress);
+  }
+  /**
+   * this function should be automatically called upon change in the task manager
+   */
+  updateProgress(progress) {
+    progress = Math.round(progress);
     const progressBar = this.shadowRoot.querySelector('.progress-bar-fill');
-    let progress = parseInt(progressBar.style.width);
-    progress = (progress + 10) % 110;
     progressBar.style.width = `${progress}%`;
-    progressBar.textContent = `${progress}%`;
-
-    // Update the project progress in the localStorage
-    const project = projects.find(p => p.id === this.dataset.id);
-    project.progress = progress;
-    localStorage.setItem('projects', JSON.stringify(projects));
+    progressBar.innerText = `${progress}%`;
   }
 
   deleteCard() {
@@ -239,15 +248,17 @@ class ProjectCard extends HTMLElement {
     renderProjects();
   }
 }
-customElements.define('project-card', ProjectCard);   
+customElements.define('project-card', ProjectCard);
 
-// Stores all project data for all projects. 
-let projects = []
+// Stores all project data for all projects.
+let projects = [];
 
 // Display each project in the projects array as a ProjectCard Web Componnet
 function renderProjects() {
   const projContainer = document.getElementById('project-cards-wrap');
-  if (projects.length == 0) { projIdCounter = 0; }
+  if (projects.length == 0) {
+    projIdCounter = 0;
+  }
   projContainer.innerHTML = '';
   projects.forEach(project => {
     const card = document.createElement('project-card');
@@ -260,28 +271,86 @@ function renderProjects() {
 function saveProjects() {
   localStorage.setItem('projects', JSON.stringify(projects));
 }
-
+/**
+ * update all project cards
+ */
+function updateProjects() {
+  loadProjects();
+  projects.forEach(element => {
+    const comp = document.querySelector(
+      `project-card[data-id='${element.id}']`
+    );
+    if (comp == null || comp == undefined) return; //has not been instantiated.
+    comp.updateCard(
+      element.title,
+      element.desc,
+      element.image,
+      getProgressByProjectID(element.id)
+    );
+  });
+}
 // Load projects array with stored 'projects' from localStorage
 function loadProjects() {
   const storedProjs = localStorage.getItem('projects');
   if (storedProjs) {
-      projects = JSON.parse(storedProjs);
+    projects = JSON.parse(storedProjs);
   }
 }
 
 /**
  * Upon inital DOM load, initialize projectIdCounter and projects from localStorage, and render them onto the UI.
- * Additionally, add necessary event listeners. 
- * 
+ * Additionally, add necessary event listeners.
+ *
  * Note: projectIdCounter is defined in AddProject.js
  */
 document.addEventListener('DOMContentLoaded', () => {
   initializeCounter();
   loadProjects();
-  renderProjects(); 
+  renderProjects();
   document.getElementById('addCardForm').addEventListener('submit', addProject);
   document.getElementById('editButton').addEventListener('click', editDetails);
   document.getElementById('saveButton').addEventListener('click', saveDetails);
-  document.getElementById('taskDueDate').addEventListener('change', updateDateColor);
-  document.getElementById('addTaskButton').addEventListener('click', addTaskToProject);
+  document
+    .getElementById('taskDueDate')
+    .addEventListener('change', updateDateColor);
+  document
+    .getElementById('addTaskButton')
+    .addEventListener('click', addTaskToProject);
+
+  const container = document.querySelector('#project-cards-parent');
+  //create the 'add new project' card
+  createAddProjectCardComp(container);
 });
+let AddProjectCardComp;
+/**
+ * this is suppose to be private function
+ */
+var createAddProjectCardComp = function (container) {
+  AddProjectCardComp = document.createElement('div');
+  AddProjectCardComp.classList.add('add-project-card');
+  AddProjectCardComp.innerHTML = `
+                <button>
+                    <img src="assets/icons/plus.png">
+                    <p>add new project</p>
+                </button>
+                `;
+  AddProjectCardComp.style = `
+      align-self: center;
+  `;
+  container.appendChild(AddProjectCardComp);
+
+  //attach event listeners
+  AddProjectCardComp.querySelector('button').addEventListener(
+    'click',
+    openAddCardModal
+  );
+  //listen to when add-projec-modal sumbitted
+  const formcomp = document.querySelector('#addCardModal form');
+  formcomp.addEventListener('submit', updateAddProjectCardCompOrder);
+};
+/**
+ * call to update the add project card position. suppose to be private function.
+ */
+var updateAddProjectCardCompOrder = function () {
+  AddProjectCardComp.parentNode.appendChild(AddProjectCardComp); //append to last
+};
