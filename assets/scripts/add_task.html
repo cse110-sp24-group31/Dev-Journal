@@ -58,11 +58,17 @@
         <button onclick="saveTask()">Save Task</button>
     </div>
     <script>
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
         document.addEventListener('DOMContentLoaded', (event) => {
             const urlParams = new URLSearchParams(window.location.search);
             const day = urlParams.get('day');
-            const month = urlParams.get('month');
+            const month = months[urlParams.get('month')-1];
             const year = urlParams.get('year');
+
             document.getElementById('selected-date').innerText = `Date: ${day}-${month}-${year}`;
         });
 
