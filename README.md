@@ -2,45 +2,109 @@
 
 Main project for CSE 110. Includes calendar, journal entries, contact pages, progression meter, a task list, all within a polish UI
 
-# preview
+### node modules
+
+- please install prettier `npm install --save-dev prettier`, really helps with code formatting. settings defined in `./converage`, DO NOT MODIFY
+
+### accessibily
+
+- **project card** has 3 different forms to accomodate for different screen width/height
 
 ### home page
 
 # Documentation
 
-## project-card
+# `TaskManager.js`
+
+- Filename: TaskManager.js
+- Description: Functionality relating to the task manager of the view card modal.
+
+## getters and setters
+
+### `getTasksByProjectID(projectID)`
+
+- get all tasks by the project ID, return empty array if invalid
+- @param {\*} projectID the project ID
+- @returns an array of tasks
+
+### `getCompletedTasksByProjectID(projectID)`
+
+- get all completed tasks of this project, including due and undue tasks
+- @param {\*} projectID the project ID
+- @returns an array of completed projects
+
+### `getCompletedTasksByProjectID(projectID) `
+
+- get all completed tasks of this project, including due and undue tasks
+- @param {\*} projectID the project ID
+- @returns an array of completed projects
+
+### `getProgressByProjectID(projectID)`
+
+- return % completed, 0-100; if project does not exist return 0
+- @param {\*} projectID the project ID
+
+## `ProjectCard.js`
 
 - HTML element name: `project-card`
-- JS element class: `ProductCard`
-- sample project card HTML:
+- JS element class: `ProjectCard`
+- access instance via access its HTML element
 
-```HTML
-<project-card>
-  <div class="project-card">
-    <p class="name">warmup</p>
-    <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="warmup" class="project-image">
-    <div class="desc">a warmup project</div>
-    <div class="progress-bar">
-      <div class="progress-bar-fill" style="width: 79%;">79</div>
-    </div>
-    <div class="actions">
-      <button>progress + random</button>
-      <button>open</button>
-      <button>options</button>
-    </div>
-  </div>
-</project-card>
-```
+## instance functions
 
-# projects.JSON
+### `updateCard(title, desc, imgURL, progress)`
+
+- update this project card
+- @param {string} title title of the project, string
+- @param {string} desc description of project, string
+- @param {string} imgURL URL of image, string
+- @param {integer} progress project progress, integer between 0-100
+
+### `updateProgress(progress)`
+
+- this function should be automatically called upon change in the task manager.
+- call this manually if you wish only change progress of this project. WILL NOT change actual data
+- @param {integer} progress new progress [0-100]
+
+### `deleteCard()`
+
+- delete this project card and its project
+
+## global functions
+
+### `saveProjects()`
+
+- Save the current projects array to 'projects' in localStorage
+
+### `updateProjects()`
+
+- reload from local storage and update all project cards.
+
+### `loadProjects()`
+
+- Load projects array with stored 'projects' from localStorage
+
+# Local Storage
+
+## projects
+
+> where all data of projects stored. a typical project data look like:
 
 ```JSON
-  {
-    "id": 1,
-    "name": "warmup",
-    "desc": "a warmup project",
-    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    "progress": 79
-  },
-
+{
+  "id": 1,
+  "title": "df",
+  "desc": "sdaf",
+  "image": "https://picsum.photos/200/300",
+  "taskIdCounter": 1,
+  "tasks": [
+    {
+      "id": 1,
+      "name": "ads",
+      "dueDate": "2024-06-06",
+      "completed": false
+    }
+  ],
+  "progress": 0
+}
 ```

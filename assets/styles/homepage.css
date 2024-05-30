@@ -1,13 +1,14 @@
 /* COLOR THEMES */
 :root {
-    --background-color: #ffdaca;
-    --content-color: #588b8b;
-    --accomp-color: #FFA343;
-    --bar-color: #c8553d;
-    --card-color: #ffffffeb;
-    --cal-color: #65c9c9be;
+    --background-color: #001f3f; /* Dark blue background */
+    --content-color: #1a1a2e; /* Darker content area */
+    --accomp-color: #FF6347; /* Tomato color for accomplishments */
+    --bar-color: #4b0082; /* Indigo color for the navigation bar */
+    --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
+    --cal-color: #65c9c9be; /* Light cyan for calendar */
+    --hover-color: #ffecb3; /* Light yellow for hover effects */
+    --focus-color: #ffc107; /* Bright yellow for focus effects */
 }
-
 
 /* ENTIRE PAGE SELECTORS */
 body, html {
@@ -15,40 +16,99 @@ body, html {
     padding: 0;
     box-sizing: border-box;
     height: 100%;
-    font-family: Arial, sans-serif;    /* temporary */
-    background-color: var(--background-color);
+    font-family: 'Arial', sans-serif; /* Temporary */
+    background: url('assets/images/space-background.jpg') no-repeat center center fixed; /* Add the starry background image */
+    background-size: cover;
     min-height: 500px;
 }
 
-
-
-/* NAV AND BOTTOM TAB SELECTORS  */
-.main-nav, .bottom-tab {
-    background-color: var(--bar-color); 
-    padding: 20px 0;
+/* NAV AND BOTTOM TAB SELECTORS */
+.main-nav {
+    background-color: var(--bar-color);
+    padding: 15px 0;
     width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.main-nav .brand, .main-nav .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav .brand {
+    margin-left: 20px;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+}
+
+.main-nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.2s;
+}
+
+.main-nav .nav-links a:hover {
+    color: var(--hover-color);
+}
 
 /* MAIN SECTION SELECTORS */
+#addProjButton {
+    position: absolute;
+    top: 95px; /* Adjusted top position */
+    left: 45px; /* Adjusted left position */
+    background-color: #0000FF;
+    color: white;
+    border: none;
+    padding: 4px 4px; /* Smaller size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#addProjButton:hover {
+    background-color: var(--hover-color);
+}
+
 .card {
     cursor: pointer;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 300px;
     width: 200px;
     border-radius: 8px;
     background-color: var(--card-color);
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s;
+    padding: 20px;
+    background-image: url('assets/images/card-background.png'); /* Optional: Add a background image for the card */
+    background-size: cover;
+    background-position: center;
+    color: #000;
+}
+
+#project-cards-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .card:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: translateY(-5px);
 }
 
 .main {
     display: flex;
     width: 100%;
-    height: calc(100% - 80px); 
+    height: calc(100% - 60px);
+    padding: 0px;
+    margin: 0px;
+    gap: 20px;
 }
 
 .project-cards, .sidebar-sec {
@@ -62,109 +122,99 @@ body, html {
     align-items: flex-start;
     gap: 25px;
     padding: 30px;
-    background-color: var(--content-color); 
+    background-color: var(--content-color);
     flex-grow: 1;
     margin: 30px 15px 30px 30px;
+    position: relative; /* To ensure the addProjButton positioning works correctly */
 }
 
 .sidebar {
     width: 380px; /* Fixed width for the sidebar */
     display: flex;
-    height: calc(100% - 60px); 
+    height: calc(100% - 60px);
     flex-direction: column;
     margin: 30px 30px 30px 15px;
+    background-color: var(--content-color);
+    padding: 20px;
+    border-radius: 8px;
 }
 
-
-.calendar {
-    margin-bottom: 15px;
-    background-color: var(--cal-color); /* Light grey for visibility */
-    height: 283px;
-    flex-direction: column;
-}
-
-.cal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-.monthYear {
-    text-align: center;
-    font-weight: 600;
-    width: 150px;
-}
-
-.cal-header button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
-}
-
-.days {
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-}
-
-
-.day {
-    text-align: center;
-    padding: 5px;
-    font-weight: 600;
-}
-
-.dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-}
-
-.date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4px;
-    margin: auto;
-    cursor: pointer;
-    font-weight: 400;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    transition: 0.2s;
-}
-
-.date:hover, .date:active {
-    background: #ff5869;
-    color: #fff;
-}
-
-.date.inactive {
-    color: #d2d2d2;
-}
-
-.date.inactive:hover {
-    color: #fff;
+#project-cards-parent {
+    flex-grow: 1; /* Takes up all available space */
+    overflow: auto;
 }
 
 .accomplishments {
-    background-color: var(--accomp-color); /* Slightly different grey for distinction */
+    background-color: var(--accomp-color);
     margin-top: 15px;
     flex-grow: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
 }
 
-
-/* MEDIA QUERY FOR MOBILE DEVICES */
+/* MEDIA QUERY FOR TABLETS */
 @media (max-width: 837px) {
     .main {
         flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        margin: 15px 0;
+    }
+
+    .project-cards {
+        margin: 15px;
+    }
+
+    .calendar, .accomplishments {
+        margin-bottom: 15px;
+    }
+}
+
+/* MEDIA QUERY FOR MOBILE DEVICES */
+@media (max-width: 480px) {
+    .main-nav {
+        padding: 10px 0;
+    }
+
+    .main-nav .brand {
+        margin-left: 10px;
+        font-size: 1.2em;
+    }
+
+    .main-nav .nav-links a {
+        margin-right: 10px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .project-cards {
+        padding: 15px;
+    }
+
+    .sidebar {
+        margin: 10px 0;
+    }
+
+    .calendar, .accomplishments {
+        margin-bottom: 10px;
+    }
+
+    .cal-header button {
+        width: 25px;
+        height: 25px;
+    }
+
+    .date {
+        width: 25px;
+        height: 25px;
     }
 }

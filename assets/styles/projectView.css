@@ -7,23 +7,24 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);; /* Black with opacity for blur effect */
-    backdrop-filter: blur(8px); 
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
 }
 
 .modal-content {
-    background-color: #fff; /* White background */
-    margin: 10% auto; /* 10% from the top and centered horizontally */
+    background-color: #1a1a2e;
+    color: #ffffff;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Smaller width to keep it well-sized */
-    border-radius: 10px; /* Rounded edges */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for 3D effect */
-    position: relative; /* Needed for absolute positioning of close button */
-    height: 65%;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: auto;
 }
 
-.close {
+.close-modal {
     color: #aaa;
     position: absolute;
     right: 10px;
@@ -33,14 +34,41 @@
     cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
+.close-modal:hover,
+.close-modal:focus {
+    color: white;
     text-decoration: none;
 }
 
-/* Ensure the modal content is scrollable if the content exceeds the viewport */
-.modal-content {
-    overflow: auto;
-    max-height: 80%; /* Limit the height to ensure it stays within the viewport */
+.modal-content form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modal-content form input,
+.modal-content form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: white;
+}
+
+.modal-content form button {
+    background: linear-gradient(to right, #808080, #A9A9A9); /* Gradient grey background */
+    border: 2px solid #808080; /* Grey border */
+    color: #ffffff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transition for smooth change */
+}
+
+/* On hover, lighten the background color slightly */
+.modal-content form button:hover {
+    background: linear-gradient(to right, #A9A9A9, #C0C0C0); /* Lighter gradient grey background on hover */
 }

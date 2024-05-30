@@ -3,30 +3,33 @@
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "babel-jest": "^29.7.0",
+    "codeclimate-test-reporter": "^0.5.1",
     "eslint": "^8.0.0",
-    "prettier": "^2.4.1",
     "jest": "^29.7.0",
     "jest-puppeteer": "^10.0.0",
-    "puppeteer": "^22.7.1",
-    "codeclimate-test-reporter": "^0.5.1"
+    "prettier": "^2.8.8",
+    "puppeteer": "^22.7.1"
   },
   "scripts": {
     "test": "jest --maxWorkers=1",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "quality-check": "codeclimate-test-reporter < lcov.info" 
+    "quality-check": "codeclimate-test-reporter < lcov.info"
   },
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true,
     "collectCoverage": true,
-    "coverageReporters": ["lcov"],
+    "coverageReporters": [
+      "lcov"
+    ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
-
