@@ -1,10 +1,4 @@
 .DS_Store
 node_modules
 assets/scripts/storage.js
-coverage
-coverage/lcov-report/index.html
-coverage/lcov-report/assets/scripts/Helper.js.html
-coverage/lcov-report/assets/scripts/index.html
-coverage/lcov-report/testcode/example.js.html
-coverage/lcov-report/testcode/index.html
-coverage/lcov.info
+
