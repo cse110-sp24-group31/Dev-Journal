@@ -1,3 +1,5 @@
+![Coverage](https://cse110-sp24-group31.github.io/Dev-Journal/)
+
 # Dev-Journal
 
 Main project for CSE 110. Includes calendar, journal entries, contact pages, progression meter, a task list, all within a polish UI

@@ -5,40 +5,32 @@ on:
   push:
 
 jobs:
-  tests:
+  example_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install --save-dev puppeteer jest
-
-      #- name: Linting and Code Style Enforcement
-      # run: npm run lint
-      #- name: Code Quality Check
-      # run: npm run quality-check
       - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
-        # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
-      - name: '[unit test] project cards'
-        run: npm test ./__tests__/ProjectCard.unit.test.js
-      # - name: '[unit test] Task manager'
-      #   run: npm test ./__tests__/project-card.test.js
-      - name: '[E2E test] project cards'
-        run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
 
-  coverage_report:
-    name: Generate coverage report
-    needs: tests
+  unit_tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      # ... Generate LCOV files or download it from a different job
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1.0.0
-      - name: Report LCOV
-        uses: zgosalvez/github-actions-report-lcov@v4.1.8
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer jest
+      - name: '[unit test] project cards'
+        run: npm test ./__tests__/ProjectCard.unit.test.js
 
+  E2E_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer jest
+      - name: '[E2E test] project cards'
+        run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
   eslint:
     runs-on: ubuntu-latest
     steps:
@@ -52,3 +44,15 @@ jobs:
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
+  coverage_report:
+    name: Generate coverage report
+    needs: [E2E_tests, unit_tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # ... Generate LCOV files or download it from a different job
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1.0.0
+      - name: Report LCOV
+        uses: zgosalvez/github-actions-report-lcov@v4.1.8
