@@ -1,21 +1,56 @@
-name: Project Main Branch Tests
+﻿name: Project Main Branch Tests
 
-on: [push]
+on:
+  pull_request:
+  push:
 
 jobs:
-  tests:
+  example_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install
-
-      #- name: Linting and Code Style Enforcement
-       # run: npm run lint 
-
-      #- name: Code Quality Check
-       # run: npm run quality-check 
-
-      - name: Unit Tests
+        run: npm install --save-dev puppeteer jest
+      - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
-        # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
+
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer jest
+      - name: '[unit test] project cards'
+        run: npm test ./__tests__/ProjectCard.unit.test.js
+
+  E2E_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer
+      - name: '[E2E test] project cards'
+        run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
+  linting:
+    name: Linting # job name (unique id)
+    runs-on: ubuntu-latest # on which machine to run
+    steps: # list of steps
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Code Linting
+        run: npm run lint
+  # code_coverage:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@main
+  #   - uses: codecov/codecov-action@v4
+  #     with:
+  #       fail_ci_if_error: true # optional (default = false)
+  #       flags: unittests # optional
+  #       name: codecov-umbrella # optional
+  #       token: ${{ secrets.CODECOV_TOKEN }} # required
+  #       verbose: true # optional (default = false)

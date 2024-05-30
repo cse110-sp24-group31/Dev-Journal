@@ -1,17 +1,21 @@
 {
+  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
+    "@eslint/js": "^9.3.0",
     "babel-jest": "^29.7.0",
     "codeclimate-test-reporter": "^0.5.1",
-    "eslint": "^8.0.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
     "jest": "^29.7.0",
     "jest-puppeteer": "^10.0.0",
+    "jsdom": "^24.1.0",
     "prettier": "^2.8.8",
-    "puppeteer": "^22.7.1"
+    "puppeteer": "^22.10.0"
   },
   "scripts": {
-    "test": "jest --maxWorkers=1",
+    "test": "jest --maxWorker=1 --coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
     "quality-check": "codeclimate-test-reporter < lcov.info"
