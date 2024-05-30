@@ -10,7 +10,7 @@ Main project for CSE 110. Includes calendar, journal entries, contact pages, pro
 
 ### node modules
 
-- please install prettier `npm install --save-dev prettier`, really helps with code formatting. settings defined in `./converage`, DO NOT MODIFY
+- run this `npm install --save-dev prettier eslint puppeteer jest`
 
 ### accessibily
 
