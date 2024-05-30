@@ -1,9 +1,11 @@
+/* set default margin, padding, font */
 * {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
+/* styling body to center, set background color */
 body {
     display: flex;
     background: #054569;
@@ -12,25 +14,25 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+/* container for calendar, set size, background, and shadow */
 .calendar-container {
     background: #c2dde4;
     width: 450px;
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
-
+/* header of calendar for navigation and displaying current date */
 .calendar-container header {
     display: flex;
     align-items: center;
     padding: 25px 30px 10px;
     justify-content: space-between;
 }
-
+/* navigation button in header */
 header .calendar-navigation {
     display: flex;
 }
-
+/* uniform styling for navigation buttons */
 header .calendar-navigation span {
     height: 38px;
     width: 38px;
@@ -43,61 +45,61 @@ header .calendar-navigation span {
     color: #054569;
     font-size: 1.9rem;
 }
-
+/* align last navigation button */
 .calendar-navigation span:last-child {
     margin-right: -10px;
 }
-
+/* hover navigation */
 header .calendar-navigation span:hover {
     background: #9ccddc;
 }
-
+/* style current date */
 header .calendar-current-date {
     font-weight: 500;
     font-size: 1.45rem;
 }
-
+/* style body, set font */
 .calendar-body {
     padding: 20px;
 }
-
+/* flex display for calendar days */
 .calendar-body ul {
     list-style: none;
     flex-wrap: wrap;
     display: flex;
     text-align: center;
 }
-
+/* margin calendar dates bottom */
 .calendar-body .calendar-dates {
     margin-bottom: 20px;
 }
-
+/* style individual day items */
 .calendar-body li {
     width: calc(100% / 7);
     font-size: 1.07rem;
     color: #062c43;
 }
-
+/* style weekdays */
 .calendar-body .calendar-weekdays li {
     cursor: default;
     font-weight: 500;
 }
-
+/* interactive style for calendar date items */
 .calendar-body .calendar-dates li {
     margin-top: 30px;
     position: relative;
     z-index: 1;
     cursor: pointer;
 }
-
+/* set color for inactive dates */
 .calendar-dates li.inactive {
     color: #aaa;
 }
-
+/* set color for active dates */
 .calendar-dates li.active {
     color: #fff;
 }
-
+/* style for day markers */
 .calendar-dates li::before {
     position: absolute;
     content: "";
@@ -109,11 +111,11 @@ header .calendar-current-date {
     border-radius: 50%;
     transform: translate(-50%, -50%);
 }
-
+/* background color of active day marker */
 .calendar-dates li.active::before {
     background: #054569;
 }
-
+/* hover effect background color */
 .calendar-dates li:not(.active):hover::before {
     background: #e4e1e1;
 }
