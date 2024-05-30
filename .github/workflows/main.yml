@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
+        run: npm install --save-dev puppeteer
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
   eslint:
@@ -55,4 +55,3 @@ jobs:
   #       name: codecov-umbrella # optional
   #       token: ${{ secrets.CODECOV_TOKEN }} # required
   #       verbose: true # optional (default = false)
-          

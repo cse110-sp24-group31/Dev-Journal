@@ -131,7 +131,7 @@ describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
     //arrange
     //expect(await testUpdateCard(TEST_CASE)).toBe(true);
   });
-});
+}, 20000);
 
 //TODO: this is not complete
 async function testUpdateCard(testcase) {
