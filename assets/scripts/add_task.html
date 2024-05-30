@@ -11,6 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
         }
         .task-container {
@@ -47,6 +48,13 @@
         .task-container button:hover {
             background: #043a57;
         }
+        .task-list {
+            background: #c2dde4;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 600px;
+        }
     </style>
 </head>
 <body>
@@ -56,6 +64,10 @@
         <input type="text" placeholder="Task Title" id="task-title">
         <textarea placeholder="Task Description" id="task-desc"></textarea>
         <button onclick="saveTask()">Save Task</button>
+    </div>
+    <div class="task-list">
+        <h2>Today's Tasks</h2>
+
     </div>
     <script>
         const months = [
@@ -76,12 +88,39 @@
             const title = document.getElementById('task-title').value;
             const desc = document.getElementById('task-desc').value;
             if (title && desc) {
+                const taskObject = {};
+                taskObject["title"] = title;
+                taskObject["desc"] = desc;
+
+                let tasksStored = getTasksFromStorage();
+                tasksStored.push(taskObject);
+                saveTasksToStorage(tasksStored);
+
                 alert('Task saved!');
-                // TODO: Save the task to your storage or database
             } else {
                 alert('Please fill in both fields');
             }
         };
+
+        /**
+         * Takes in an array of tasks, converts it to a string, and then
+         * saves that string to 'tasks' in localStorage
+         * @param {Array<Object>} tasks An array of tasks
+         */
+        function saveTasksToStorage(tasks) {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        /**
+         * Reads 'tasks' from localStorage and returns an array of
+         * all of the tasks found (parsed, not in string form). If
+         * nothing is found in localStorage for 'tasks', an empty array
+         * is returned.
+         * @returns {Array<Object>} An array of tasks found in localStorage
+         */
+        function getTasksFromStorage() {
+            return (localStorage.getItem("tasks"))?JSON.parse(localStorage.getItem("tasks")):[];
+        }
     </script>
 </body>
 </html>
