@@ -121,7 +121,7 @@ describe('E2E test: create project card workflow', () => {
 describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
   beforeAll(async () => {
     await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); //change this for live server
-  });
+  }, 10000);
   let projectCardHandle;
   it('should have a card', async () => {
     projectCardHandle = await page.$('project-card');
@@ -131,7 +131,7 @@ describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
     //arrange
     //expect(await testUpdateCard(TEST_CASE)).toBe(true);
   });
-}, 20000);
+});
 
 //TODO: this is not complete
 async function testUpdateCard(testcase) {
