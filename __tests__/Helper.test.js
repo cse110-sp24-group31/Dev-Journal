@@ -1,4 +1,4 @@
-import { normalizeProgress } from '../assets/scripts/helper';
+import { normalizeProgress } from '../assets/scripts/Helper.js';
 
 /**
  * primarily test functionality of Helper.js
