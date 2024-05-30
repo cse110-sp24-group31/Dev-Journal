@@ -1,0 +1,181 @@
+/* Styling for contact page */
+/* background image */
+#contacts {
+   background-image: url('../images/background.jpg');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   min-height: 100vh;
+   width: 100%;
+}
+
+#contacts .header-bubble {
+   background-color: #f0f0f0;
+   padding: 10px;
+   margin: 10px auto;
+   border-radius: 20px;
+   text-align: center;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contacts h1 {
+   color: #333 !important;
+   text-align: center !important;
+}
+
+#contacts .bubble, #contacts .flex-container {
+   background: transparent !important;
+}
+
+.sun-container {
+   padding: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   width: 40%;  
+   height: 40vw;
+   margin: auto;
+   border: none;
+   outline: none;
+   left: -125px;
+}
+
+.sun {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   background: radial-gradient(circle at center, beige 20%, rgb(225, 184, 107), brown 100%);
+   z-index: 1;
+}
+
+.filter-button {
+   background: none;
+   border: none;
+   cursor: pointer;
+   text-align: left;
+   font-size: 16px;
+   color: white;
+   display: flex;
+   align-items: center;
+}
+
+.filter-button img {
+   margin-left: 10px;
+   max-width: 30px;
+}
+
+.flex-container {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-start;
+   justify-content: center;
+   background: transparent;
+}
+
+aside {
+   margin-top: 10px;
+   display: block;
+   background: rgb(92, 84, 124);
+   width: 250px;
+   height: 270px;
+   img { display: block; }
+   border-radius: 20px;
+   text-align: center;
+}
+
+aside img {
+   display: block;
+   margin: 0 auto;
+   max-width: 90%;
+}
+
+/* input information box */
+form {
+   display: flex;
+   flex-direction: column;
+   max-width: 100%;
+   box-sizing: border-box;
+   padding: 20px;
+   z-index: 2;
+   background-color: transparent;
+   border-radius: 10px;
+}
+
+fieldset {
+   border: none;
+   text-align: center;
+}
+
+form input, form select, form textarea {
+   background-color: #fffacd; 
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   padding: 5px;
+   margin-bottom: 10px;
+   outline-color: yellow;
+}
+
+/* Title */
+.bubble {
+   left: 50%;
+   background-color: #f0f0f0;
+   padding: 20px;
+   border-radius: 20px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bubble h1 {
+   margin: 0;
+   font-size: 24px;
+   color: #333;
+}
+
+.info-box {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   background: transparent;
+}
+
+/* formatting for each person's description */
+.person-entry {
+   display: flex;
+   padding: 40px;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 26%;  
+   height: 26vw;
+   margin: 10px;  
+   border-radius: 50%;
+   background: radial-gradient(circle at center, #9ccddc 40%, #5591a9 60%, #054569 90%);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.entry-content {
+   flex-grow: 1;
+   width: 100%;
+   text-align: center;
+}
+
+.entry-avatar {
+   flex-shrink: 0;
+}
+
+.avatar-image {
+   width: 25px;
+   height: auto;
+   border-radius: 50%;
+}
+
+/* CSS for avatar options */
+.avatar-option {
+   border: 2px solid transparent;
+   cursor: pointer;
+}
+
+.avatar-option.selected {
+   border-color: blue;
+}
