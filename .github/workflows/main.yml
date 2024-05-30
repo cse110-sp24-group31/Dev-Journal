@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer
+        run: npm install --save-dev puppeteer jest 
 
       #- name: Linting and Code Style Enforcement
       # run: npm run lint
@@ -18,7 +18,7 @@ jobs:
         run: npm test ./__tests__/example.test.js
         # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
       - name: '[unit test] Helper.js'
-        run: npm test ./__tests__/ProjectCard/Helper.test.js
+        run: npm test ./__tests__/Helper.test.js
       # - name: '[unit test] Task manager'
       #   run: npm test ./__tests__/project-card.test.js
       - name: '[E2E test] project cards'
