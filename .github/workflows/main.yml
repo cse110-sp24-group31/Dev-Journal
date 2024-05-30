@@ -1,6 +1,8 @@
 ﻿name: Project Main Branch Tests
 
-on: [push]
+on:
+  pull_request:
+  push:
 
 jobs:
   tests:
@@ -8,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest eslint
+        run: npm install --save-dev puppeteer jest
 
       #- name: Linting and Code Style Enforcement
       # run: npm run lint
@@ -37,6 +39,16 @@ jobs:
       - name: Report LCOV
         uses: zgosalvez/github-actions-report-lcov@v4.1.8
 
-  code_format:
-    name: Lint Action
-    uses: wearerequired/lint-action@v2.3.0
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci # or yarn install
+      - uses: sibiraj-s/action-eslint@v3
+        with:
+          eslint-args: '--ignore-path=.gitignore --quiet'
+          extensions: 'js,jsx,ts,tsx'
+          annotations: true
