@@ -94,6 +94,4 @@ describe('Unit test: normalizeProgress', () => {
       ).toBe(100);
     };
   });
-});
-
-
+}, 10000);

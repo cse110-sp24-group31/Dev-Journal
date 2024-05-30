@@ -1,5 +1,3 @@
-import { launch } from 'puppeteer';
-
 /**
  * E2E test, focus on class interactions
  * MAKE SURE USE: npm test ProjectCard.E2E.test.js --runInBand
@@ -114,14 +112,14 @@ describe('E2E test: create project card workflow', () => {
       return window.getComputedStyle(modal).display;
     });
     expect(isHidden).toBe('none');
-  });
+  }, 10000);
 });
 
 //TODO: edit and update project card workflow
 describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
   beforeAll(async () => {
     await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); //change this for live server
-  }, 10000);
+  }, 20000);
   let projectCardHandle;
   it('should have a card', async () => {
     projectCardHandle = await page.$('project-card');

@@ -31,19 +31,18 @@ jobs:
         run: npm install --save-dev puppeteer
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
-  eslint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci # or yarn install
-      - uses: sibiraj-s/action-eslint@v3
-        with:
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
+  linting:
+    name: Linting # job name (unique id)
+    runs-on: ubuntu-latest # on which machine to run
+    steps: # list of steps
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Code Linting
+        run: npm run lint
   # code_coverage:
   #   runs-on: ubuntu-latest
   #   steps:
