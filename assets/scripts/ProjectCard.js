@@ -235,9 +235,7 @@ class ProjectCard extends HTMLElement {
    * @param {integer} progress new progress [0-100]
    */
   updateProgress(progress) {
-    progress = Math.round(progress);
-    if (progress < 0) progress = 0;
-    if (progress > 100) progress = 100;
+    progress = normalizeProgress(progress);
     const progressBar = this.shadowRoot.querySelector('.progress-bar-fill');
     progressBar.style.width = `${progress}%`;
     progressBar.innerText = `${progress}%`;
@@ -338,7 +336,7 @@ var createAddProjectCardComp = function (container) {
                 </button>
                 `;
   AddProjectCardComp.style = `
-      align-self: center;
+      align-self: top;
   `;
   container.appendChild(AddProjectCardComp);
 

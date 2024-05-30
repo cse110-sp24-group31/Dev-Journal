@@ -1,4 +1,4 @@
-name: Project Main Branch Tests
+﻿name: Project Main Branch Tests
 
 on: [push]
 
@@ -8,14 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install
+        run: npm install --save-dev puppeteer
 
       #- name: Linting and Code Style Enforcement
-       # run: npm run lint 
-
+      # run: npm run lint
       #- name: Code Quality Check
-       # run: npm run quality-check 
-
-      - name: Unit Tests
+      # run: npm run quality-check
+      - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
         # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
+      - name: '[unit test] Helper.js'
+        run: npm test ./__tests__/ProjectCard/Helper.test.js
+      # - name: '[unit test] Task manager'
+      #   run: npm test ./__tests__/project-card.test.js
+      - name: '[E2E test] project cards'
+        run: npm test ./__tests__/ProjectCard/ProjectCard.test.js
