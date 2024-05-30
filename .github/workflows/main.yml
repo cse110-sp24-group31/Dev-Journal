@@ -22,4 +22,4 @@ jobs:
       # - name: '[unit test] Task manager'
       #   run: npm test ./__tests__/project-card.test.js
       - name: '[E2E test] project cards'
-        run: npm test ./__tests__/ProjectCard/ProjectCard.test.js
+        run: npm test ./__tests__/ProjectCard.test.js

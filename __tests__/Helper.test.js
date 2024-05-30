@@ -1,7 +1,8 @@
+import { normalizeProgress } from '../assets/scripts/helper';
+
 /**
- * primarily test functionality of Project.js
+ * primarily test functionality of Helper.js
  */
-const normalizeProgress = require('../assets/scripts/Helper.js');
 
 describe('normalizeProgress', () => {
   it('should return the same integer', () => {
