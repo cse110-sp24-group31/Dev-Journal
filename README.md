@@ -1,4 +1,3 @@
-![Coverage](https://cse110-sp24-group31.github.io/Dev-Journal/)
 
 # Dev-Journal
 
