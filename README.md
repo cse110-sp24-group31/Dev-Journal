@@ -1,10 +1,16 @@
+![Coverage](https://cse110-sp24-group31.github.io/Dev-Journal/)
+
 # Dev-Journal
 
 Main project for CSE 110. Includes calendar, journal entries, contact pages, progression meter, a task list, all within a polish UI
 
+# Testing
+
+- run tests using: `npm test --runInBand`, some test suits need to run in sequence
+
 ### node modules
 
-- please install prettier `npm install --save-dev prettier`, really helps with code formatting. settings defined in `./converage`, DO NOT MODIFY
+- run this `npm install --save-dev prettier eslint puppeteer jest`
 
 ### accessibily
 

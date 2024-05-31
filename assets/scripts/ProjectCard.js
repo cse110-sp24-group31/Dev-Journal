@@ -216,6 +216,7 @@ class ProjectCard extends HTMLElement {
       </div>
     `;
   }
+
   /**
    * update this project card
    * @param {string} title title of the project, string
@@ -235,9 +236,7 @@ class ProjectCard extends HTMLElement {
    * @param {integer} progress new progress [0-100]
    */
   updateProgress(progress) {
-    progress = Math.round(progress);
-    if (progress < 0) progress = 0;
-    if (progress > 100) progress = 100;
+    progress = normalizeProgress(progress);
     const progressBar = this.shadowRoot.querySelector('.progress-bar-fill');
     progressBar.style.width = `${progress}%`;
     progressBar.innerText = `${progress}%`;
@@ -255,7 +254,18 @@ customElements.define('project-card', ProjectCard);
 
 // Stores all project data for all projects.
 let projects = [];
-
+/**
+ * return the integer progress in [0-100]. clipping abnormal inputs
+ * @param {*} progress input, NaN will be set to 0
+ * @returns normalized progress percentage
+ */
+function normalizeProgress(progress) {
+  if (isNaN(progress)) return 0;
+  progress = Math.round(progress);
+  if (progress < 0) progress = 0;
+  if (progress > 100) progress = 100;
+  return progress;
+}
 // Display each project in the projects array as a ProjectCard Web Componnet
 function renderProjects() {
   const projContainer = document.getElementById('project-cards-wrap');
@@ -337,7 +347,7 @@ var createAddProjectCardComp = function (container) {
                 </button>
                 `;
   AddProjectCardComp.style = `
-      align-self: center;
+      align-self: top;
   `;
   container.appendChild(AddProjectCardComp);
 
