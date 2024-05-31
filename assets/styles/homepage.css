@@ -95,6 +95,47 @@ body, html {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    position: relative; /* Ensures the button is positioned relative to this container */
+}
+
+/* Style for the add project button */
+.add-project-card {
+    position: absolute; /* Allows for absolute positioning */
+    top: -10px; /* Adjust this value to move the button vertically into the white space */
+    left: -2px; /* Adjust this value to move the button horizontally */
+    z-index: 1000; /* Ensures the button is above other elements */
+}
+
+.add-project-card button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0; /* Remove padding */
+    background-color: transparent; /* Make background transparent */
+    border: none; /* Remove border */
+    cursor: pointer;
+    position: relative;
+}
+
+.add-project-card button::before {
+    content: "+";
+    font-size: 36px; /* Increase font size to make it thicker */
+    color: white; /* White color for the "+" sign */
+    font-weight: bold; /* Make the "+" sign thick */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.add-project-card button:hover::before {
+    color: var(--hover-color); /* Optional: Change color on hover */
+}
+
+.add-project-card img {
+    display: none; /* Hide the image */
 }
 
 .card:hover {
@@ -111,7 +152,7 @@ body, html {
     gap: 20px;
 }
 
-.project-cards, .sidebar-sec {
+.project-cards, .sidebar-sec, .small-box {
     border-radius: 8px; /* Rounded corners */
 }
 
@@ -128,8 +169,8 @@ body, html {
     position: relative; /* To ensure the addProjButton positioning works correctly */
 }
 
-.sidebar {
-    width: 380px; /* Fixed width for the sidebar */
+/*.sidebar {
+    width: 380px;
     display: flex;
     height: calc(100% - 60px);
     flex-direction: column;
@@ -137,14 +178,14 @@ body, html {
     background-color: var(--content-color);
     padding: 20px;
     border-radius: 8px;
-}
+}*/
 
 #project-cards-parent {
     flex-grow: 1; /* Takes up all available space */
     overflow: auto;
 }
 
-.accomplishments {
+/* .accomplishments {
     background-color: var(--accomp-color);
     margin-top: 15px;
     flex-grow: 1;
@@ -152,6 +193,23 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+} */
+
+/* Style for the additional sections */
+.additional-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 15px 30px 0;
+    width: 380px; /* Match the width of the sidebar */
+}
+
+.small-box {
+    flex: 1;
+    background-color: var(--content-color); /* Dark blue color */
+    border-radius: 8px;
+    padding: 9px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* MEDIA QUERY FOR TABLETS */
@@ -170,8 +228,13 @@ body, html {
         margin: 15px;
     }
 
-    .calendar, .accomplishments {
+    .calendar, .accomplishments, .small-box {
         margin-bottom: 15px;
+    }
+
+    .additional-sections {
+        width: 100%;
+        margin: 15px 0;
     }
 }
 
@@ -200,11 +263,12 @@ body, html {
         padding: 15px;
     }
 
-    .sidebar {
+    .sidebar, .additional-sections {
         margin: 10px 0;
+        width: 100%;
     }
 
-    .calendar, .accomplishments {
+    .calendar, .accomplishments, .small-box {
         margin-bottom: 10px;
     }
 
