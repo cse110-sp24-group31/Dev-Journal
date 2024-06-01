@@ -52,14 +52,7 @@
         <div id="project-cards-wrap">
           <!-- PROJECT CARDS ARE ADDED HERE DYNAMICALLY -->
         </div>
-        <div class="add-project-card" style="align-self: center;">
-          <button onclick="openAddCardModal()">
-            <img src="assets/icons/plus.png">
-            <p>add new project</p>
-          </button>
-        </div>
       </div>
-
       <div class="sidebar">
         <div class="sidebar-sec calendar">
           <!--  CHARLOTTE AND ZHAMILYA WORK HERE  -->
@@ -83,12 +76,9 @@
       <aside>
         <div class="key">
           <h1>Avatar Key</h1>
-          <label><input type="checkbox" class="filter-checkbox" data-category="team-lead"> Team Leads: <img src="assets/icons/alien1.png"
-              alt="Avatar 1"></label><br>
-          <label><input type="checkbox" class="filter-checkbox" data-category="planner"> Planners: <img src="assets/icons/alien2.png"
-              alt="Avatar 2"></label><br>
-          <label><input type="checkbox" class="filter-checkbox" data-category="programmer"> Programmers: <img
-              src="assets/icons/alien3.png" alt="Avatar 3"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="team-lead"> Team Leads: <img src="assets/icons/alien1.png" alt="Avatar 1"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="planner"> Planners: <img src="assets/icons/alien2.png" alt="Avatar 2"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="programmer"> Programmers: <img src="assets/icons/alien3.png" alt="Avatar 3"></label><br>
         </div>
       </aside>
       <div class="sun-container">
@@ -189,18 +179,6 @@
         tab.classList.remove('active');
       });
       document.getElementById(tabId).classList.add('active');
-    }
-
-    function openAddCardModal() {
-      document.getElementById('addCardModal').style.display = 'block';
-    }
-
-    function closeAddCardModal() {
-      document.getElementById('addCardModal').style.display = 'none';
-    }
-
-    function closeViewCardModal() {
-      document.getElementById('viewCardModal').style.display = 'none';
     }
   </script>
 </body>

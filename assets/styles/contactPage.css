@@ -179,3 +179,15 @@ form input, form select, form textarea {
 .avatar-option.selected {
    border-color: blue;
 }
+
+.tab-content {
+   display: none;
+ }
+
+ .tab-content.active {
+   display: block;
+ }
+
+ .main-nav .nav-links a {
+   cursor: pointer;
+ }

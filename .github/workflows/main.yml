@@ -1,21 +1,71 @@
 name: Project Main Branch Tests
 
-on: [push]
+on:
+  pull_request:
+  push:
 
 jobs:
-  tests:
+  # example_tests:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install Dependencies
+  #       run: npm install --save-dev puppeteer jest
+  #     - name: '[unit test] example'
+  #       run: npm test ./__tests__/example.test.js
+
+  unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install
+        run: npm install --save-dev puppeteer jest
+      - name: '[unit test] contact page'
+        run: npm test ./__tests__/contact-page.unit.test.js
 
-      #- name: Linting and Code Style Enforcement
-       # run: npm run lint 
+  e2e_tests:
+    runs-on: ubuntu-latest
+    services:
+      web:
+        image: nginx
+        ports:
+          - 5501:80
+        options: >-
+          --volume ${GITHUB_WORKSPACE}:/usr/share/nginx/html
+          --volume ${GITHUB_WORKSPACE}/nginx.conf:/etc/nginx/nginx.conf:ro
 
-      #- name: Code Quality Check
-       # run: npm run quality-check 
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer jest
+      - name: Start Web Server
+        run: npm start &
+        env:
+          NODE_ENV: test
+      - name: '[e2e test] contact page'
+        run: npm run e2e
 
-      - name: Unit Tests
-        run: npm test ./__tests__/example.test.js
-        # ADD CHECKS TO PACKAGE.JSON FOR FINAL DRAFT
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm ci
+      - name: Code Linting
+        run: npm run lint
+
+  # code_coverage:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@main
+  #   - uses: codecov/codecov-action@v4
+  #     with:
+  #       fail_ci_if_error: true
+  #       flags: unittests
+  #       name: codecov-umbrella
+  #       token: ${{ secrets.CODECOV_TOKEN }}
+  #       verbose: true
