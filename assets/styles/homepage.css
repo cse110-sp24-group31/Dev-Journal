@@ -18,7 +18,6 @@ body, html {
     box-sizing: border-box;
     height: 100%;
     font-family: 'Arial', sans-serif; /* Temporary */
-    background: url('assets/images/space-background.jpg') no-repeat center center fixed; /* Add the starry background image */
     background-size: cover;
     min-height: 500px;
 }
