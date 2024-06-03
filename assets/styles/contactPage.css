@@ -5,7 +5,7 @@
 body, html {
    margin: 0;
    padding: 0;
-   font-family: Arial, sans-serif;
+   font-family: "Space Grotesk", Arial, sans-serif;
 }
 
 /* NAV AND BOTTOM TAB SELECTORS */
@@ -61,7 +61,7 @@ body, html {
    width: 350px;
    height: 250px;
    border-radius: 10px;
-   background-color: rgb(182, 165, 190, 0.8);
+   background-color: rgba(217, 207, 222, 0.46);
 }
 
 
@@ -91,6 +91,10 @@ body, html {
 
 #add-new-contact h3 {
    margin: 10px 0px;
+}
+
+.contact-info  h3 {
+   margin: 10px;
 }
 
 .planet-wrap {

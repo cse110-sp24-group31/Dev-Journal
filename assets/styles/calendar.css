@@ -7,7 +7,6 @@
 body {
     display: flex;
     background: #00000000;
-    min-height: 100vh;
     padding: 0 10px;
     align-items: center;
     justify-content: center;

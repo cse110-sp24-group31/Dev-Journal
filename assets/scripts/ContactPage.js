@@ -42,7 +42,7 @@ function renderContacts() {
         var infoContainer = document.createElement('div');
         infoContainer.className = 'contact-info';
         infoContainer.innerHTML = `
-                                <h3>${contact.name}</h3><br>
+                                <strong><u><h3>${contact.name}</h3></u></strong><br>
                                 <a href="mailto:${contact.email}">Email</a><br>
                                 <a href="${contact.github}">Github</a><br>
                                 <a href="${contact.linkedin}">LinkedIn</a><br>
