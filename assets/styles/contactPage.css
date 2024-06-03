@@ -92,7 +92,7 @@ body, html {
 }
 
 .planet-wrap {
-   background-image: url('/assets/images/planet.png'); /* Path to your planet image */
+   background-image: url('../../assets/images/planet.png'); /* Path to your planet image */
    background-size: cover;
    display: flex;
    min-width: 550px;
