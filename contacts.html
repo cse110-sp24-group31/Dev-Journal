@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts - Developer Journal</title>
+  <link rel="stylesheet" href="assets/styles/contactPage.css">
+  <link rel="stylesheet" href="assets/styles/homepage.css">
+  <link rel="stylesheet" href="assets/styles/projectView.css">
+  <link rel="stylesheet" href="assets/styles/taskManager.css">
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <script src="assets/scripts/ProjectCard.js" defer></script>
+  <script src="assets/scripts/AddProject.js" defer></script>
+  <script src="assets/scripts/ViewProject.js" defer></script>
+  <script src="assets/scripts/TaskManager.js" defer></script>
+  <script src="assets/scripts/ContactPage.js" defer></script>
+</head>
+
+<body>
+  <div class="main-nav">
+    <div class="brand">Developer Journal</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contacts.html" class="active">Contacts</a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+  </div>
+
+  <div id="contacts" class="tab-content active">
+    <div class="header-bubble">
+      <h1>Contacts Page</h1>
+    </div>
+    <div class="flex-container">
+      <aside>
+        <div class="key">
+          <h1>Avatar Key</h1>
+          <label><input type="checkbox" class="filter-checkbox" data-category="team-lead"> Team Leads: <img src="assets/icons/alien1.png" alt="Avatar 1"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="planner"> Planners: <img src="assets/icons/alien2.png" alt="Avatar 2"></label><br>
+          <label><input type="checkbox" class="filter-checkbox" data-category="programmer"> Programmers: <img src="assets/icons/alien3.png" alt="Avatar 3"></label><br>
+        </div>
+      </aside>
+      <div class="sun-container">
+        <div class="sun"></div>
+        <form>
+          <fieldset>
+            <legend style="font-size:20px;">Add Contact Information</legend>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender"><br>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select> <br>
+            <label for="avatar">Avatar:</label><br>
+            <div id="avatar-options">
+              <img src="assets/icons/alien1.png" alt="Avatar 1" class="avatar-option" data-category="team-lead">
+              <img src="assets/icons/alien2.png" alt="Avatar 2" class="avatar-option" data-category="planner">
+              <img src="assets/icons/alien3.png" alt="Avatar 3" class="avatar-option" data-category="programmer">
+            </div>
+            <input type="hidden" id="selected-avatar" name="avatar">
+            <input type="hidden" id="selected-category" name="category">
+            <label for="github">Github:</label><br>
+            <input type="text" id="github" name="github"><br>
+            <label for="linkedin">LinkedIn:</label><br>
+            <input type="text" id="linkedin" name="linkedin"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="phone">Phone Number:</label><br>
+            <input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" placeholder="xxx-xxx-xxxx"><br>
+            <label for="color">Background Color:</label><br>
+            <select id="color" name="color"><br>
+              <option value="pink">Pink</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="purple">Purple</option>
+            </select> <br>
+            <label for="other">Other Information:</label><br>
+            <textarea id="other" name="other" rows="4" cols="40" placeholder="Enter any additional information here"></textarea><br>
+            <input type="submit" value="Submit">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <div class="info-box" id="info-box"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

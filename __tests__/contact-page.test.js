@@ -79,4 +79,53 @@ describe('Unit test: contact management', () => {
     });
     expect(contact).toBeNull();
   });
+
+  it('should show an error when the name field is empty', async () => {
+    // Clear the name field if it's not already empty
+    await page.evaluate(() => {
+      document.querySelector('input[name="name"]').value = '';
+    });
+    // Attempt to submit the form without filling the name
+    await page.click('form input[type="submit"]');
+
+    // Verify the error message is displayed
+    const errorMessage = await page.evaluate(() => {
+      const nameField = document.querySelector('input[name="name"]');
+      return nameField.validationMessage;
+    });
+
+    expect(errorMessage).toBe('Please fill out this field.');
+  });
+
+  it('should create two contacts and filter by category', async () => {
+    // Create the first contact (Team Lead)
+    await page.type('input[name="name"]', 'Alice TeamLead');
+    await page.type('input[name="email"]', 'alice.teamlead@example.com');
+    await page.type('input[name="phone"]', '111-111-1111');
+    await page.click('#avatar-options img:nth-child(1)'); // Select the first avatar
+    await page.click('form input[type="submit"]');
+
+    // Create the second contact (Planner)
+    await page.type('input[name="name"]', 'Bob Planner');
+    await page.type('input[name="email"]', 'bob.planner@example.com');
+    await page.type('input[name="phone"]', '222-222-2222');
+    await page.click('#avatar-options img:nth-child(2)'); // Select the second avatar
+    await page.click('form input[type="submit"]');
+
+    // Select only Team Leads in the filter
+    await page.click('.filter-checkbox[data-category="team-lead"]');
+
+    // Verify only the Team Lead contact is displayed
+    const teamLeadVisible = await page.evaluate(() => {
+      const teamLead = document.evaluate("//h2[contains(text(), 'Alice TeamLead')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      return teamLead && window.getComputedStyle(teamLead.closest('.person-entry')).display !== 'none';
+    });
+    expect(teamLeadVisible).toBe(true);
+
+    const plannerVisible = await page.evaluate(() => {
+      const planner = document.evaluate("//h2[contains(text(), 'Bob Planner')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      return planner && window.getComputedStyle(planner.closest('.person-entry')).display !== 'none';
+    });
+    expect(plannerVisible).toBe(false);
+  });
 });

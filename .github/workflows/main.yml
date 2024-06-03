@@ -5,14 +5,14 @@ on:
   push:
 
 jobs:
-  # example_tests:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Install Dependencies
-  #       run: npm install --save-dev puppeteer jest
-  #     - name: '[unit test] example'
-  #       run: npm test ./__tests__/example.test.js
+  example_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install --save-dev puppeteer jest
+      - name: '[unit test] example'
+        run: npm test ./__tests__/example.test.js
 
   unit_tests:
     runs-on: ubuntu-latest
@@ -20,10 +20,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install --save-dev puppeteer jest
+      - name: '[unit test] project cards'
+        run: npm test ./__tests__/ProjectCard.unit.test.js
       - name: '[unit test] contact page'
-        run: npm test ./__tests__/contact-page.unit.test.js
+        run: npm test ./__tests__/contact-page.test.js
 
-  e2e_tests:
+  E2E_tests:
     runs-on: ubuntu-latest
     services:
       web:
@@ -42,8 +44,10 @@ jobs:
         run: npm start &
         env:
           NODE_ENV: test
-      - name: '[e2e test] contact page'
-        run: npm run e2e
+      - name: '[E2E test] project cards'
+        run: npm test ./__tests__/ProjectCard.e2e.test.js --runInBand
+      - name: '[E2E test] contact page'
+        run: npm test ./__tests__/contact-page.e2e.test.js --runInBand
 
   linting:
     name: Linting

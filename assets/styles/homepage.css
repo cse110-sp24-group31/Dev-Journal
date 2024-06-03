@@ -218,3 +218,16 @@ body, html {
         height: 25px;
     }
 }
+
+.tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: block;
+  }
+  
+  .main-nav .nav-links a {
+    cursor: pointer;
+  }
+  

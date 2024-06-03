@@ -284,3 +284,11 @@ function deleteEntryFromLocalStorage(id) {
     entries = entries.filter(entry => entry.id != id);
     localStorage.setItem('entries', JSON.stringify(entries));
 }
+
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+  }
+  
