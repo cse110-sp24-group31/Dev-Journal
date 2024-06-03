@@ -1,12 +1,10 @@
 /* COLOR THEMES */
 :root {
     --background-color: #001f3f; /* Dark blue background */
-    --content-color: #1a1a2e; /* Darker content area */
+    --content-color: #1a1a2e9f; /* Darker content area */
     --accomp-color: #FF6347; /* Tomato color for accomplishments */
     --bar-color: #4b0082; /* Indigo color for the navigation bar */
     --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
-    --cal-color: #65c9c9be; /* Light cyan for calendar */
-    --newest-cal-color: #054569;
     --hover-color: #ffecb3; /* Light yellow for hover effects */
     --focus-color: #ffc107; /* Bright yellow for focus effects */
 }
@@ -16,9 +14,8 @@ body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
+
     font-family: 'Arial', sans-serif; /* Temporary */
-    background-size: cover;
     min-height: 500px;
 }
 
@@ -29,8 +26,10 @@ body, html {
     width: 100%;
     height: 60px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .main-nav .brand, .main-nav .nav-links {
@@ -111,7 +110,7 @@ body, html {
     gap: 20px;
 }
 
-.project-cards, .sidebar-sec {
+.project-cards, .sidebar {
     border-radius: 8px; /* Rounded corners */
 }
 
@@ -124,39 +123,25 @@ body, html {
     padding: 30px;
     background-color: var(--content-color);
     flex-grow: 1;
-    margin: 30px 15px 30px 30px;
+    margin: 30px 0px 30px 30px;
     position: relative; /* To ensure the addProjButton positioning works correctly */
 }
-
-/*.sidebar {
-    width: 380px; /* Fixed width for the sidebar 
-    display: flex;
-    height: 500px; 
-    flex-direction: column;
-    margin: 30px 30px 30px 15px;
-    background-color: var(--content-color);
-    padding: 20px;
-    border-radius: 8px;
-}
-*/
 
 .sidebar {
     width: 430px; /* Fixed width for the sidebar */
     display: flex;
     flex-direction: column;
     margin: 20px 20px 20px 15px; /* Increase margins if necessary */
-    background-color: var(--content-color);
-    padding: 20px;
+    background-color: var(--newest-cal-color);
     border-radius: 8px;
     height: 800px; /* Adjusted height to fit the calendar */
+    z-index: 1;
 }
 
 
 .sidebar .calendar {
     flex-grow: 1; /* Allow the calendar to take up available space */
-    background-color: var(--newest-cal-color);
     border-radius: 8px;
-    padding: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     overflow: hidden; /* Prevent scrolling */
     height: 100%; /* Ensure it takes up full height of the sidebar */
@@ -168,15 +153,48 @@ body, html {
     overflow: auto;
 }
 
-.accomplishments {
-    background-color: var(--accomp-color);
-    margin-top: 15px;
-    flex-grow: 1;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+button p {
+    padding: 0px;
+    margin: 0px;
 }
+
+
+/* BACKGROUND */
+.stars, .twinkling, .clouds {
+	position:absolute;
+	display:block;
+	top:0; bottom:0;
+	left:0; right:0;
+	width:100%; height:100%;
+}
+
+.stars {
+	z-index: 0;
+	background: #000 url('../images/stars.png') repeat top center;
+}
+
+.twinkling {
+	z-index: 0;
+	background:transparent url('../images/twinkling.png') repeat top center;
+	animation: move-twink-back 200s linear infinite;
+}
+
+.clouds{
+	z-index: 0;
+    background:transparent url('../images/clouds.png') repeat top center;
+	animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {background-position:0 0;}
+	to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+	from {background-position:0 0;}
+	to {background-position:10000px 0;}
+}
+
 
 /* MEDIA QUERY FOR TABLETS */
 @media (max-width: 837px) {

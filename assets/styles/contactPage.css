@@ -1,12 +1,10 @@
 :root {
-   --background-color: #000; /* Dark blue background */
    --bar-color: #4b0082; /* Indigo color for the navigation bar */
 }
 
 body, html {
    margin: 0;
    padding: 0;
-   background-color: var(--background-color);
    font-family: Arial, sans-serif;
 }
 
@@ -80,8 +78,8 @@ body, html {
 }
 
 #add-new-contact {
-   height: 500px; /* Fixed height of the form */
-   width: 300px; /* Fixed width */
+   height: 450px; /* Fixed height of the form */
+   width: 270px; /* Fixed width */
    background-color: rgba(255, 255, 255, 0.6);
    border-radius: 10px;
    padding: 0px 10px;
@@ -89,6 +87,10 @@ body, html {
    box-shadow: -1px 0 5px rgba(0,0,0,0.1);
    position: absolute;
 
+}
+
+#add-new-contact h3 {
+   margin: 10px 0px;
 }
 
 .planet-wrap {
@@ -119,7 +121,7 @@ input {
 
 .stars {
 	z-index: 0;
-	background: #000 url('../../assets/images/stars.png') repeat top center;
+	background: #000000 url('../../assets/images/stars.png') repeat top center;
 }
 
 .twinkling {
