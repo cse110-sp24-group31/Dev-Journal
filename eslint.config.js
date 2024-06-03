@@ -1,6 +1,6 @@
-import globals from 'globals';
+const globals = require('globals');
 
-export default [
+module.exports = [
   {
     languageOptions: { globals: globals.browser },
     rules: {
