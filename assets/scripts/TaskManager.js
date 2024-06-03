@@ -2,7 +2,6 @@
  * Filename: TaskManager.js
  * Description:  Functionality relating to the task manager of the view card modal.
  */
-
 /**
  * getter and setter for task
  */
@@ -31,11 +30,7 @@ function getCompletedTasksByProjectID(projectID) {
 function getProgressByProjectID(projectID) {
   const ts = getTasksByProjectID(projectID);
   const cs = getCompletedTasksByProjectID(projectID);
-  const res = cs.length / ts.length;
-  if (Number.isNaN(res)) {
-    return 0;
-  }
-  return Math.round(res * 100);
+  return normalizeProgress((cs.length / ts.length) * 100);
 }
 /**
  * Interpolates between two RGB colors based on a given factor.
