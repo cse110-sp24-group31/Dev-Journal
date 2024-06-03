@@ -75,7 +75,7 @@ class ProjectCard extends HTMLElement {
                         }
                         .project-card .progress-bar{
                           width: 100%;
-                          background-image: url('https://i.pinimg.com/originals/a3/33/ae/a333aed62873505b21ffbaf54efd9c0d.jpg');
+                          background-image: url('assets/images/SpaceBackground_Pixelart.png');
                           background-size: 100% 100%;
                           background-position: center;
                           background-repeat: no-repeat;
@@ -128,9 +128,10 @@ class ProjectCard extends HTMLElement {
                           height: 45px;
                         }
                         .progress-bar > .progress-bar-fill {
-                          width: 12%;
+                          position: absolute;
+                          width: 100%;
                           height: 100%;
-                          background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea6256ec-9ab1-4486-9aed-11f6d376eabd/dg66eii-09920403-6d0a-4f8f-b321-ca5aaf2e7b0e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhNjI1NmVjLTlhYjEtNDQ4Ni05YWVkLTExZjZkMzc2ZWFiZFwvZGc2NmVpaS0wOTkyMDQwMy02ZDBhLTRmOGYtYjMyMS1jYTVhYWYyZTdiMGUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.HHMaq8w132c6JEtlBixWGgHPWDLKi5X-P51OzxLRuNk');
+                          background-image: url('assets/images/FireBackground_Pixelart.png');
                           background-size: 100% 100%;
                           background-position: center;
                           background-repeat: no-repeat;
@@ -145,11 +146,12 @@ class ProjectCard extends HTMLElement {
                           position: absolute;
                           height: 100%;
                           width: 18%;
-                          background-image: url('https://w7.pngwing.com/pngs/8/573/png-transparent-4d-maze-spacecraft-rocket-spacecraft-rocket-launch-space-thumbnail.png');
+                          background-image: url('assets/images/Spaceship_Pixelart.png');
                           background-size: 100% 100%;
                           background-position: center;
                           background-repeat: no-repeat;
                           pointer-events: none;
+                          z-index: 1;
                         }
                         .progress-bar.selected {
                           border: 2px solid blue;
@@ -215,13 +217,15 @@ class ProjectCard extends HTMLElement {
     const pbf = document.createElement('div');
     if (progressType == "fill"){
       pbf.classList.add('progress-bar-fill');
-      pbf.style.width = data.progress + '%';
+      pbf.style.right = 100-data.progress + '%';
       pbf.innerText = data.progress;
 
       var pbfCursor = document.createElement('div');
       pbfCursor.classList.add('cursor');
-      pbfCursor.style.left = data.progress + '%';
+      console.log(pbfCursor.offsetWidth);
+      pbfCursor.style.left = (data.progress-pbfCursor.offsetWidth/2) + '%';
       pb.append(pbfCursor);
+      console.log(pbfCursor.offsetWidth);
     } else if (progressType == "check"){
       pbf.classList.add('progress-bar-check');
       pbf.innerText = "In Progress";
@@ -285,14 +289,16 @@ class ProjectCard extends HTMLElement {
     });
 
     function updateFill(offsetX){
-      const progBarWidth = pb.offsetWidth;
-      let widthPercent = (offsetX/progBarWidth) * 100;
-      widthPercent = Math.max(0, Math.min(100, widthPercent));
+      let progBarDist = pb.style.right;
 
-      pbf.style.width = widthPercent + '%';
-      pbf.innerText = Math.round(widthPercent);
+      let distPercent = (offsetX / pb.offsetWidth) * 100 + progBarDist;
 
-      updateCursor((widthPercent / 100) * progBarWidth)
+      distPercent = Math.max(0, Math.min(100, distPercent));
+
+      pbf.style.right = 100-distPercent + '%';
+      pbf.innerText = Math.round(distPercent);
+
+      updateCursor((distPercent / 100) * pb.offsetWidth)
     }
 
     function updateCursor(cursorPosition){
@@ -327,7 +333,7 @@ class ProjectCard extends HTMLElement {
         );
         
         pbf.innerText = "0";
-        pbf.style.width = 0 + '%';
+        pbf.style.right = 0 + '%';
         pbfCursor.style.left = (-pbfCursor.offsetWidth/2) + 'px';;
         
       } else if (this.json["progress-type"] == "check"){
