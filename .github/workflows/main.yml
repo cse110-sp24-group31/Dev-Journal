@@ -3,19 +3,15 @@
 on:
   pull_request:
   push:
-on:
-  pull_request:
-  push:
+    branches:
+      - main
 
 jobs:
-  example_tests:
   example_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
-      - name: '[unit test] example'
         run: npm install --save-dev puppeteer jest
       - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
@@ -43,9 +39,9 @@ jobs:
         run: npm test ./__tests__/Contact-Page.E2E.test.js --runInBand
         
   linting:
-    name: Linting # job name (unique id)
-    runs-on: ubuntu-latest # on which machine to run
-    steps: # list of steps
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
       - name: Install NodeJS
         uses: actions/setup-node@v4
       - name: Code Checkout
@@ -54,6 +50,7 @@ jobs:
         run: npm ci
       - name: Code Linting
         run: npm run lint
+
   # code_coverage:
   #   runs-on: ubuntu-latest
   #   steps:
