@@ -6,6 +6,7 @@
     --bar-color: #4b0082; /* Indigo color for the navigation bar */
     --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
     --cal-color: #65c9c9be; /* Light cyan for calendar */
+    --newest-cal-color: #054569;
     --hover-color: #ffecb3; /* Light yellow for hover effects */
     --focus-color: #ffc107; /* Bright yellow for focus effects */
 }
@@ -128,16 +129,40 @@ body, html {
     position: relative; /* To ensure the addProjButton positioning works correctly */
 }
 
-.sidebar {
-    width: 380px; /* Fixed width for the sidebar */
+/*.sidebar {
+    width: 380px; /* Fixed width for the sidebar 
     display: flex;
-    height: calc(100% - 60px);
+    height: 500px; 
     flex-direction: column;
     margin: 30px 30px 30px 15px;
     background-color: var(--content-color);
     padding: 20px;
     border-radius: 8px;
 }
+*/
+
+.sidebar {
+    width: 430px; /* Fixed width for the sidebar */
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 20px 15px; /* Increase margins if necessary */
+    background-color: var(--content-color);
+    padding: 20px;
+    border-radius: 8px;
+    height: 800px; /* Adjusted height to fit the calendar */
+}
+
+
+.sidebar .calendar {
+    flex-grow: 1; /* Allow the calendar to take up available space */
+    background-color: var(--newest-cal-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%; /* Ensure it takes up full height of the sidebar */
+}
+
 
 #project-cards-parent {
     flex-grow: 1; /* Takes up all available space */
@@ -218,16 +243,3 @@ body, html {
         height: 25px;
     }
 }
-
-.tab-content {
-    display: none;
-  }
-  
-  .tab-content.active {
-    display: block;
-  }
-  
-  .main-nav .nav-links a {
-    cursor: pointer;
-  }
-  
