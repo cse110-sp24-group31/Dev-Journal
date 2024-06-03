@@ -344,7 +344,7 @@ var createAddProjectCardComp = function (container) {
   AddProjectCardComp.innerHTML = `
                 <button>
                     <img src="assets/icons/plus.png">
-                    <p>add new project</p>
+                    <strong><p>New Project</p></strong>
                 </button>
                 `;
   AddProjectCardComp.style = `
