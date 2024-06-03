@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="assets/styles/projectView.css">
   <link rel="stylesheet" href="assets/styles/taskManager.css">
   <link rel="stylesheet" href="assets/styles/contactPage.css">
+  <!--<link rel="stylesheet" href="assets/styles/calendar.css">-->
   <link rel="icon" href="assets/icons/favicon.png" type="image/png">
   <script src="assets/scripts/ProjectCard.js" defer></script>
   <script src="assets/scripts/AddProject.js" defer></script>
   <script src="assets/scripts/ViewProject.js" defer></script>
   <script src="assets/scripts/TaskManager.js" defer></script>
   <script src="assets/scripts/ContactPage.js" defer></script>
+  <!--<script src="assets/scripts/calendar.js" defer></script>-->
   <style>
     .tab-content {
       display: none;
@@ -39,11 +41,14 @@
       <a onclick="showTab('about')">About</a>
       <a onclick="showTab('contacts')">Contacts</a>
     </div>
+    
     <div class="search-bar">
       <input type="text" placeholder="Search...">
       <button>Search</button>
     </div>
+  
   </div>
+
 
   <!-- MAIN -->
   <div id="home" class="tab-content active">
@@ -56,10 +61,19 @@
       <div class="sidebar">
         <div class="sidebar-sec calendar">
           <!--  CHARLOTTE AND ZHAMILYA WORK HERE  -->
+          <iframe src="calendar.html" width="100%" height="100%" frameborder="0"></iframe>
+
+          <!-- END CHARLOTTE AND ZHAMILYA WORK HERE -->
+  
+
+
         </div>
-        <div class="sidebar-sec accomplishments">
+        <!-- <div class="sidebar-sec accomplishments"> -->
           <!-- Accomplishments Section  TODO -->
-        </div>
+          <!-- <iframe src="calendar.html" width="100%" height="50%" frameborder="0"></iframe> -->
+
+        <!-- </div> -->
+    
       </div>
     </div>
   </div>
