@@ -6,8 +6,8 @@ describe('E2E test: contact management', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false,
-      args: ['--start-maximized']
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
@@ -111,8 +111,8 @@ describe('E2E test: create contacts for each category', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false,
-      args: ['--start-maximized']
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });

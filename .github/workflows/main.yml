@@ -35,6 +35,7 @@ jobs:
         run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
       - name: '[E2E test] contact page'
         run: npm test ./__tests__/Contact-Page.E2E.test.js --runInBand
+        
   linting:
     name: Linting # job name (unique id)
     runs-on: ubuntu-latest # on which machine to run
