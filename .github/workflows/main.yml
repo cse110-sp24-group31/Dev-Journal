@@ -23,7 +23,7 @@ jobs:
       - name: '[unit test] project cards'
         run: npm test ./__tests__/ProjectCard.unit.test.js
       - name: '[unit test] contact page'
-        run: npm test ./__tests__/Contact-Page.test.js
+        run: npm test ./__tests__/Contact-Page.unit.test.js
 
   E2E_tests:
     runs-on: ubuntu-latest
