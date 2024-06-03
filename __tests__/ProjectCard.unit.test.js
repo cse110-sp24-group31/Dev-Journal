@@ -95,3 +95,5 @@ describe('Unit test: normalizeProgress', () => {
     };
   });
 }, 10000);
+
+

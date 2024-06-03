@@ -21,7 +21,11 @@ jobs:
       - name: Install Dependencies
         run: npm install --save-dev puppeteer jest
       - name: '[unit test] project cards'
-        run: npm test ./__tests__/ProjectCard.unit.test.js
+        run: npm test ./__tests__/ProjectCard.unit.test.js --runInBand
+      - name: '[unit test] project management'
+        run: npm test ./__tests__/ProjectManagement.unit.test.js --runInBand
+      - name: '[unit test] task manager'
+        run: npm test ./__tests__/TaskManager.unit.test.js --runInBand
 
   E2E_tests:
     runs-on: ubuntu-latest
@@ -31,10 +35,11 @@ jobs:
         run: npm install --save-dev puppeteer
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
+
   linting:
-    name: Linting # job name (unique id)
-    runs-on: ubuntu-latest # on which machine to run
-    steps: # list of steps
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
       - name: Install NodeJS
         uses: actions/setup-node@v4
       - name: Code Checkout
@@ -43,14 +48,16 @@ jobs:
         run: npm ci
       - name: Code Linting
         run: npm run lint
+
+  # Uncomment and configure the following lines to enable code coverage reports
   # code_coverage:
   #   runs-on: ubuntu-latest
   #   steps:
   #   - uses: actions/checkout@main
   #   - uses: codecov/codecov-action@v4
   #     with:
-  #       fail_ci_if_error: true # optional (default = false)
-  #       flags: unittests # optional
-  #       name: codecov-umbrella # optional
-  #       token: ${{ secrets.CODECOV_TOKEN }} # required
-  #       verbose: true # optional (default = false)
+  #       fail_ci_if_error: true
+  #       flags: unittests
+  #       name: codecov-umbrella
+  #       token: ${{ secrets.CODECOV_TOKEN }}
+  #       verbose: true
