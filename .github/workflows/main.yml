@@ -37,6 +37,8 @@ jobs:
         #run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
       - name: '[E2E test] contact page'
         run: npm test ./__tests__/Contact-Page.E2E.test.js --runInBand
+      - name: '[calendar test]'
+        run: npm test ./__tests__/calendar.test.js --runInBand
         
   linting:
     name: Linting
