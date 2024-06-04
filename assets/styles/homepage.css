@@ -133,10 +133,11 @@ body, html {
     width: 430px; /* Fixed width for the sidebar */
     display: flex;
     flex-direction: column;
-    margin: 20px 20px 20px 15px; /* Increase margins if necessary */
+    margin: 50px 100px 20px 15px; /* Increase margins if necessary */
     background-color: var(--newest-cal-color);
     border-radius: 8px;
     z-index: 1;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 

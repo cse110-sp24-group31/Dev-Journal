@@ -7,15 +7,15 @@
 body {
     display: flex;
     background: #00000000;
-    padding: 0 10px;
+    padding: 10 10px;
     align-items: center;
     justify-content: center;
 }
 
 .calendar-container {
     background: #c2dde4;
-    width: 450px;
-    border-radius: 10px;
+    width: 650px;
+    border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
