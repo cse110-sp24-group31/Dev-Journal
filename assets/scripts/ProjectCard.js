@@ -81,8 +81,14 @@ class ProjectCard extends HTMLElement {
           width: 100%;
         }
         .project-card .progress-bar {
-          width: 100%;
-          background-color: grey;
+          position: absolute;
+          bottom: 52px;
+          width: 89%;
+          height: 5%;
+          background-image: url('assets/images/SpaceBackground_Pixelart.png');
+          background-size: 100% cover;
+          background-position: center;
+          background-repeat: no-repeat;
         }
 
         .project-card .desc {
@@ -98,15 +104,24 @@ class ProjectCard extends HTMLElement {
           border-radius: 5% 5% 5% 5%;
           background-color: rgba(0, 0, 0, 0.164);
         }
-        .progress-bar {
-          height: 100%;
-        }
         .progress-bar > .progress-bar-fill {
-          width: 12%;
+          position: absolute;
           height: 100%;
-          background-color: rgb(0, 128, 122);
+          background-image: url('assets/images/FireBackground_Pixelart.png');
+          background-size: 100% cover;
+          background-position: center;
+          background-repeat: no-repeat;
           text-align: center;
           color: white;
+        }
+        .progress-bar > .cursor {
+          position: absolute;
+          height: 100%;
+          width: 12%;
+          background-image: url('assets/images/Spaceship_Pixelart.png');
+          background-size: 100% 100%;
+          background-position: center;
+          background-repeat: no-repeat;
         }
 
         /**
@@ -208,6 +223,9 @@ class ProjectCard extends HTMLElement {
           <div class="progress-bar-fill" style="width: ${
             data.progress || 0
           }%;">${data.progress || 0}%</div>
+          <div class="cursor" style="left: ${
+            data.progress-5 || 0
+          }%;"></div>
         </div>
       </div>
       <div class="actions">
