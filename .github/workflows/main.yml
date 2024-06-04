@@ -1,10 +1,6 @@
 name: Project Main Branch Tests
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   example_tests:
