@@ -1,11 +1,8 @@
 /* COLOR THEMES */
 :root {
-    --background-color: #001f3f; /* Dark blue background */
-    --content-color: #1a1a2e9f; /* Darker content area */
-    --accomp-color: #FF6347; /* Tomato color for accomplishments */
+    --content-color: #2c2c3d76; /* Darker content area */
     --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
     --hover-color: #ffecb3; /* Light yellow for hover effects */
-    --focus-color: #ffc107; /* Bright yellow for focus effects */
 }
 
 /* ENTIRE PAGE SELECTORS */
@@ -128,10 +125,10 @@ body, html {
     align-items: flex-start;
     gap: 25px;
     padding: 30px;
-    background-color: transparent;
+    background-color: var(--content-color);
     padding: 30px 15px 30px 30px;
     flex-grow: 1;
-    margin: 30px 15px 30px 30px;
+    margin: 00px 15px 30px 30px;
     position: relative; /* To ensure the addProjButton positioning works correctly */
 }
 
@@ -140,7 +137,7 @@ body, html {
     display: flex;
     flex-direction: column;
     padding: 30px 30px 30px 15px;
-    margin: 30px 30px 30px 15px;
+    margin: 00px 30px 30px 15px;
 
     background-color: var(--newest-cal-color);
     border-radius: 8px;

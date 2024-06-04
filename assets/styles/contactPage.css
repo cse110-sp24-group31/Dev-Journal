@@ -45,7 +45,7 @@ body, html {
 #contact-cards {
    flex-grow: 1; /* Takes up remaining space */
    overflow-y: auto; /* Enables vertical scrolling */
-   padding: 20px;
+   padding: 0px 30px 30px 30px;
    display: flex;
    flex-wrap: wrap;
    gap: 40px; /* 20px above and below each card */
