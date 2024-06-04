@@ -342,10 +342,7 @@ var createAddProjectCardComp = function (container) {
   AddProjectCardComp = document.createElement('div');
   AddProjectCardComp.classList.add('add-project-card');
   AddProjectCardComp.innerHTML = `
-                <button>
-                    <img src="assets/icons/plus.png">
-                    <strong><p>New Project</p></strong>
-                </button>
+                <button id="addProjButton">+</button>
                 `;
   AddProjectCardComp.style = `
       align-self: top;

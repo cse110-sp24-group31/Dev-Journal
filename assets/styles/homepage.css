@@ -55,16 +55,21 @@ body, html {
 
 /* MAIN SECTION SELECTORS */
 #addProjButton {
-    position: absolute;
-    top: 95px; /* Adjusted top position */
-    left: 45px; /* Adjusted left position */
-    background-color: #0000FF;
-    color: white;
+    position: fixed;
+    top: 90px; /* Adjust this value to position the button lower or higher */
+    left: 20px; /* Adjust this value to position the button more to the right or left */
+    color: white; /* Button text color */
     border: none;
-    padding: 4px 4px; /* Smaller size */
-    border-radius: 5px;
+    font-size: 36px; /* Increase the size of the plus sign */
+    font-weight: bold; /* Make the plus sign bold */
     cursor: pointer;
+    background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    display: flex; /* Center the plus sign */
+    align-items: center; /* Center the plus sign */
+    justify-content: center; /* Center the plus sign */
+    line-height: 1; /* Adjust line height */
 }
 
 #addProjButton:hover {
@@ -160,7 +165,6 @@ button p {
     margin: 0px;
 }
 
-
 /* BACKGROUND */
 .stars, .twinkling, .clouds {
 	position:absolute;
@@ -196,7 +200,6 @@ button p {
 	from {background-position:0 0;}
 	to {background-position:10000px 0;}
 }
-
 
 /* MEDIA QUERY FOR TABLETS */
 @media (max-width: 837px) {
