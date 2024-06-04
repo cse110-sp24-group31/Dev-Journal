@@ -10,7 +10,6 @@ body, html {
 
 /* NAV AND BOTTOM TAB SELECTORS */
 .main-nav {
-   background-color: var(--bar-color);
    padding: 15px 0;
    position: relative;
    width: 100%;
