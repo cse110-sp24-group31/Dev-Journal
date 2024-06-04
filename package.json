@@ -33,7 +33,6 @@
     "testPathIgnorePatterns": [
       "/__tests__/ProjectCard.*.test.js"
     ]
-    
   },
   "babel": {
     "presets": [

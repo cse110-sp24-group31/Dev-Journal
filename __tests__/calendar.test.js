@@ -6,12 +6,22 @@ const taskTitle = 'Test Task';
 const taskDesc = 'Test Description';
 
 describe('Calendar and Add Task Tests', () => {
+    let browser;
+    let page;
+    
     beforeAll(async () => {
-        browser = await puppeteer.launch({ headless: false, slowMo: 50 });
+        browser = await puppeteer.launch({
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+          slowMo: 25,
+        });
         page = await browser.newPage();
-        await page.goto(websitePage);
+        await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/');
     });
 
+    afterAll(async () => {
+        await browser.close();
+    });
 
     // tests that clicking on a date will navigate you to add_task.html
     /* several tests that checks whether or not it is on add_task html
