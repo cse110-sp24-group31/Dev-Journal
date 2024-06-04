@@ -6,7 +6,7 @@
  */
 describe('Unit test: normalizeProgress', () => {
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5501/'); //change this for live server
+    await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); //change this for live server
   });
   it('should return the same integer', async () => {
     expect(
