@@ -81,10 +81,9 @@ class ProjectCard extends HTMLElement {
           width: 100%;
         }
         .project-card .progress-bar {
-          position: absolute;
-          bottom: 52px;
-          width: 89%;
-          height: 5%;
+          position: relative;
+          width: 320px;
+          height: 20px;
           background-image: url('assets/images/SpaceBackground_Pixelart.png');
           background-size: 100% cover;
           background-position: center;
@@ -106,7 +105,7 @@ class ProjectCard extends HTMLElement {
         }
         .progress-bar > .progress-bar-fill {
           position: absolute;
-          height: 100%;
+          height: 20px;
           background-image: url('assets/images/FireBackground_Pixelart.png');
           background-size: 100% cover;
           background-position: center;
@@ -116,8 +115,8 @@ class ProjectCard extends HTMLElement {
         }
         .progress-bar > .cursor {
           position: absolute;
-          height: 100%;
-          width: 12%;
+          height: 20px;
+          width: 35px;
           background-image: url('assets/images/Spaceship_Pixelart.png');
           background-size: 100% 100%;
           background-position: center;
@@ -164,6 +163,18 @@ class ProjectCard extends HTMLElement {
             margin-right: 5px;
             margin-bottom: 3px;
           }
+          .project-card .progress-bar {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .progress-bar-fill {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .cursor {
+            width: 26px;
+            height: 15px;
+          }
         }
         /*smallest display*/
         @media (max-height: 400px) or (max-width: 800px) {
@@ -198,10 +209,20 @@ class ProjectCard extends HTMLElement {
           .project-card .name {
             font-size: 1em;
           }
+          .project-card .progress-bar {
+            width: 100px;
+            height: 7px;
+          }
           .progress-bar > .progress-bar-fill {
+            width: 100px;
+            height: 7px;
             text-align: center;
             font-size: 1em;
             text-overflow: ellipsis;
+          }
+          .progress-bar > .cursor {
+            width: 13px;
+            height: 7px;
           }
         }
 
