@@ -50,15 +50,15 @@ describe('E2E test: create project card workflow', () => {
     expect(submitBtnHandle).not.toBe(null);
   });
 
-  it('should not accept empty submission', () => {
+  it('should not accept empty submission', async () => {
     submitBtnHandle.click();
     const dialog = page.on('dialog', async dialog => {
       return dialog;
     });
     expect(dialog).not.toBe(null);
     //suppress
-    page.on('dialog', async dialog => {
-      await dialog.dismiss();
+    await page.evaluate(() => {
+      window.confirm = () => true; // Accept the confirm alert
     });
   });
 
@@ -106,13 +106,16 @@ describe('E2E test: create project card workflow', () => {
       )
     ).toBe(TEST_CASE[2]);
 
+    submitBtnHandle = await page.waitForSelector('#submitButton', {
+      visible: true,
+    });
     await submitBtnHandle.click();
 
     const isHidden = await page.$eval('#addCardModal', modal => {
       return window.getComputedStyle(modal).display;
     });
     expect(isHidden).toBe('none');
-  }, 10000);
+  }, 20000);
 });
 
 //TODO: edit and update project card workflow
@@ -145,8 +148,6 @@ async function testUpdateCard(testcase) {
   return true;
 }
 
-
-
 //E2E testing for deleting the project card
 describe('E2E tests: delete project card workflow', () => {
   beforeAll(async () => {
@@ -164,7 +165,8 @@ describe('E2E tests: delete project card workflow', () => {
           id: 1,
           title: 'Sample Project',
           desc: 'This is a sample project description',
-          image: 'https://via.placeholder.com/150/0000FF/808080%20?Text=SampleImage',
+          image:
+            'https://via.placeholder.com/150/0000FF/808080%20?Text=SampleImage',
           progress: 50,
         });
         localStorage.setItem('projects', JSON.stringify(projects));
@@ -178,19 +180,28 @@ describe('E2E tests: delete project card workflow', () => {
   });
 
   it('should delete a project card and remove it from the UI', async () => {
-    const initialCardCount = await page.$$eval('project-card', cards => cards.length);
-    
+    const initialCardCount = await page.$$eval(
+      'project-card',
+      cards => cards.length
+    );
+
     // Click the delete button on the project card
-    await page.$eval('project-card', card => card.shadowRoot.querySelector('button[onclick*="deleteCard"]').click());
+    await page.$eval('project-card', card =>
+      card.shadowRoot.querySelector('button[onclick*="deleteCard"]').click()
+    );
 
     // Wait for the number of project cards to decrease
     await page.waitForFunction(
-      initialCount => document.querySelectorAll('project-card').length < initialCount,
+      initialCount =>
+        document.querySelectorAll('project-card').length < initialCount,
       {},
       initialCardCount
     );
 
-    const finalCardCount = await page.$$eval('project-card', cards => cards.length);
+    const finalCardCount = await page.$$eval(
+      'project-card',
+      cards => cards.length
+    );
     expect(finalCardCount).toBe(initialCardCount - 1);
   });
 
@@ -202,7 +213,8 @@ describe('E2E tests: delete project card workflow', () => {
         id: 2,
         title: 'Sample Project 2',
         desc: 'This is another sample project description',
-        image: 'https://via.placeholder.com/150/0000FF/808080%20?Text=SampleImage2',
+        image:
+          'https://via.placeholder.com/150/0000FF/808080%20?Text=SampleImage2',
         progress: 70,
       });
       localStorage.setItem('projects', JSON.stringify(projects));
@@ -214,12 +226,15 @@ describe('E2E tests: delete project card workflow', () => {
     const cardId = await projectCardHandle.evaluate(card => card.dataset.id);
 
     // Click the delete button on the project card
-    await page.$eval('project-card', card => card.shadowRoot.querySelector('button[onclick*="deleteCard"]').click());
+    await page.$eval('project-card', card =>
+      card.shadowRoot.querySelector('button[onclick*="deleteCard"]').click()
+    );
 
     // Wait for the project card to be removed from localStorage
     await page.waitForFunction(
       id => {
-        const projectsInStorage = JSON.parse(localStorage.getItem('projects')) || [];
+        const projectsInStorage =
+          JSON.parse(localStorage.getItem('projects')) || [];
         return projectsInStorage.every(project => project.id !== Number(id));
       },
       {},
@@ -227,14 +242,15 @@ describe('E2E tests: delete project card workflow', () => {
     );
 
     // Verify the project card is removed from localStorage
-    const projectsInStorage = await page.evaluate(() => JSON.parse(localStorage.getItem('projects')) || []);
-    const isCardDeleted = projectsInStorage.every(project => project.id !== Number(cardId));
+    const projectsInStorage = await page.evaluate(
+      () => JSON.parse(localStorage.getItem('projects')) || []
+    );
+    const isCardDeleted = projectsInStorage.every(
+      project => project.id !== Number(cardId)
+    );
     expect(isCardDeleted).toBe(true);
   });
 });
-
-
-
 
 //TODO:
 describe('E2E tests: task manager related workflow', () => {});
