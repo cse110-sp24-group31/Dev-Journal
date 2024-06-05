@@ -33,7 +33,7 @@ function renderContacts() {
         // Create and append the image element
         var imgElement = document.createElement('img');
         imgElement.className = 'contact-image';
-        imgElement.src = `assets/icons/${contact.role}.png`;
+        imgElement.src = `/assets/icons/${contact.role}.png`;
         imgElement.alt = `${contact.role}`;
         contactCard.appendChild(imgElement);
 
@@ -41,11 +41,11 @@ function renderContacts() {
         var infoContainer = document.createElement('div');
         infoContainer.className = 'contact-info';
         infoContainer.innerHTML = `
-                                <strong><u><h3>${contact.name}</h3></u></strong><br>
-                                <a href="mailto:${contact.email}">Email</a><br>
-                                <a href="${contact.github}">Github</a><br>
-                                <a href="${contact.linkedin}">LinkedIn</a><br>
-                                <strong>Phone #: </strong>${contact.phone}<br>
+                                <strong><u><h3>${contact.name}</h3></u></strong>
+                                <a href="mailto:${contact.email}">Email</a>
+                                <a href="${contact.github}">Github</a>
+                                <a href="${contact.linkedin}">LinkedIn</a>
+                                <strong>Phone #: </strong>${contact.phone}
                                 <strong>Role: </strong>${contact.role}<br>`;
         contactCard.appendChild(infoContainer);
 

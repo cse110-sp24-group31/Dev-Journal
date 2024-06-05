@@ -40,6 +40,10 @@ button {
    border: none;
 }
 
+.button-container{
+   width: 40px;
+}
+
 .buttons {
    width: 20px;
    height: 20px;
@@ -76,7 +80,7 @@ a:hover {
 .contact-card {
    display: flex;
    align-items: center;
-   width: 370px;
+   width: 390px;
    height: 250px;
    border-radius: 10px;
    background-color: rgba(217, 207, 222, 0.46);
@@ -94,6 +98,7 @@ a:hover {
    flex-direction: column;
    justify-content: center;
    margin-left: 10px;
+   width: 130px;
    margin-right: 10px;
 }
 
