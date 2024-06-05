@@ -33,7 +33,7 @@ function renderContacts() {
         // Create and append the image element
         var imgElement = document.createElement('img');
         imgElement.className = 'contact-image';
-        imgElement.src = `/assets/icons/${contact.role}.png`;
+        imgElement.src = `assets/icons/${contact.role}.png`;
         imgElement.alt = `${contact.role}`;
         contactCard.appendChild(imgElement);
 
