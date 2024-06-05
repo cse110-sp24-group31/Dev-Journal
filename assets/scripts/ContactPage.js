@@ -56,6 +56,7 @@ function renderContacts() {
 
         // Create a delete button for each task
         const deleteButton = document.createElement('button');
+        deleteButton.className = "delete-btn";
         deleteButton.innerHTML ='<img class="buttons" src="assets/icons/deleteIcon.png" alt="delete button">';
         deleteButton.onclick = function () {
             deleteContact(contact.id);

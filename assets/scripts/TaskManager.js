@@ -157,7 +157,7 @@ function renderTasks(projectId) {
     if (task.completed) {
       taskDiv.style.backgroundColor = `rgba(0, 0, 0, 0.5)`;
       editButton.style.display = 'none';
-      checkBox.completed = true;
+      checkBox.checked = true;
     }
     checkBox.onchange = function () {
       toggleTaskCompletion(task.id);
@@ -173,6 +173,7 @@ function renderTasks(projectId) {
         ).join(',')})`;
         editButton.style.display = 'inline-block';
       }
+      renderProjects();
     };
 
     // Append all elements to the task div
@@ -248,6 +249,7 @@ function addTaskToProject() {
     project.progress = getProgressByProjectID(project.id);
     saveProjects(); // Save the updated projects array to localStorage
     renderTasks(Number(modal.dataset.id));
+    renderProjects();
   }
 }
 

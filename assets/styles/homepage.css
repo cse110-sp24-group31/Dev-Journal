@@ -61,7 +61,7 @@ body, html {
     cursor: pointer;
     background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
-    z-index: 4; 
+    z-index: 1; 
 }
 
 .add-project-card {
