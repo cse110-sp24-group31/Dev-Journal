@@ -56,15 +56,11 @@ body, html {
     position: relative;
     color: white; /* Button text color */
     border: none;
-    top: 0px;
-    right: 1670px;
     font-size: 36px; /* Increase the size of the plus sign */
     font-weight: bold; /* Make the plus sign bold */
     cursor: pointer;
     background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
-    padding: 0px;
-    border-radius: 150%;
     z-index: 1; 
 }
 
@@ -76,13 +72,6 @@ body, html {
     height: 30px;
     margin-right: 15px;
 }
-
-#addProjectButton::before {
-    content: "+";
-    font-size: 36px; /* Adjust the size of the plus sign */
-    display: inline-block;
-    vertical-align: middle;
-  }
 
 #addProjButton:hover {
     background-color: var(--hover-color);

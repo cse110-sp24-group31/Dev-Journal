@@ -1,3 +1,11 @@
+/**
+ * Filename: ProjectCard.js
+ * Description:  This script handles the rendering and interaction logic for project cards with local storage.
+ */
+
+/**
+ * Define the ProjectCard Web Component along with it's styling.
+ */
 class ProjectCard extends HTMLElement {
   constructor() {
     super();
@@ -24,29 +32,25 @@ class ProjectCard extends HTMLElement {
           width: 320px;
           filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
           padding: 10px 20px;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .project-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-card .name {
           color: rgb(0, 0, 0);
-          font-size: 2em;
+          font-size: 1.8em;
           font-weight: bold;
-          display: block;
-          white-space: nowrap;
-          overflow-x: auto;
         }
 
-        .project-card .project-image {
-          align-self: center;
-          justify-self: center;
-          object-fit: fill;
-          height: 100%;
-          width: 100%;
+        .project-card .name:hover {
+          font-size: 2em;
+          margin: 0;
+          white-space: wrap;
+          overflow: auto;
+          text-overflow: unset;
+          transition: 0.1s ease all;
+        }
+
+        .project-card img {
+          width = 100px;
         }
 
         .project-card button {
@@ -58,7 +62,7 @@ class ProjectCard extends HTMLElement {
           height: auto;
           max-height: 50px;
           padding: 8px 20px;
-          transition: background-color 0.1s ease;
+          transition: 0.1s ease all;
           margin-right: 5px;
           margin-bottom: 2px;
         }
@@ -109,7 +113,6 @@ class ProjectCard extends HTMLElement {
           text-align: center;
           color: white;
         }
-
         .progress-bar > .cursor {
           position: absolute;
           height: 20px;
@@ -120,6 +123,13 @@ class ProjectCard extends HTMLElement {
           background-repeat: no-repeat;
         }
 
+        /**
+        * accessibility: 3 stages
+        * stage 1: full display, use default CSS
+        * stage 2: hide image
+        * stage 3: hide image and desc
+        */
+        /*half height*/
         @media (max-height: 600px) or (max-width: 1200px) {
           .project-card {
             flex: 1 0;
@@ -142,12 +152,28 @@ class ProjectCard extends HTMLElement {
           .project-card .name {
             font-size: 1em;
           }
+          .project-card .name:hover {
+            font-size: 1.2em;
+            transition: 0.1s ease all;
+          }
           .project-card button {
             border-radius: 3px;
             height: auto;
             padding: 4px 10px;
             margin-right: 5px;
             margin-bottom: 3px;
+          }
+          .project-card .progress-bar {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .progress-bar-fill {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .cursor {
+            width: 26px;
+            height: 15px;
           }
         }
         /*smallest display*/
@@ -199,6 +225,7 @@ class ProjectCard extends HTMLElement {
             height: 7px;
           }
         }
+
     `);
     this.shadowRoot.adoptedStyleSheets = [sheet];
     article.classList.add('project-card');
@@ -278,7 +305,7 @@ function normalizeProgress(progress) {
   if (progress > 100) progress = 100;
   return progress;
 }
-// Display each project in the projects array as a ProjectCard Web Component
+// Display each project in the projects array as a ProjectCard Web Componnet
 function renderProjects() {
   const projContainer = document.getElementById('project-cards-wrap');
   if (projects.length == 0) {
@@ -323,7 +350,7 @@ function loadProjects() {
 }
 
 /**
- * Upon initial DOM load, initialize projectIdCounter and projects from localStorage, and render them onto the UI.
+ * Upon inital DOM load, initialize projectIdCounter and projects from localStorage, and render them onto the UI.
  * Additionally, add necessary event listeners.
  *
  * Note: projectIdCounter is defined in AddProject.js
@@ -348,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 let AddProjectCardComp;
 /**
- * this is supposed to be a private function
+ * this is suppose to be private function
  */
 var createAddProjectCardComp = function (container) {
   AddProjectCardComp = document.createElement('div');
@@ -366,12 +393,12 @@ var createAddProjectCardComp = function (container) {
     'click',
     openAddCardModal
   );
-  //listen to when add-project-modal submitted
+  //listen to when add-projec-modal sumbitted
   const formcomp = document.querySelector('#addCardModal form');
   formcomp.addEventListener('submit', updateAddProjectCardCompOrder);
 };
 /**
- * call to update the add project card position. supposed to be a private function.
+ * call to update the add project card position. suppose to be private function.
  */
 var updateAddProjectCardCompOrder = function () {
   AddProjectCardComp.parentNode.appendChild(AddProjectCardComp); //append to last
