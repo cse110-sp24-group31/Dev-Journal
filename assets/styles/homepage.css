@@ -3,6 +3,7 @@
     --content-color: #2c2c3d76; /* Darker content area */
     --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
     --hover-color: #ffecb3; /* Light yellow for hover effects */
+    --quote-color: #ffecb3 
 }
 
 /* ENTIRE PAGE SELECTORS */
@@ -52,9 +53,7 @@ body, html {
 
 /* MAIN SECTION SELECTORS */
 #addProjButton {
-    position: fixed;
-    top: 90px; /* Adjust this value to position the button lower or higher */
-    left: 20px; /* Adjust this value to position the button more to the right or left */
+    position: relative;
     color: white; /* Button text color */
     border: none;
     font-size: 36px; /* Increase the size of the plus sign */
@@ -62,11 +61,16 @@ body, html {
     cursor: pointer;
     background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
-    z-index: 1000; /* Ensure it stays on top of other elements */
-    display: flex; /* Center the plus sign */
-    align-items: center; /* Center the plus sign */
-    justify-content: center; /* Center the plus sign */
-    line-height: 1; /* Adjust line height */
+    z-index: 4; 
+}
+
+.add-project-card {
+    position: absolute; /* Positioning relative to nearest positioned ancestor */
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
 }
 
 #addProjButton:hover {
@@ -94,6 +98,13 @@ body, html {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.inspiration {
+    background-color: var(--quote-color);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
 }
 
 .card:hover {

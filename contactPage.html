@@ -49,20 +49,29 @@
                     <input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" placeholder="xxx-xxx-xxxx"><br>
                     <label for="role">Role:</label><br>
                     <select id="role" name="role"><br>
-                        <option value="analyst">Analyst</option>
-                        <option value="hr">HR</option>
-                        <option value="design">Designer</option>
-                        <option value="developer">Developer</option>
-                        <option value="product">Product Manager</option>
-                        <option value="sales">Sales</option>
-                        <option value="manager">Manager</option>
-                        <option value="cto">CTO</option>
+                        <option value="Analyst">Analyst</option>
+                        <option value="HR">HR</option>
+                        <option value="Design">Designer</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Product">Product Manager</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Manager">Manager</option>
+                        <option value="CTO">CTO</option>
                     </select> <br>
                     <label for="other">Other Information:</label><br>
                     <textarea id="other" name="other" rows="4" cols="30" placeholder="Enter any additional information here"></textarea><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
+        </div>
+    </div>
+
+
+    <div id="viewMoreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Additional Information</h2>
+            <p id="moreText"></p>
         </div>
     </div>
 

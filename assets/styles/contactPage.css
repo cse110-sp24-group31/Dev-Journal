@@ -1,5 +1,5 @@
 :root {
-   --bar-color: #4b0082; /* Indigo color for the navigation bar */
+   --hover-color: #ffecb3;
 }
 
 body, html {
@@ -35,6 +35,24 @@ body, html {
    transition: color 0.2s;
 }
 
+button {
+   background-color: transparent;
+   border: none;
+}
+
+.buttons {
+   width: 20px;
+   height: 20px;
+   margin-bottom: 10px;  /* Adds space between the buttons */ 
+}
+
+button:hover {
+   transform: scale(1.10);
+}
+
+a:hover {
+   color: var(--hover-color);
+}
 
 .container {
    display: flex;
@@ -54,10 +72,11 @@ body, html {
 }
 
 
+
 .contact-card {
    display: flex;
    align-items: center;
-   width: 350px;
+   width: 370px;
    height: 250px;
    border-radius: 10px;
    background-color: rgba(217, 207, 222, 0.46);
@@ -74,6 +93,8 @@ body, html {
    display: flex;
    flex-direction: column;
    justify-content: center;
+   margin-left: 10px;
+   margin-right: 10px;
 }
 
 #add-new-contact {
@@ -147,4 +168,41 @@ input {
 @keyframes move-clouds-back {
 	from {background-position:0 0;}
 	to {background-position:10000px 0;}
+}
+
+
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 3;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: rgb(0,0,0);
+   background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
+   border-radius: 20px;
+   padding: 20px;
+   border: 1px solid #888;
+   width: 80%;
+}
+
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
 }
