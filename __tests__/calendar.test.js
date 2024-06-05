@@ -8,12 +8,12 @@ const taskDesc = 'Test Description';
 describe('Calendar and Add Task Tests', () => {
     let browser;
     let page;
-    
+
     beforeAll(async () => {
         browser = await puppeteer.launch({
           headless: true,
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
-          slowMo: 25,
+          slowMo: 10,
         });
         page = await browser.newPage();
         await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/');
