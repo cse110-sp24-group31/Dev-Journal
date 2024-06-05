@@ -24,6 +24,10 @@ function fetchQuotes() {
         localStorage.setItem(cacheKey, JSON.stringify(result));
         // Save the current timestamp to localStorage
         localStorage.setItem(cacheExpiryKey, Date.now().toString());
+        cachedData = localStorage.getItem(cacheKey);
+        console.log('Using cached data:', JSON.parse(cachedData));
+        document.getElementById('text').innerHTML = JSON.parse(cachedData)[0].quote;
+        document.getElementById('author').innerHTML = JSON.parse(cachedData)[0].author;
     })
     .catch(error => {
         console.error('Error:', error);
@@ -32,7 +36,7 @@ function fetchQuotes() {
 
 
 function getCachedQuotes() {
-    const cachedData = localStorage.getItem(cacheKey);
+    let cachedData = localStorage.getItem(cacheKey);
     const cacheExpiry = localStorage.getItem(cacheExpiryKey);
 
     if (cachedData && cacheExpiry) {
@@ -48,10 +52,6 @@ function getCachedQuotes() {
 
     // Cache is expired or doesn't exist, fetch new data
     fetchQuotes();
-    
-    cachedData = localStorage.getItem(cacheKey);
-    console.log('Using cached data:', JSON.parse(cachedData));
-    document.getElementById('text').innerHTML = JSON.parse(cachedData)[0].quote;
 }
 
 // Call the function to get quotes
