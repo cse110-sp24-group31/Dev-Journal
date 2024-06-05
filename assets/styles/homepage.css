@@ -136,7 +136,7 @@ body, html {
     align-items: flex-start;
     gap: 25px;
     padding: 30px;
-    background-color: var(--content-color);
+    background-color: transparent;
     padding: 30px 15px 30px 30px;
     flex-grow: 1;
     margin: 00px 15px 30px 30px;
