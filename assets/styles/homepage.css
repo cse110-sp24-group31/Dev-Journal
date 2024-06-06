@@ -157,12 +157,17 @@ body, html {
     display: flex;
     flex-direction: column;
     padding: 30px 30px 30px 15px;
-    margin: 00px 30px 30px 15px;
-
-    background-color: var(--newest-cal-color);
+    margin: 0px 30px 30px 15px;
     border-radius: 8px;
     z-index: 1;
     flex-shrink: 0; /* Prevent shrinking */
+    background-image: url('assets/images/moon.jpg'); /* Path to your moon image */
+    background-size: cover; /* Make the image cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%; /* Ensure it takes up full height of the sidebar */
 }
 
 
