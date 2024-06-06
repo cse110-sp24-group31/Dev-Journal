@@ -1,11 +1,6 @@
-
 # Dev-Journal
 
 Main project for CSE 110. Includes calendar, journal entries, contact pages, progression meter, a task list, all within a polish UI
-
-# Testing
-
-- run tests using: `npm test --runInBand`, some test suits need to run in sequence
 
 ### node modules
 
