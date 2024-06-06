@@ -28,9 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer
+        run: npm install --save-dev puppeteer jest
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
+      - name: '[E2E test] contacts'
+        run: npm test ./__tests__/Contacts.E2E.test.js --runInBand
   linting:
     name: Linting # job name (unique id)
     runs-on: ubuntu-latest # on which machine to run

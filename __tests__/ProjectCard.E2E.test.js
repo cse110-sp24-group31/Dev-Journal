@@ -1,3 +1,5 @@
+const puppeteer = require('puppeteer');
+
 /**
  * E2E test, focus on class interactions
  * MAKE SURE USE: npm test ProjectCard.E2E.test.js --runInBand
@@ -48,6 +50,18 @@ describe('E2E test: create project card workflow', () => {
   it('should have a submit button', async () => {
     submitBtnHandle = await addProjectCardModalHandle.$('#submitButton');
     expect(submitBtnHandle).not.toBe(null);
+
+    //button should be visible
+    const buttonVisible = await page.waitForSelector('#submitButton', {
+      visible: true,
+    });
+    expect(buttonVisible).not.toBe(null);
+
+    const buttonNotDisabled = await page.$eval(
+      '#submitButton',
+      el => el.getAttribute('disabled') === null
+    );
+    expect(buttonNotDisabled).toBe(true);
   });
 
   it('should not accept empty submission', async () => {
@@ -106,27 +120,29 @@ describe('E2E test: create project card workflow', () => {
       )
     ).toBe(TEST_CASE[2]);
 
-    submitBtnHandle = await page.waitForSelector('#submitButton', {
-      visible: true,
-    });
-    await submitBtnHandle.click();
+    await page.click('#submitButton');
 
     const isHidden = await page.$eval('#addCardModal', modal => {
       return window.getComputedStyle(modal).display;
     });
     expect(isHidden).toBe('none');
   }, 20000);
+
+  afterAll(async () => {
+    await page.waitForSelector('project-card');
+  });
 });
 
 //TODO: edit and update project card workflow
 describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
   beforeAll(async () => {
     await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); //change this for live server
-  }, 20000);
-  let projectCardHandle;
+  });
   it('should have a card', async () => {
-    projectCardHandle = await page.$('project-card');
-    expect(projectCardHandle).not.toBe(null);
+    const pcIsNull = await page.$eval('project-card', ele => {
+      return ele === null;
+    });
+    expect(pcIsNull).toBe(false);
   });
   it('should be same', async () => {
     //arrange
