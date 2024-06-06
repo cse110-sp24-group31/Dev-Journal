@@ -53,16 +53,25 @@ body, html {
 
 /* MAIN SECTION SELECTORS */
 #addProjButton {
-    position: relative;
+    position: fixed;
+    top: 70px; /* Adjust this value to position the button lower or higher */
+    left: 1600px; /* Adjust this value to position the button more to the right or left */
+    background-color: transparent; /* Transparent background */
     color: white; /* Button text color */
-    border: none;
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 50%; /* Makes the button round */
     font-size: 36px; /* Increase the size of the plus sign */
     font-weight: bold; /* Make the plus sign bold */
     cursor: pointer;
-    background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
-    z-index: 1; 
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    display: flex; /* Center the plus sign */
+    align-items: center; /* Center the plus sign */
+    justify-content: center; /* Center the plus sign */
+    line-height: 1; /* Adjust line height */
 }
+
 
 .add-project-card {
     position: absolute; /* Positioning relative to nearest positioned ancestor */
@@ -78,17 +87,17 @@ body, html {
 }
 
 .card {
-    cursor: pointer;
+    cursor: absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 300px;
-    width: 200px;
+    width: 900px;
     border-radius: 8px;
     background-color: var(--card-color);
     transition: box-shadow 0.3s, transform 0.3s;
     padding: 20px;
-    background-image: url('assets/images/card-background.png'); /* Optional: Add a background image for the card */
+    background-image: url('assets/images/card-background.png');
     background-size: cover;
     background-position: center;
     color: #000;
