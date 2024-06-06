@@ -118,7 +118,7 @@ describe('E2E test: create project card workflow', () => {
     ).toBe(TEST_CASE[2]);
   });
   it('should create a new project card and close modal', async () => {
-    await page.click('#submitButton');
+    submitBtnHandle.click();
     await page.waitForSelector('project-card');
 
     const isHidden = await page.$eval('#addCardModal', modal => {
