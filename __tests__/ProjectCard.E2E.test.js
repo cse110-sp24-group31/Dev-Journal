@@ -76,7 +76,7 @@ describe('E2E test: create project card workflow', () => {
     });
   });
 
-  it('should create a new project card and close modal', async () => {
+  it('fill in all input fields', async () => {
     //check value
     await addProjectCardModalHandle.$eval(
       '#projectName',
@@ -119,18 +119,16 @@ describe('E2E test: create project card workflow', () => {
         input => input.value
       )
     ).toBe(TEST_CASE[2]);
-
+  });
+  it('should create a new project card and close modal', async () => {
     await page.click('#submitButton');
+    await page.waitForSelector('project-card');
 
     const isHidden = await page.$eval('#addCardModal', modal => {
       return window.getComputedStyle(modal).display;
     });
     expect(isHidden).toBe('none');
-  }, 20000);
-
-  afterAll(async () => {
-    await page.waitForSelector('project-card');
-  });
+  }, 10000);
 });
 
 //TODO: edit and update project card workflow
