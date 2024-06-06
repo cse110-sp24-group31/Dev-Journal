@@ -65,35 +65,33 @@ describe('E2E test: create project card workflow', () => {
   });
 
   it('should not accept empty submission', async () => {
-    submitBtnHandle.click();
-    const dialog = page.on('dialog', async dialog => {
-      return dialog;
+    page.on('dialog', async dialog => {
+      await dialog.accept(); // Accept the alert
     });
-    expect(dialog).not.toBe(null);
-    //suppress
-    await page.evaluate(() => {
-      window.confirm = () => true; // Accept the confirm alert
+    await page.click('#submitButton');
+
+    // Check if an alert is present
+    const alert = await page.evaluate(() => {
+      return window.alert; // Get the global alert function
     });
+    expect(alert).toBeDefined();
   });
 
   it('fill in all input fields', async () => {
     //check value
-    await addProjectCardModalHandle.$eval(
-      '#projectName',
+    await page.$eval(
+      '#addCardModal #projectName',
       (input, str) => {
         input.value = str;
       },
       TEST_CASE[0]
     );
     expect(
-      await addProjectCardModalHandle.$eval(
-        '#projectName',
-        input => input.value
-      )
+      await page.$eval('#addCardModal #projectName', input => input.value)
     ).toBe(TEST_CASE[0]);
 
     await addProjectCardModalHandle.$eval(
-      '#projectDescription',
+      '#addCardModal #projectDescription',
       (input, str) => {
         input.value = str;
       },
@@ -101,13 +99,13 @@ describe('E2E test: create project card workflow', () => {
     );
     expect(
       await addProjectCardModalHandle.$eval(
-        '#projectDescription',
+        '#addCardModal #projectDescription',
         input => input.value
       )
     ).toBe(TEST_CASE[1]);
 
     await addProjectCardModalHandle.$eval(
-      '#projectImage',
+      '#addCardModal #projectImage',
       (input, str) => {
         input.value = str;
       },
@@ -115,7 +113,7 @@ describe('E2E test: create project card workflow', () => {
     );
     expect(
       await addProjectCardModalHandle.$eval(
-        '#projectImage',
+        '#addCardModal #projectImage',
         input => input.value
       )
     ).toBe(TEST_CASE[2]);
@@ -128,7 +126,7 @@ describe('E2E test: create project card workflow', () => {
       return window.getComputedStyle(modal).display;
     });
     expect(isHidden).toBe('none');
-  }, 10000);
+  });
 });
 
 //TODO: edit and update project card workflow

@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
+        run: npm ci
       - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
 
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
+        run: npm ci
       - name: '[unit test] project cards'
         run: npm test ./__tests__/ProjectCard.unit.test.js
 
@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
+        run: npm ci
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
