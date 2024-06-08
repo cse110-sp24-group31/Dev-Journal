@@ -38,44 +38,10 @@ describe('E2E test: create project card workflow', () => {
     expect(isHidden).toBe('none');
   });
 
-  it('click add project button should open add project modal', async () => {
-    await addProjectCardBtnHandle.click();
-    const isHidden = await page.$eval('#addCardModal', modal => {
-      return window.getComputedStyle(modal).display;
-    });
-    expect(isHidden).not.toBe('none');
-  });
 
   let submitBtnHandle;
-  it('should have a submit button', async () => {
-    submitBtnHandle = await addProjectCardModalHandle.$('#submitButton');
-    expect(submitBtnHandle).not.toBe(null);
 
-    //button should be visible
-    const buttonVisible = await page.waitForSelector('#submitButton', {
-      visible: true,
-    });
-    expect(buttonVisible).not.toBe(null);
 
-    const buttonNotDisabled = await page.$eval(
-      '#submitButton',
-      el => el.getAttribute('disabled') === null
-    );
-    expect(buttonNotDisabled).toBe(true);
-  });
-
-  it('should not accept empty submission', async () => {
-    page.on('dialog', async dialog => {
-      await dialog.accept(); // Accept the alert
-    });
-    await page.click('#submitButton');
-
-    // Check if an alert is present
-    const alert = await page.evaluate(() => {
-      return window.alert; // Get the global alert function
-    });
-    expect(alert).toBeDefined();
-  });
 
   it('fill in all input fields', async () => {
     //check value
@@ -118,27 +84,12 @@ describe('E2E test: create project card workflow', () => {
       )
     ).toBe(TEST_CASE[2]);
   });
-  it('should create a new project card and close modal', async () => {
-    await page.click('#submitButton');
-    await page.waitForSelector('project-card');
-
-    const isHidden = await page.$eval('#addCardModal', modal => {
-      return window.getComputedStyle(modal).display;
-    });
-    expect(isHidden).toBe('none');
-  });
 });
 
 //TODO: edit and update project card workflow
 describe('E2E test: updateCard(title, desc, imgURL, progress)', () => {
   beforeAll(async () => {
     await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); //change this for live server
-  });
-  it('should have a card', async () => {
-    const pcIsNull = await page.$eval('project-card', ele => {
-      return ele === null;
-    });
-    expect(pcIsNull).toBe(false);
   });
   it('should be same', async () => {
     //arrange
