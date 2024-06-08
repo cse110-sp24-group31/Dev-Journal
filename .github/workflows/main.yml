@@ -1,8 +1,10 @@
-﻿name: Project Main Branch Tests
+name: Project Main Branch Tests
 
 on:
   pull_request:
   push:
+    branches:
+      - main
 
 jobs:
   example_tests:
@@ -23,20 +25,22 @@ jobs:
       - name: '[unit test] project cards'
         run: npm test ./__tests__/ProjectCard.unit.test.js
 
+
   E2E_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
+
         run: npm ci
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
   linting:
-    name: Linting # job name (unique id)
-    runs-on: ubuntu-latest # on which machine to run
-    steps: # list of steps
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
       - name: Install NodeJS
         uses: actions/setup-node@v4
       - name: Code Checkout
@@ -45,6 +49,7 @@ jobs:
         run: npm ci
       - name: Code Linting
         run: npm run lint
+
   # code_coverage:
   #   runs-on: ubuntu-latest
   #   steps:
