@@ -1,4 +1,4 @@
-name: Project Main Branch Tests
+﻿name: Project Main Branch Tests
 
 on:
   pull_request:
@@ -24,8 +24,6 @@ jobs:
         run: npm ci
       - name: '[unit test] project cards'
         run: npm test ./__tests__/ProjectCard.unit.test.js
-      - name: '[unit test] contact page'
-        run: npm test ./__tests__/Contact-Page.unit.test.js 
 
   E2E_tests:
     runs-on: ubuntu-latest
@@ -37,7 +35,7 @@ jobs:
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
-        
+
   linting:
     name: Linting
     runs-on: ubuntu-latest

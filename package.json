@@ -29,11 +29,7 @@
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    },
-    "testPathIgnorePatterns": [
-      "/__tests__/ProjectCard.*.test.js"
-    ]
-    
+    }
   },
   "babel": {
     "presets": [
