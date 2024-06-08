@@ -2,7 +2,4 @@
 node_modules
 assets/scripts/storage.js
 .vscode/launch.json
-coverage
-!coverage/index.html
-!coverage/coverage-summary.json
 .nyc_output

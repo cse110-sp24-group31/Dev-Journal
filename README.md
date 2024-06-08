@@ -5,12 +5,6 @@
 unit test coverage: [![codecov](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graph/badge.svg?token=I7LZVX58TA)](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal)
 
 puppeteer code coverage (E2E and system test):
-
-![Statements](https://img.shields.io/badge/statements-100%25-brightgreen.svg?style=flat)
-![Branches](https://img.shields.io/badge/branches-100%25-brightgreen.svg?style=flat)
-![Functions](https://img.shields.io/badge/functions-100%25-brightgreen.svg?style=flat)
-![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg?style=flat)
-
 [link to converage report](./coverage/index.html)
 
 ![code coverage image](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graphs/sunburst.svg?token=I7LZVX58TA)

@@ -1,16 +1,8 @@
-import globals from 'globals';
-
-export default [
+module.exports = [
   {
-    languageOptions: {
-      globals: Object.keys(globals.browser).reduce((acc, key) => {
-        acc[key.trim()] = globals.browser[key];
-        return acc;
-      }, {}),
-    },
-    ignores: ['coverage/'],
+    files: ['assets/scripts/**/*.js'], // Specify the path to your JS files
     rules: {
-      'no-undef': 'off',
+      'no-undef': 'off', // Example rule modification
     },
   },
 ];

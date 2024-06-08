@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
@@ -17,7 +16,7 @@
   },
   "scripts": {
     "test": "jest --maxWorkers=1 --coverage",
-    "lint": "eslint .",
+    "lint": "eslint assets/scripts __tests__",
     "format": "prettier --write .",
     "quality-check": "codeclimate-test-reporter < lcov.info",
     "make-badges": "istanbul-badges-readme",
