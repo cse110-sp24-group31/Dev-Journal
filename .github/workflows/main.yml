@@ -48,7 +48,7 @@ jobs:
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
       - name: update code coverage
-        run: npm i -D puppeteer puppeteer-to-istanbul && node ./code-coverage.js  && nyc report --reporter=html
+        run: npm i -D puppeteer puppeteer-to-istanbul nyc && node ./code-coverage.js  && nyc report --reporter=html
         
 
   linting:
