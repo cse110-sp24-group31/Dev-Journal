@@ -15,7 +15,7 @@
     "puppeteer": "^22.10.0"
   },
   "scripts": {
-    "test": "jest --maxWorkers=1 --coverage",
+    "test": "jest --maxWorkers=1",
     "lint": "eslint .",
     "format": "prettier --write .",
     "quality-check": "codeclimate-test-reporter < lcov.info"
@@ -25,7 +25,8 @@
     "verbose": true,
     "collectCoverage": true,
     "coverageReporters": [
-      "lcov"
+      "text",
+      "cobertura"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
