@@ -42,17 +42,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node 18
-        uses: actions/setup-node@v3
-      - name: Install Dependencies
         run: npm install
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN }}
+      - name: update puppeteer code coverage
+        run: npm run make-badges
 
   linting:
     name: Linting

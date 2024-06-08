@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
@@ -12,13 +11,16 @@
     "jest-puppeteer": "^10.0.0",
     "jsdom": "^24.1.0",
     "prettier": "^2.8.8",
-    "puppeteer": "^22.10.0"
+    "puppeteer": "^22.10.0",
+    "puppeteer-to-istanbul": "^1.4.0"
   },
   "scripts": {
     "test": "jest --maxWorkers=1 --coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "quality-check": "codeclimate-test-reporter < lcov.info"
+    "quality-check": "codeclimate-test-reporter < lcov.info",
+    "make-badges": "istanbul-badges-readme",
+    "make-badges:ci": "npm run make-badges -- --ci"
   },
   "jest": {
     "preset": "jest-puppeteer",
@@ -26,7 +28,8 @@
     "collectCoverage": true,
     "coverageReporters": [
       "text",
-      "cobertura"
+      "cobertura",
+      "json-summary"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
@@ -36,5 +39,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "istanbul-badges-readme": "^1.9.0"
   }
 }
