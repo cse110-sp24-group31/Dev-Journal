@@ -1,22 +1,21 @@
 * {
-    margin: 0;
+    margin: 15;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
 body {
     display: flex;
-    background: #054569;
-    min-height: 100vh;
-    padding: 0 10px;
+    background: #00000000;
+    padding: 10 10px;
     align-items: center;
     justify-content: center;
 }
 
 .calendar-container {
     background: #c2dde4;
-    width: 450px;
-    border-radius: 10px;
+    width: 650px;
+    border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 

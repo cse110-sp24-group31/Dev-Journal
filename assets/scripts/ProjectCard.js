@@ -32,25 +32,29 @@ class ProjectCard extends HTMLElement {
           width: 320px;
           filter: drop-shadow(0px 10px 10px rgb(0, 0, 0, 0.4));
           padding: 10px 20px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .project-card .name {
           color: rgb(0, 0, 0);
-          font-size: 1.8em;
-          font-weight: bold;
-        }
-
-        .project-card .name:hover {
           font-size: 2em;
-          margin: 0;
-          white-space: wrap;
-          overflow: auto;
-          text-overflow: unset;
-          transition: 0.1s ease all;
+          font-weight: bold;
+          display: block;
+          white-space: nowrap;
+          overflow-x: auto;
         }
 
-        .project-card img {
-          width = 100px;
+        .project-card .project-image {
+          align-self: center;
+          justify-self: center;
+          object-fit: fill;
+          height: 100%;
+          width: 100%;
         }
 
         .project-card button {
@@ -62,7 +66,7 @@ class ProjectCard extends HTMLElement {
           height: auto;
           max-height: 50px;
           padding: 8px 20px;
-          transition: 0.1s ease all;
+          transition: background-color 0.1s ease;
           margin-right: 5px;
           margin-bottom: 2px;
         }
@@ -71,18 +75,6 @@ class ProjectCard extends HTMLElement {
           background-color: rgb(255, 166, 0);
           cursor: pointer;
           transition: 0.1s ease all;
-        }
-
-        .project-card .project-image {
-          align-self: center;
-          justify-self: center;
-          object-fit: fill;
-          height: 100%;
-          width: 100%;
-        }
-        .project-card .progress-bar {
-          width: 100%;
-          background-color: grey;
         }
 
         .project-card .desc {
@@ -98,15 +90,34 @@ class ProjectCard extends HTMLElement {
           border-radius: 5% 5% 5% 5%;
           background-color: rgba(0, 0, 0, 0.164);
         }
-        .progress-bar {
-          height: 100%;
+        .project-card .progress-bar {
+          position: relative;
+          width: 320px;
+          height: 20px;
+          background-image: url('assets/images/SpaceBackground_Pixelart.png');
+          background-size: 100% cover;
+          background-position: center;
+          background-repeat: no-repeat;
         }
+
         .progress-bar > .progress-bar-fill {
-          width: 12%;
-          height: 100%;
-          background-color: rgb(0, 128, 122);
+          position: absolute;
+          height: 20px;
+          background-image: url('assets/images/FireBackground_Pixelart.png');
+          background-size: 100% cover;
+          background-position: center;
+          background-repeat: no-repeat;
           text-align: center;
           color: white;
+        }
+        .progress-bar > .cursor {
+          position: absolute;
+          height: 20px;
+          width: 35px;
+          background-image: url('assets/images/Spaceship_Pixelart.png');
+          background-size: 100% 100%;
+          background-position: center;
+          background-repeat: no-repeat;
         }
 
         /**
@@ -149,6 +160,18 @@ class ProjectCard extends HTMLElement {
             margin-right: 5px;
             margin-bottom: 3px;
           }
+          .project-card .progress-bar {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .progress-bar-fill {
+            width: 200px;
+            height: 15px;
+          }
+          .progress-bar > .cursor {
+            width: 26px;
+            height: 15px;
+          }
         }
         /*smallest display*/
         @media (max-height: 400px) or (max-width: 800px) {
@@ -183,10 +206,20 @@ class ProjectCard extends HTMLElement {
           .project-card .name {
             font-size: 1em;
           }
+          .project-card .progress-bar {
+            width: 100px;
+            height: 7px;
+          }
           .progress-bar > .progress-bar-fill {
+            width: 100px;
+            height: 7px;
             text-align: center;
             font-size: 1em;
             text-overflow: ellipsis;
+          }
+          .progress-bar > .cursor {
+            width: 13px;
+            height: 7px;
           }
         }
 
@@ -208,6 +241,9 @@ class ProjectCard extends HTMLElement {
           <div class="progress-bar-fill" style="width: ${
             data.progress || 0
           }%;">${data.progress || 0}%</div>
+          <div class="cursor" style="left: ${
+            data.progress-5 || 0
+          }%;"></div>
         </div>
       </div>
       <div class="actions">
@@ -342,10 +378,7 @@ var createAddProjectCardComp = function (container) {
   AddProjectCardComp = document.createElement('div');
   AddProjectCardComp.classList.add('add-project-card');
   AddProjectCardComp.innerHTML = `
-                <button>
-                    <img src="assets/icons/plus.png">
-                    <strong><p>New Project</p></strong>
-                </button>
+                <button id="addProjButton">+</button>
                 `;
   AddProjectCardComp.style = `
       align-self: top;

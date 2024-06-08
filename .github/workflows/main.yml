@@ -1,4 +1,4 @@
-name: Project Main Branch Tests
+﻿name: Project Main Branch Tests
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
+        run: npm ci
       - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
 
@@ -21,23 +21,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer jest
-      #- name: '[unit test] project cards'
-        #run: npm test ./__tests__/ProjectCard.unit.test.js --runInBand
-      - name: '[unit test] contact page'
-        run: npm test ./__tests__/Contact-Page.unit.test.js --runInBand
+        run: npm ci
+      - name: '[unit test] project cards'
+        run: npm test ./__tests__/ProjectCard.unit.test.js
 
   E2E_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Dependencies
-        run: npm install --save-dev puppeteer
-      #- name: '[E2E test] project cards'
-        #run: npm test ./__tests__/ProjectCard.E2E.test.js --runInBand
-      - name: '[E2E test] contact page'
-        run: npm test ./__tests__/Contact-Page.E2E.test.js --runInBand
-        
+        run: npm ci
+      - name: '[E2E test] project cards'
+        run: npm test ./__tests__/ProjectCard.E2E.test.js
+      - name: '[E2E test] contacts'
+        run: npm test ./__tests__/Contacts.E2E.test.js
+
   linting:
     name: Linting
     runs-on: ubuntu-latest

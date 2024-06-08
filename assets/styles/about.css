@@ -1,42 +1,45 @@
 /* NAVIGATION BAR STYLES */
 .main-nav {
-    background-color: #FFFFFF;
     padding: 15px 0;
     width: 100%;
     height: 60px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* Centering the navigation links */
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.main-nav .brand, .main-nav .nav-links {
+.nav-links {
     display: flex;
-    align-items: center;
+    gap: 20px;
 }
 
-.main-nav .brand {
-    margin-left: 20px;
-    font-size: 1.5em;
-    color: #000000;
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
-.main-nav .nav-links a {
-    color: #000000;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: color 0.2s;
-}
-
-.main-nav .nav-links a:hover {
-    color: var(--hover-color);
+.nav-links a:hover {
+    color: #ffd700;
 }
 
 /* ABOUT PAGE STYLES */
 .about-content {
-    padding: 20px;
+    padding: 40px 20px;
     max-width: 1000px;
     margin: 0 auto;
+    position: relative; /* Ensure content is positioned relative to the background */
+    z-index: 1;
+}
+
+.about-content h1 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 2.5em;
+    padding-bottom: 10px;
 }
 
 .about-section {
@@ -47,37 +50,113 @@
     margin-bottom: 40px;
 }
 
+.about-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #fff;
+    max-width: 800px;
+}
+
 .about-section img {
+    display: block;
+    margin: 20px 0;
     width: 100%;
     height: auto;
     max-width: 600px;
-    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .team-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 20px;
 }
 
 .team-member {
-    flex: 1 1 200px;
+    flex: 1 1 calc(25% - 1rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 20px;
+    background-color: transparent;
+    padding: 0px;
+    box-shadow: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .team-member img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .team-member h3 {
     margin: 10px 0 5px 0;
+    color: #FFF;
 }
 
 .team-member p {
-    color: red;
+    color: #FFF;
     font-weight: bold;
+}
+
+h2 {
+    color:#fff;
+    font-size: 2em;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* BACKGROUND STYLES */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Space Grotesk", Arial, sans-serif;
+    background: black;
+}
+
+.stars, .twinkling, .clouds {
+	position:absolute;
+	display:block;
+	top:0; bottom:0;
+	left:0; right:0;
+	width:100%; height:160%;
+}
+
+.stars {
+	z-index: 0;
+	background: #000 url('../images/stars.png') repeat top center;
+}
+
+.twinkling {
+	z-index: 0;
+	background:transparent url('../images/twinkling.png') repeat top center;
+	animation: move-twink-back 200s linear infinite;
+}
+
+.clouds{
+	z-index: 0;
+    background:transparent url('../images/clouds.png') repeat top center;
+	animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {background-position:0 0;}
+	to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+	from {background-position:0 0;}
+	to {background-position:10000px 0;}
 }

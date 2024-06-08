@@ -1,37 +1,31 @@
 /* COLOR THEMES */
 :root {
-    --background-color: #001f3f; /* Dark blue background */
-    --content-color: #1a1a2e; /* Darker content area */
-    --accomp-color: #FF6347; /* Tomato color for accomplishments */
-    --bar-color: #4b0082; /* Indigo color for the navigation bar */
+    --content-color: #2c2c3d76; /* Darker content area */
     --card-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards */
-    --cal-color: #65c9c9be; /* Light cyan for calendar */
-    --newest-cal-color: #054569;
     --hover-color: #ffecb3; /* Light yellow for hover effects */
-    --focus-color: #ffc107; /* Bright yellow for focus effects */
+    --quote-color: #ffecb3 
 }
 
 /* ENTIRE PAGE SELECTORS */
 body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     height: 100%;
-    font-family: 'Arial', sans-serif; /* Temporary */
-    background: url('assets/images/space-background.jpg') no-repeat center center fixed; /* Add the starry background image */
-    background-size: cover;
+    box-sizing: border-box;
+    font-family: "Space Grotesk", Arial, sans-serif;
     min-height: 500px;
 }
 
 /* NAV AND BOTTOM TAB SELECTORS */
 .main-nav {
-    background-color: var(--bar-color);
     padding: 15px 0;
     width: 100%;
     height: 60px;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .main-nav .brand, .main-nav .nav-links {
@@ -59,16 +53,24 @@ body, html {
 
 /* MAIN SECTION SELECTORS */
 #addProjButton {
-    position: absolute;
-    top: 95px; /* Adjusted top position */
-    left: 45px; /* Adjusted left position */
-    background-color: #0000FF;
-    color: white;
+    position: relative;
+    color: white; /* Button text color */
     border: none;
-    padding: 4px 4px; /* Smaller size */
-    border-radius: 5px;
+    font-size: 36px; /* Increase the size of the plus sign */
+    font-weight: bold; /* Make the plus sign bold */
     cursor: pointer;
+    background-color: transparent; /* Transparent background */
     transition: background-color 0.3s;
+    z-index: 1; 
+}
+
+.add-project-card {
+    position: absolute; /* Positioning relative to nearest positioned ancestor */
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
 }
 
 #addProjButton:hover {
@@ -98,6 +100,13 @@ body, html {
     gap: 10px;
 }
 
+.inspiration {
+    background-color: var(--quote-color);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+
 .card:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transform: translateY(-5px);
@@ -106,13 +115,17 @@ body, html {
 .main {
     display: flex;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 90px);
     padding: 0px;
     margin: 0px;
     gap: 20px;
 }
 
-.project-cards, .sidebar-sec {
+.sidebar {
+    height: calc(100% - 90px);
+}
+
+.project-cards, .sidebar {
     border-radius: 8px; /* Rounded corners */
 }
 
@@ -123,41 +136,30 @@ body, html {
     align-items: flex-start;
     gap: 25px;
     padding: 30px;
-    background-color: var(--content-color);
+    background-color: transparent;
+    padding: 30px 15px 30px 30px;
     flex-grow: 1;
-    margin: 30px 15px 30px 30px;
+    margin: 00px 15px 30px 30px;
     position: relative; /* To ensure the addProjButton positioning works correctly */
 }
-
-/*.sidebar {
-    width: 380px; /* Fixed width for the sidebar 
-    display: flex;
-    height: 500px; 
-    flex-direction: column;
-    margin: 30px 30px 30px 15px;
-    background-color: var(--content-color);
-    padding: 20px;
-    border-radius: 8px;
-}
-*/
 
 .sidebar {
     width: 430px; /* Fixed width for the sidebar */
     display: flex;
     flex-direction: column;
-    margin: 20px 20px 20px 15px; /* Increase margins if necessary */
-    background-color: var(--content-color);
-    padding: 20px;
+    padding: 30px 30px 30px 15px;
+    margin: 00px 30px 30px 15px;
+
+    background-color: var(--newest-cal-color);
     border-radius: 8px;
-    height: 800px; /* Adjusted height to fit the calendar */
+    z-index: 1;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 
 .sidebar .calendar {
     flex-grow: 1; /* Allow the calendar to take up available space */
-    background-color: var(--newest-cal-color);
     border-radius: 8px;
-    padding: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     overflow: hidden; /* Prevent scrolling */
     height: 100%; /* Ensure it takes up full height of the sidebar */
@@ -169,14 +171,45 @@ body, html {
     overflow: auto;
 }
 
-.accomplishments {
-    background-color: var(--accomp-color);
-    margin-top: 15px;
-    flex-grow: 1;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+button p {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* BACKGROUND */
+.stars, .twinkling, .clouds {
+	position:absolute;
+	display:block;
+	top:0; bottom:0;
+	left:0; right:0;
+	width:100%; height:100%;
+}
+
+.stars {
+	z-index: 0;
+	background: #000 url('../images/stars.png') repeat top center;
+}
+
+.twinkling {
+	z-index: 0;
+	background:transparent url('../images/twinkling.png') repeat top center;
+	animation: move-twink-back 200s linear infinite;
+}
+
+.clouds{
+	z-index: 0;
+    background:transparent url('../images/clouds.png') repeat top center;
+	animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {background-position:0 0;}
+	to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+	from {background-position:0 0;}
+	to {background-position:10000px 0;}
 }
 
 /* MEDIA QUERY FOR TABLETS */

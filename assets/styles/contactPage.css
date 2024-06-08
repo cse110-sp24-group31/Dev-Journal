@@ -1,182 +1,214 @@
-/* Styling for contact page */
-/* background image */
-#contacts {
-   background-image: url('../images/background.jpg');
-   background-size: cover;
-   background-position: center;
-   background-repeat: no-repeat;
-   min-height: 100vh;
-   width: 100%;
+:root {
+   --hover-color: #ffecb3;
 }
 
-#contacts .header-bubble {
-   background-color: #f0f0f0;
-   padding: 10px;
-   margin: 10px auto;
-   border-radius: 20px;
-   text-align: center;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body, html {
+   margin: 0;
+   padding: 0;
+   font-family: "Space Grotesk", Arial, sans-serif;
 }
 
-#contacts h1 {
-   color: #333 !important;
-   text-align: center !important;
-}
-
-#contacts .bubble, #contacts .flex-container {
-   background: transparent !important;
-}
-
-.sun-container {
-   padding: 20px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+/* NAV AND BOTTOM TAB SELECTORS */
+.main-nav {
+   padding: 15px 0;
    position: relative;
-   width: 40%;  
-   height: 40vw;
-   margin: auto;
-   border: none;
-   outline: none;
-   left: -125px;
+   width: 100%;
+   height: 60px;
+   align-items: center;
+   justify-content: space-between;
+   display: flex;
+   align-items: center;
+   z-index: 2;
 }
 
-.sun {
+.main-nav .brand {
+   margin-left: 20px;
+   font-size: 1.5em;
+   color: white;
+   font-weight: bold;
+}
+
+.main-nav a {
+   color: white;
+   text-decoration: none;
+   margin-right: 20px;
+   transition: color 0.2s;
+}
+
+button {
+   background-color: transparent;
+   border: none;
+}
+
+.button-container{
+   width: 40px;
+}
+
+.buttons {
+   width: 20px;
+   height: 20px;
+   margin-bottom: 10px;  /* Adds space between the buttons */ 
+}
+
+button:hover {
+   transform: scale(1.10);
+}
+
+a:hover {
+   color: var(--hover-color);
+}
+
+.container {
+   display: flex;
+   height: 100% ; /* Full height of the viewport */
+   flex-direction: row; /* Align children horizontally */
+}
+
+#contact-cards {
+   flex-grow: 1; /* Takes up remaining space */
+   overflow-y: auto; /* Enables vertical scrolling */
+   padding: 0px 30px 30px 30px;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 40px; /* 20px above and below each card */
+   align-content: flex-start;
+   z-index: 2;
+}
+
+
+
+.contact-card {
+   display: flex;
+   align-items: center;
+   width: 390px;
+   height: 250px;
+   border-radius: 10px;
+   background-color: rgba(217, 207, 222, 0.46);
+}
+
+
+.contact-image {
+   width: 200px; /* Fixed width for the image */
+   object-fit: cover; /* Ensures the image covers the area without distorting */
+}
+
+.contact-info {
+   flex-grow: 1; /* Takes the remaining space in the container */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin-left: 10px;
+   width: 130px;
+   margin-right: 10px;
+}
+
+#add-new-contact {
+   height: 450px; /* Fixed height of the form */
+   width: 270px; /* Fixed width */
+   background-color: rgba(255, 255, 255, 0.6);
+   border-radius: 10px;
+   padding: 0px 10px;
+   justify-content: center;
+   box-shadow: -1px 0 5px rgba(0,0,0,0.1);
    position: absolute;
+
+}
+
+#add-new-contact h3 {
+   margin: 10px 0px;
+}
+
+.contact-info  h3 {
+   margin: 10px;
+}
+
+.planet-wrap {
+   background-image: url('../../assets/images/planet.png'); /* Path to your planet image */
+   background-size: cover;
+   display: flex;
+   min-width: 550px;
+   justify-content: center; 
+   align-items: center;
+   width: 550px;
+   height: 550px;
+   margin-top: 30px;
+   z-index: 2;
+}
+
+input {
+   width: 100%;
+   box-sizing: border-box; /* Includes padding and border in the element's width and height */
+}
+
+.stars, .twinkling, .clouds {
+	position:absolute;
+	display:block;
+	top:0; bottom:0;
+	left:0; right:0;
+	width:100%; height:100%;
+}
+
+.stars {
+	z-index: 0;
+	background: #000000 url('../../assets/images/stars.png') repeat top center;
+}
+
+.twinkling {
+	z-index: 0;
+	background:transparent url('../../assets/images/twinkling.png') repeat top center;
+	animation: move-twink-back 200s linear infinite;
+}
+
+.clouds{
+	z-index: 0;
+    background:transparent url('../../assets/images/clouds.png') repeat top center;
+	animation: move-clouds-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+	from {background-position:0 0;}
+	to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+	from {background-position:0 0;}
+	to {background-position:10000px 0;}
+}
+
+
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 3;
+   left: 0;
+   top: 0;
    width: 100%;
    height: 100%;
-   border-radius: 50%;
-   background: radial-gradient(circle at center, beige 20%, rgb(225, 184, 107), brown 100%);
-   z-index: 1;
+   overflow: auto;
+   background-color: rgb(0,0,0);
+   background-color: rgba(0,0,0,0.4);
 }
 
-.filter-button {
-   background: none;
-   border: none;
-   cursor: pointer;
-   text-align: left;
-   font-size: 16px;
-   color: white;
-   display: flex;
-   align-items: center;
-}
-
-.filter-button img {
-   margin-left: 10px;
-   max-width: 30px;
-}
-
-.flex-container {
-   display: flex;
-   flex-wrap: wrap;
-   align-items: flex-start;
-   justify-content: center;
-   background: transparent;
-}
-
-aside {
-   margin-top: 10px;
-   display: block;
-   background: rgb(92, 84, 124);
-   width: 250px;
-   height: 270px;
-   img { display: block; }
+.modal-content {
+   background-color: #fefefe;
+   margin: 15% auto;
    border-radius: 20px;
-   text-align: center;
-}
-
-aside img {
-   display: block;
-   margin: 0 auto;
-   max-width: 90%;
-}
-
-/* input information box */
-form {
-   display: flex;
-   flex-direction: column;
-   max-width: 100%;
-   box-sizing: border-box;
    padding: 20px;
-   z-index: 2;
-   background-color: transparent;
-   border-radius: 10px;
+   border: 1px solid #888;
+   width: 80%;
 }
 
-fieldset {
-   border: none;
-   text-align: center;
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
 }
 
-form input, form select, form textarea {
-   background-color: #fffacd; 
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   padding: 5px;
-   margin-bottom: 10px;
-   outline-color: yellow;
-}
-
-/* Title */
-.bubble {
-   left: 50%;
-   background-color: #f0f0f0;
-   padding: 20px;
-   border-radius: 20px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.bubble h1 {
-   margin: 0;
-   font-size: 24px;
-   color: #333;
-}
-
-.info-box {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-evenly;
-   background: transparent;
-}
-
-/* formatting for each person's description */
-.person-entry {
-   display: flex;
-   padding: 40px;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   width: 26%;  
-   height: 26vw;
-   margin: 10px;  
-   border-radius: 50%;
-   background: radial-gradient(circle at center, #9ccddc 40%, #5591a9 60%, #054569 90%);
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.entry-content {
-   flex-grow: 1;
-   width: 100%;
-   text-align: center;
-}
-
-.entry-avatar {
-   flex-shrink: 0;
-}
-
-.avatar-image {
-   width: 25px;
-   height: auto;
-   border-radius: 50%;
-}
-
-/* CSS for avatar options */
-.avatar-option {
-   border: 2px solid transparent;
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
    cursor: pointer;
-}
-
-.avatar-option.selected {
-   border-color: blue;
 }
 

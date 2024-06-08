@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="assets/styles/contactPage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <!-- NAVIATION BACK TO INDEX -->
+    <div class="main-nav">
+        <div class="brand">Contacts Page</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>         
+    </div>
+
+    <!-- CONTACT CARDS -->
+    <div class="container">
+        <div id="contact-cards">
+            <!-- CONTACTS ADDED DYNAMICALLY HERE -->
+        </div>
+        <!-- ADD CONTACT FORM -->
+        <div class="planet-wrap">
+            <div id="add-new-contact">
+                <form id="contact-form">
+                    <h3>Add Contact Information</h3>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br>
+                    <label for="gender">Gender:</label><br>
+                    <select id="gender" name="gender"><br>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select> <br>
+                    <label for="github">Github:</label><br>
+                    <input type="text" id="github" name="github"><br>
+                    <label for="linkedin">LinkedIn:</label><br>
+                    <input type="text" id="linkedin" name="linkedin"><br>
+                    <label for="email">Email:</label><br>
+                    <input type="text" id="email" name="email"><br>
+                    <label for="phone">Phone Number:</label><br>
+                    <input type="text" id="phone" name="phone" pattern="\d{3}-\d{3}-\d{4}" placeholder="xxx-xxx-xxxx"><br>
+                    <label for="role">Role:</label><br>
+                    <select id="role" name="role"><br>
+                        <option value="Analyst">Analyst</option>
+                        <option value="HR">HR</option>
+                        <option value="Design">Designer</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Product">Product Manager</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Manager">Manager</option>
+                        <option value="CTO">CTO</option>
+                    </select> <br>
+                    <label for="other">Other Information:</label><br>
+                    <textarea id="other" name="other" rows="4" cols="30" placeholder="Enter any additional information here"></textarea><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="viewMoreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Additional Information</h2>
+            <p id="moreText"></p>
+        </div>
+    </div>
+
+    <script src="assets/scripts/ContactPage.js"></script>
+</body>
+</html>
