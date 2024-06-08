@@ -8,6 +8,7 @@ export default [
         return acc;
       }, {}),
     },
+    ignores: ['coverage/'],
     rules: {
       'no-undef': 'off',
     },
