@@ -11,36 +11,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       - name: '[unit test] example'
         run: npm test ./__tests__/example.test.js
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_ORG_TOKEN }}
 
   unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       - name: '[unit test] project cards'
         run: npm test ./__tests__/ProjectCard.unit.test.js
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_ORG_TOKEN }}
 
   E2E_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
       - name: '[E2E test] project cards'
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_ORG_TOKEN }}
 
   linting:
     name: Linting
