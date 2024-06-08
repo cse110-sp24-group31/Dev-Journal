@@ -5,7 +5,7 @@
 unit test coverage: [![codecov](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graph/badge.svg?token=I7LZVX58TA)](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal)
 
 puppeteer code coverage (E2E and system test):
-[link to converage report](./coverage/index.html)
+[link to converage report](https://cse110-sp24-group31.github.io/Dev-Journal/coverage/index.html)
 
 ![code coverage image](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graphs/sunburst.svg?token=I7LZVX58TA)
 

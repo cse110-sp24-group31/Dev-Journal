@@ -47,9 +47,10 @@ jobs:
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
-      - name: update code coverage
-        run: npm i -D puppeteer puppeteer-to-istanbul nyc && node ./code-coverage.js  && nyc report --reporter=html
-        
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   linting:
     name: Linting
