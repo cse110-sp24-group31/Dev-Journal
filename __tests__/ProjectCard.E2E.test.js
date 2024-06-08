@@ -65,16 +65,15 @@ describe('E2E test: create project card workflow', () => {
   });
 
   it('should not accept empty submission', async () => {
-    page.on('dialog', async dialog => {
-      await dialog.accept(); // Accept the alert
+    submitBtnHandle.click();
+    const dialog = page.on('dialog', async dialog => {
+      return dialog;
     });
-    await page.click('#submitButton');
-
-    // Check if an alert is present
-    const alert = await page.evaluate(() => {
-      return window.alert; // Get the global alert function
+    expect(dialog).not.toBe(null);
+    //suppress
+    await page.evaluate(() => {
+      window.confirm = () => true; // Accept the confirm alert
     });
-    expect(alert).toBeDefined();
   });
 
   it('fill in all input fields', async () => {
@@ -119,7 +118,7 @@ describe('E2E test: create project card workflow', () => {
     ).toBe(TEST_CASE[2]);
   });
   it('should create a new project card and close modal', async () => {
-    await page.click('#submitButton');
+    submitBtnHandle.click();
     await page.waitForSelector('project-card');
 
     const isHidden = await page.$eval('#addCardModal', modal => {
