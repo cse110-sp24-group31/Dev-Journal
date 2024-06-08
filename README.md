@@ -1,3 +1,7 @@
+[![Project Main Branch Tests](https://github.com/cse110-sp24-group31/Dev-Journal/actions/workflows/main.yml/badge.svg)](https://github.com/cse110-sp24-group31/Dev-Journal/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graph/badge.svg?token=I7LZVX58TA)](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal)
+
+![code coverage image](https://codecov.io/gh/cse110-sp24-group31/Dev-Journal/graphs/sunburst.svg?token=I7LZVX58TA)
 # Dev-Journal
 
 Main project for CSE 110. Includes calendar, journal entries, contact pages, progression meter, a task list, all within a polish UI

@@ -25,7 +25,8 @@
     "verbose": true,
     "collectCoverage": true,
     "coverageReporters": [
-      "lcov"
+      "text",
+      "cobertura"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
