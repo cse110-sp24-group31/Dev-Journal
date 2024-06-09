@@ -11,8 +11,8 @@ describe('Calendar and Add Task Tests', () => {
 
     beforeAll(async () => {
         browser = await puppeteer.launch({
-          headless: true,
-          slowMo: 10,
+          headless: false,
+          slowMo: 5,
         });
         page = await browser.newPage();
         await page.goto(websitePage);
