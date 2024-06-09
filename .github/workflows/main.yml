@@ -47,6 +47,8 @@ jobs:
         run: npm test ./__tests__/ProjectCard.E2E.test.js
       - name: '[E2E test] contacts'
         run: npm test ./__tests__/Contacts.E2E.test.js
+      - name: '[E2E test] calendar'
+        run: npm test ./__tests__/calendar.test.js
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         env:
