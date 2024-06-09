@@ -1,28 +1,9 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="4" lines-covered="4" line-rate="1" branches-valid="0" branches-covered="0" branch-rate="1" timestamp="1717855646160" complexity="0" version="0.1">
+<coverage lines-valid="0" lines-covered="0" line-rate="NaN" branches-valid="0" branches-covered="0" branch-rate="NaN" timestamp="1717927308173" complexity="0" version="0.1">
   <sources>
-    <source>P:\Coding\CSE 110\Dev-Journal</source>
+    <source>/Users/ishanvaish/Dev-Journal</source>
   </sources>
   <packages>
-    <package name="main" line-rate="1" branch-rate="1">
-      <classes>
-        <class name="example.js" filename="testcode\example.js" line-rate="1" branch-rate="1">
-          <methods>
-            <method name="addNumbers" hits="1" signature="()V">
-              <lines>
-                <line number="1" hits="1"/>
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="2" hits="1" branch="false"/>
-            <line number="3" hits="1" branch="false"/>
-            <line number="4" hits="10" branch="false"/>
-            <line number="6" hits="1" branch="false"/>
-          </lines>
-        </class>
-      </classes>
-    </package>
   </packages>
 </coverage>
