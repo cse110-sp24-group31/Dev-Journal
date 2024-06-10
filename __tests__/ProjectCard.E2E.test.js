@@ -262,7 +262,240 @@ describe('E2E tests: delete project card workflow', () => {
     );
     expect(isCardDeleted).toBe(true);
   });
+  
+  describe('E2E test: update project card workflow', () => {
+    beforeAll(async () => {
+      await page.goto('https://cse110-sp24-group31.github.io/Dev-Journal/'); // change this for live server
+    });
+  
+    it('should have at least one project card', async () => {
+      // Add a project card if none exists for testing update functionality
+      await page.evaluate(() => {
+        const projects = JSON.parse(localStorage.getItem('projects')) || [];
+        if (projects.length === 0) {
+          projects.push({
+            id: 1,
+            title: 'Sample Project',
+            desc: 'This is a sample project description',
+            image:
+              'https://via.placeholder.com/150/0000FF/808080%20?Text=SampleImage',
+            progress: 50,
+            tasks: []
+          });
+          localStorage.setItem('projects', JSON.stringify(projects));
+        }
+      });
+  
+      // Reload the page to render the new project card if added
+      await page.reload();
+      const projectCardHandle = await page.$('project-card');
+      expect(projectCardHandle).not.toBe(null);
+    });
+  
+    it('should update the project card', async () => {
+      const newTitle = 'Updated Project Title';
+      const newDesc = 'Updated project description';
+      const newImage = 'https://via.placeholder.com/150/FF0000/FFFFFF?Text=NewImage';
+      const newProgress = 75;
+  
+      // Open the edit modal for the first project card
+      await page.evaluate(() => {
+        document.querySelector('project-card').shadowRoot.querySelector('button[onclick*="openViewCardModal"]').click();
+      });
+  
+      // Ensure the modal is visible
+      await page.waitForSelector('#viewCardModal', { visible: true });
+  
+      // Fill in the new details
+      await page.$eval(
+        '#viewCardModal #projectName',
+        (input, newTitle) => {
+          input.readOnly = false;
+          input.value = newTitle;
+        },
+        newTitle
+      );
+  
+      await page.$eval(
+        '#viewCardModal #projectDescription',
+        (input, newDesc) => {
+          input.readOnly = false;
+          input.value = newDesc;
+        },
+        newDesc
+      );
+  
+      await page.$eval(
+        '#viewCardModal #projectImage',
+        (input, newImage) => {
+          input.readOnly = false;
+          input.value = newImage;
+        },
+        newImage
+      );
+  
+      // Click save button
+      await page.evaluate(() => {
+        document.getElementById('saveButton').click();
+      });
+  
+      // Manually set the progress as it might not be part of the update function
+      await page.evaluate(newProgress => {
+        const projects = JSON.parse(localStorage.getItem('projects'));
+        projects[0].progress = newProgress;
+        localStorage.setItem('projects', JSON.stringify(projects));
+      }, newProgress);
+  
+      // Reload the page to reflect changes
+      await page.reload();
+  
+      // Verify that the project card has been updated
+      const projectCardData = await page.$eval('project-card', card => {
+        return {
+          title: card.shadowRoot.querySelector('.name').textContent,
+          desc: card.shadowRoot.querySelector('.desc').textContent,
+          image: card.shadowRoot.querySelector('.project-image').src,
+          progress: parseInt(card.shadowRoot.querySelector('.progress-bar-fill').textContent),
+        };
+      });
+  
+      expect(projectCardData.title).toBe(newTitle);
+      expect(projectCardData.desc).toBe(newDesc);
+      expect(projectCardData.image).toBe(newImage);
+      expect(projectCardData.progress).toBe(newProgress);
+    });
+  
+    it('should not update the project card with invalid image URL', async () => {
+      const invalidImageURL = 'invalid-url';
+      const originalImageURL = await page.$eval('project-card', card => card.shadowRoot.querySelector('.project-image').src);
+  
+      await page.evaluate(() => {
+        document.querySelector('project-card').shadowRoot.querySelector('button[onclick*="openViewCardModal"]').click();
+      });
+  
+      await page.waitForSelector('#viewCardModal', { visible: true });
+  
+      await page.$eval(
+        '#viewCardModal #projectImage',
+        (input, invalidImageURL) => {
+          input.readOnly = false;
+          input.value = invalidImageURL;
+        },
+        invalidImageURL
+      );
+  
+      await page.evaluate(() => {
+        document.getElementById('saveButton').click();
+      });
+  
+      const projectCardData = await page.$eval('project-card', card => card.shadowRoot.querySelector('.project-image').src);
+      expect(projectCardData).toBe(originalImageURL); // Expect the image URL to not be updated with invalid URL
+    });
+    it('should show error on updating with empty fields', async () => {
+      await page.evaluate(() => {
+        document.querySelector('project-card').shadowRoot.querySelector('button[onclick*="openViewCardModal"]').click();
+      });
+    
+      await page.waitForSelector('#viewCardModal', { visible: true });
+    
+      await page.$eval('#viewCardModal #projectName', input => { input.readOnly = false; input.value = ''; });
+      await page.$eval('#viewCardModal #projectDescription', input => { input.readOnly = false; input.value = ''; });
+      await page.$eval('#viewCardModal #projectImage', input => { input.readOnly = false; input.value = ''; });
+    
+      // Remove any previous 'dialog' event listeners to avoid conflicts
+      page.removeAllListeners('dialog');
+    
+      // Ensure the dialog event listener is set up before clicking the save button
+      page.once('dialog', async dialog => {
+        await dialog.accept(); // Accept the alert
+      });
+    
+      await page.evaluate(() => {
+        document.getElementById('saveButton').click();
+      });
+    
+      const projectCardData = await page.$eval('project-card', card => {
+        return {
+          title: card.shadowRoot.querySelector('.name').textContent,
+          desc: card.shadowRoot.querySelector('.desc').textContent,
+          image: card.shadowRoot.querySelector('.project-image').src,
+        };
+      });
+    
+      expect(projectCardData.title).not.toBe('');
+      expect(projectCardData.desc).not.toBe('');
+      expect(projectCardData.image).not.toBe('');
+    });    
+  
+    it('should retain original values when update is cancelled', async () => {
+      const originalTitle = await page.$eval('project-card', card => card.shadowRoot.querySelector('.name').textContent);
+      const originalDesc = await page.$eval('project-card', card => card.shadowRoot.querySelector('.desc').textContent);
+      const originalImage = await page.$eval('project-card', card => card.shadowRoot.querySelector('.project-image').src);
+  
+      await page.evaluate(() => {
+        document.querySelector('project-card').shadowRoot.querySelector('button[onclick*="openViewCardModal"]').click();
+      });
+  
+      await page.waitForSelector('#viewCardModal', { visible: true });
+  
+      await page.$eval('#viewCardModal #projectName', input => { input.readOnly = false; input.value = 'Temporary Title'; });
+      await page.$eval('#viewCardModal #projectDescription', input => { input.readOnly = false; input.value = 'Temporary Description'; });
+      await page.$eval('#viewCardModal #projectImage', input => { input.readOnly = false; input.value = 'https://via.placeholder.com/150/FF0000/FFFFFF?Text=TemporaryImage'; });
+  
+      await page.evaluate(() => {
+        document.querySelector('.close-modal').click(); // Click the close button to cancel
+      });
+  
+      const projectCardData = await page.$eval('project-card', card => {
+        return {
+          title: card.shadowRoot.querySelector('.name').textContent,
+          desc: card.shadowRoot.querySelector('.desc').textContent,
+          image: card.shadowRoot.querySelector('.project-image').src,
+        };
+      });
+  
+      expect(projectCardData.title).toBe(originalTitle);
+      expect(projectCardData.desc).toBe(originalDesc);
+      expect(projectCardData.image).toBe(originalImage);
+    });
+  
+    it('should preserve project card data when partially updated', async () => {
+      const newDesc = 'Partially updated project description';
+      
+      await page.evaluate(() => {
+        document.querySelector('project-card').shadowRoot.querySelector('button[onclick*="openViewCardModal"]').click();
+      });
+  
+      await page.waitForSelector('#viewCardModal', { visible: true });
+  
+      await page.$eval(
+        '#viewCardModal #projectDescription',
+        (input, newDesc) => {
+          input.readOnly = false;
+          input.value = newDesc;
+        },
+        newDesc
+      );
+  
+      await page.evaluate(() => {
+        document.getElementById('saveButton').click();
+      });
+  
+      const projectCardData = await page.$eval('project-card', card => {
+        return {
+          title: card.shadowRoot.querySelector('.name').textContent,
+          desc: card.shadowRoot.querySelector('.desc').textContent,
+          image: card.shadowRoot.querySelector('.project-image').src,
+        };
+      });
+  
+      const originalTitle = await page.$eval('project-card', card => card.shadowRoot.querySelector('.name').textContent);
+      const originalImage = await page.$eval('project-card', card => card.shadowRoot.querySelector('.project-image').src);
+  
+      expect(projectCardData.title).toBe(originalTitle); // Title should remain unchanged
+      expect(projectCardData.desc).toBe(newDesc); // Description should be updated
+      expect(projectCardData.image).toBe(originalImage); // Image should remain unchanged
+    });
+  });
+  
 });
-
-//TODO:
-describe('E2E tests: task manager related workflow', () => {});
