@@ -1,6 +1,9 @@
 ## Public Video 
 [Youtube link here](https://youtu.be/CX_c_iqfMKY)
 
+## Private Video 
+[Youtube link here](https://youtu.be/pQt21xAzqaY)
+
 ### CI/CD
 
 [![Project Main Branch Tests](https://github.com/cse110-sp24-group31/Dev-Journal/actions/workflows/main.yml/badge.svg)](https://github.com/cse110-sp24-group31/Dev-Journal/actions/workflows/main.yml)
