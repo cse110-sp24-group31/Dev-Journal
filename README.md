@@ -102,7 +102,7 @@ Main project for CSE 110. Includes calendar, journal entries, contact pages, pro
 
 ## projects
 
-> where all data of projects stored. a typical project data should look like:
+> where all data of projects stored. a typical project data look like:
 
 ```JSON
 {
