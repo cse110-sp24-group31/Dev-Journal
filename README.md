@@ -1,3 +1,5 @@
+Link to Website: https://cse110-sp24-group31.github.io/Dev-Journal/
+
 ## Public Video 
 [Youtube link here](https://youtu.be/CX_c_iqfMKY)
 
